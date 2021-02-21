@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/zhudiaozhanjianxianshi.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <title>助调</title>
+    <script type="text/javascript">
+	var pianzhi1x,pianzhi1y,pianzhi2x,pianzhi2y,pianzhi3x,pianzhi3y;
+			pianzhi1x=800;
+			pianzhi1y=-150;
+			pianzhi2x=800;
+			pianzhi2y=230;
+			pianzhi3x=800;
+			pianzhi3y=730;
+        window.onload = function () {
+			var x,y,x1,x2,y1,y2,w,h,text;
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#000";
+            context.fillRect(0, 0, 3000, 3100);
+			
+
+			//主轨道
+            context.fillStyle = "#848284";
+					
+            //北京南站主轨道
+            context.fillRect(410+pianzhi1x, 230+pianzhi1y, 240, 5);
+			
+			context.fillRect(250+pianzhi1x, 290+pianzhi1y, 560, 5);
+
+			context.fillRect(20+pianzhi1x, 350+pianzhi1y, 1750, 5);
+			context.fillRect(20+pianzhi1x, 410+pianzhi1y, 1750, 5);
+			context.fillRect(250+pianzhi1x, 470+pianzhi1y, 560, 5);
+			context.fillRect(410+pianzhi1x, 530+pianzhi1y, 240, 5);
+				
+			
+			//南京南站主轨道
+			context.fillRect(650+pianzhi2x, 290+pianzhi2y, 560, 5);
+			
+            context.fillRect(20+pianzhi2x, 350+pianzhi2y, 1750, 5);			
+			context.fillRect(20+pianzhi2x, 410+pianzhi2y, 1750, 5);
+			
+			context.fillRect(650+pianzhi2x, 470+pianzhi2y, 560, 5);
+			
+		   //上海虹桥主轨道
+            context.fillRect(1210+pianzhi3x, 230+pianzhi3y, 240, 5);
+			
+			context.fillRect(1050+pianzhi3x, 290+pianzhi3y, 560, 5);
+
+			context.fillRect(20+pianzhi3x, 350+pianzhi3y, 1930, 5);
+			context.fillRect(20+pianzhi3x, 410+pianzhi3y, 1930, 5);
+			context.fillRect(1050+pianzhi3x, 470+pianzhi3y, 560, 5);
+			context.fillRect(1210+pianzhi3x, 530+pianzhi3y, 240, 5);
+
+ 			//北京南站站标
+			x=520;y=200;w=190;h=60
+			text="北京南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			//南京南站站标
+			x=520;y=585;w=190;h=60
+			text="南京南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			 //上海虹桥站标
+			x=520;y=1080;w=190;h=60
+			text="上海虹桥"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			
+			//车档
+			x1=15+pianzhi1x;x2=20+pianzhi1x;y1=347+pianzhi1y;y2=358+pianzhi1y
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=15+pianzhi1x;x2=20+pianzhi1x;y1=407+pianzhi1y;y2=418+pianzhi1y
+			zuocechedang(x1,x2,y1,y2)
+			
+            //上海虹桥车档
+			x1=1955+pianzhi3x;x2=1950+pianzhi3x;y1=347+pianzhi3y;y2=358+pianzhi3y
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=1955+pianzhi3x;x2=1950+pianzhi3x;y1=407+pianzhi3y;y2=418+pianzhi3y
+			zuocechedang(x1,x2,y1,y2)
+			
+			//闭塞分区标志
+			bisaifenqu(163+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(163+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			bisaifenqu(905+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(905+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			bisaifenqu(1050+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(1050+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			bisaifenqu(1230+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(1230+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			bisaifenqu(1410+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(1410+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			
+			
+			bisaifenqu(1590+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(1590+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			bisaifenqu(1770+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(1770+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+
+            bisaifenqu(326+pianzhi1x,288+pianzhi1y,297+pianzhi1y)
+			bisaifenqu(326+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(326+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			bisaifenqu(326+pianzhi1x,468+pianzhi1y,477+pianzhi1y)
+			
+			bisaifenqu(406+pianzhi1x,288+pianzhi1y,297+pianzhi1y)
+			bisaifenqu(406+pianzhi1x,468+pianzhi1y,477+pianzhi1y)
+			
+		    bisaifenqu(436+pianzhi1x,228+pianzhi1y,237+pianzhi1y)
+			bisaifenqu(436+pianzhi1x,528+pianzhi1y,537+pianzhi1y)
+			
+		    bisaifenqu(613+pianzhi1x,228+pianzhi1y,237+pianzhi1y)
+			bisaifenqu(613+pianzhi1x,528+pianzhi1y,537+pianzhi1y)
+			
+			bisaifenqu(653+pianzhi1x,288+pianzhi1y,297+pianzhi1y)
+			bisaifenqu(653+pianzhi1x,468+pianzhi1y,477+pianzhi1y)
+			
+			bisaifenqu(753+pianzhi1x,348+pianzhi1y,357+pianzhi1y)
+			bisaifenqu(753+pianzhi1x,408+pianzhi1y,417+pianzhi1y)
+			
+			bisaifenqu(753+pianzhi1x,288+pianzhi1y,297+pianzhi1y)
+			bisaifenqu(753+pianzhi1x,468+pianzhi1y,477+pianzhi1y)
+			
+			
+			//南京南闭塞分区标志
+			bisaifenqu(20+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(20+pianzhi2x,408+pianzhi2y,417+pianzhi2y)
+			
+			bisaifenqu(200+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(200+pianzhi2x,408+pianzhi2y,417+pianzhi2y)
+			
+			bisaifenqu(380+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(380+pianzhi2x,408+pianzhi2y,417+pianzhi2y)
+			
+			bisaifenqu(534+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(534+pianzhi2x,408+pianzhi2y,417+pianzhi2y)//X/XF
+			bisaifenqu(656+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(656+pianzhi2x,408+pianzhi2y,417+pianzhi2y)//S1/S2			
+			bisaifenqu(706+pianzhi2x,288+pianzhi2y,297+pianzhi2y)
+			bisaifenqu(706+pianzhi2x,468+pianzhi2y,477+pianzhi2y)//S3/S4	
+			bisaifenqu(1163+pianzhi2x,288+pianzhi2y,297+pianzhi2y)
+			bisaifenqu(1163+pianzhi2x,468+pianzhi2y,477+pianzhi2y)//X3/X4	
+			bisaifenqu(1206+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(1206+pianzhi2x,408+pianzhi2y,417+pianzhi2y)//X1/X2	
+			
+			bisaifenqu(1410+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(1410+pianzhi2x,408+pianzhi2y,417+pianzhi2y)
+			
+			bisaifenqu(1590+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(1590+pianzhi2x,408+pianzhi2y,417+pianzhi2y)
+			
+			bisaifenqu(1770+pianzhi2x,348+pianzhi2y,357+pianzhi2y)
+			bisaifenqu(1770+pianzhi2x,408+pianzhi2y,417+pianzhi2y)
+			
+			//上海虹桥闭塞分区标志
+			bisaifenqu(20+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(20+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+			bisaifenqu(200+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(200+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+			bisaifenqu(380+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(380+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+			bisaifenqu(560+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(560+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+			bisaifenqu(740+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(740+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+			bisaifenqu(920+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(920+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+
+			bisaifenqu(1554+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(1554+pianzhi3x,408+pianzhi3y,417+pianzhi3y)//X1/X2			
+			bisaifenqu(1770+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(1770+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+			bisaifenqu(1950+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(1950+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+
+			
+			bisaifenqu(1126+pianzhi3x,288+pianzhi3y,297+pianzhi3y)
+			bisaifenqu(1126+pianzhi3x,348+pianzhi3y,357+pianzhi3y)
+			bisaifenqu(1126+pianzhi3x,408+pianzhi3y,417+pianzhi3y)
+			bisaifenqu(1126+pianzhi3x,468+pianzhi3y,477+pianzhi3y)//S1/S2
+			
+			bisaifenqu(1206+pianzhi3x,288+pianzhi3y,297+pianzhi3y)
+			bisaifenqu(1206+pianzhi3x,468+pianzhi3y,477+pianzhi3y)//S3/S4
+			
+		    bisaifenqu(1236+pianzhi3x,228+pianzhi3y,237+pianzhi3y)
+			bisaifenqu(1236+pianzhi3x,528+pianzhi3y,537+pianzhi3y)//S5/S6
+			
+		    bisaifenqu(1413+pianzhi3x,228+pianzhi3y,237+pianzhi3y)
+			bisaifenqu(1413+pianzhi3x,528+pianzhi3y,537+pianzhi3y)//X5/X6
+			
+			bisaifenqu(1453+pianzhi3x,288+pianzhi3y,297+pianzhi3y)
+			bisaifenqu(1453+pianzhi3x,468+pianzhi3y,477+pianzhi3y)//X3/X4
+			
+            //长侧向轨道
+			changceguidaohuizhi();
+            
+			
+			//北京南站侧向轨道
+			beijingnanzhancexiangguidao();
+            
+			//南京南站侧向轨道
+			nanjingnanzhancexiangguidao();
+			
+			//上海虹桥侧向轨道
+			shanghaihongqiaocexiangguidao();
+			
+			//北京南站信号机
+			//北京南站上行信号机第一
+			x=450+pianzhi1x;y=260+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(430+pianzhi1x,270+pianzhi1y,'S5')
+			
+            //context.strokeRect(150, 450, 100, 100);
+            //北京南站上行信号机第二
+			x=420+pianzhi1x;y=320+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(400+pianzhi1x,330+pianzhi1y,'S3')
+			xieshuzi(350+pianzhi1x,280+pianzhi1y,'5')
+			//北京南站上行信号机第三
+			x=340+pianzhi1x;y=380+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(320+pianzhi1x,390+pianzhi1y,'SI')
+			xieshuzi(205+pianzhi1x,335+pianzhi1y,'1')
+            //北京南站上行信号机第四
+			x=340+pianzhi1x;y=440+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(320+pianzhi1x,450+pianzhi1y,'SII')
+			xieshuzi(205+pianzhi1x,440+pianzhi1y,'3')
+			//北京南站上行信号机第五
+			x=420+pianzhi1x;y=500+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(400+pianzhi1x,510+pianzhi1y,'S4')
+			xieshuzi(350+pianzhi1x,500+pianzhi1y,'7')
+			//北京南站上行信号机第六
+			x=450+pianzhi1x;y=560+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(430+pianzhi1x,570+pianzhi1y,'S6')
+			
+			//北京南站下行信号机第一
+			x=660+pianzhi1x;y=230+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(630+pianzhi1x,205+pianzhi1y,'X5')
+			//北京南站下行信号机第二
+			x=700+pianzhi1x;y=290+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(665+pianzhi1x,265+pianzhi1y,'X3')
+			xieshuzi(715+pianzhi1x,280+pianzhi1y,'10')
+			//北京南站下行信号机第三
+			x=800+pianzhi1x;y=350+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(770+pianzhi1x,325+pianzhi1y,'XI')
+			xieshuzi(875+pianzhi1x,335+pianzhi1y,'6')
+			//北京南站下行信号机第四
+			x=800+pianzhi1x;y=410+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(770+pianzhi1x,385+pianzhi1y,'XII')
+			xieshuzi(875+pianzhi1x,440+pianzhi1y,'8')
+			//北京南站下行信号机第五
+			x=700+pianzhi1x;y=470+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(670+pianzhi1x,445+pianzhi1y,'X4')
+			xieshuzi(715+pianzhi1x,500+pianzhi1y,'12')
+			//北京南站下行信号机第六
+			x=660+pianzhi1x;y=530+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(630+pianzhi1x,505+pianzhi1y,'X6')
+			
+			//北京南站下行信号机第七
+			x=210+pianzhi1x;y=350+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(180+pianzhi1x,325+pianzhi1y,'X')
+			xieshuzi(1075+pianzhi1x,335+pianzhi1y,'4')
+			//北京南站下行信号机第八
+			x=210+pianzhi1x;y=440+pianzhi1y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(180+pianzhi1x,450+pianzhi1y,'XF')
+			xieshuzi(1555+pianzhi1x,440+pianzhi1y,'2')
+			
+			//北京南站中间段1
+			x=1423+pianzhi1x;y=350+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1403+pianzhi1x,325+pianzhi1y,'SF')
+            //北京南站中间段2
+			x=1423+pianzhi1x;y=440+pianzhi1y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1408+pianzhi1x,450+pianzhi1y,'S')
+			
+
+			
+			
+			//道岔编号
+			xieshuzi(530+pianzhi1x,250+pianzhi1y,'5G')
+			xieshuzi(530+pianzhi1x,310+pianzhi1y,'3G')
+			xieshuzi(530+pianzhi1x,370+pianzhi1y,'IG')
+			xieshuzi(530+pianzhi1x,430+pianzhi1y,'IIG')
+			xieshuzi(530+pianzhi1x,490+pianzhi1y,'4G')
+			xieshuzi(530+pianzhi1x,550+pianzhi1y,'6G')
+			
+		
+			//南京南站信号机
+
+            //南京南站上行信号机第一
+			x=720+pianzhi2x;y=320+pianzhi2y
+			shangxingxinhaoji(x,y);
+			xieshuzi(700+pianzhi2x,330+pianzhi2y,'S3')
+
+			//南京南站上行信号机第二
+			x=670+pianzhi2x;y=380+pianzhi2y
+			shangxingxinhaoji(x,y);
+			xieshuzi(650+pianzhi2x,390+pianzhi2y,'SI')
+			xieshuzi(595+pianzhi2x,335+pianzhi2y,'1')
+            //南京南站上行信号机第三
+			x=670+pianzhi2x;y=440+pianzhi2y
+			shangxingxinhaoji(x,y);
+			xieshuzi(650+pianzhi2x,450+pianzhi2y,'SII')
+			xieshuzi(595+pianzhi2x,440+pianzhi2y,'3')
+			//南京南站上行信号机第四
+			x=720+pianzhi2x;y=500+pianzhi2y
+			shangxingxinhaoji(x,y);
+			xieshuzi(700+pianzhi2x,510+pianzhi2y,'S4')
+
+
+			
+			//南京南站下行信号机第一
+			x=1210+pianzhi2x;y=290+pianzhi2y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1180+pianzhi2x,265+pianzhi2y,'X3')
+
+			//南京南站下行信号机第二
+			x=1250+pianzhi2x;y=350+pianzhi2y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1220+pianzhi2x,325+pianzhi2y,'XI')
+			xieshuzi(1278+pianzhi2x,335+pianzhi2y,'2')
+			//南京南站下行信号机第三
+			x=1250+pianzhi2x;y=410+pianzhi2y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1220+pianzhi2x,385+pianzhi2y,'XII')
+			xieshuzi(1278+pianzhi2x,440+pianzhi2y,'4')
+			//南京南站下行信号机第四
+			x=1210+pianzhi2x;y=470+pianzhi2y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1180+pianzhi2x,445+pianzhi2y,'X4')
+
+
+			
+			//南京南站下行信号机第五
+			x=580+pianzhi2x;y=350+pianzhi2y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(550+pianzhi2x,325+pianzhi2y,'X')
+
+			//南京南站下行信号机第六
+			x=580+pianzhi2x;y=440+pianzhi2y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(550+pianzhi2x,450+pianzhi2y,'XF')
+			
+			//南京南站中间段1
+			//x=1400;y=350
+			//shangxingxinhaoji(x,y);
+			//xieshuzi(1380,325,'SF')
+            //南京南站中间段2
+			//x=1400;y=440
+			//shangxingxinhaoji(x,y);
+			//xieshuzi(1380,450,'S')
+						
+			
+			//南京南站道岔编号
+			xieshuzi(930+pianzhi2x,310+pianzhi2y,'3G')
+			xieshuzi(930+pianzhi2x,370+pianzhi2y,'IG')
+			xieshuzi(930+pianzhi2x,430+pianzhi2y,'IIG')
+			xieshuzi(930+pianzhi2x,490+pianzhi2y,'4G')
+		
+		
+			//上海虹桥信号机
+			//上海虹桥上行信号机第一
+			x=1250+pianzhi3x;y=260+pianzhi3y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1230+pianzhi3x,270+pianzhi3y,'S5')
+			
+            //context.strokeRect(150, 450, 100, 100);
+            //上海虹桥上行信号机第二
+			x=1220+pianzhi3x;y=320+pianzhi3y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1200+pianzhi3x,330+pianzhi3y,'S3')
+			xieshuzi(1005+pianzhi3x,335+pianzhi3y,'5')
+			//上海虹桥上行信号机第三
+			x=1140+pianzhi3x;y=380+pianzhi3y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1120+pianzhi3x,390+pianzhi3y,'SI')
+			xieshuzi(205+pianzhi3x,440+pianzhi3y,'1')
+            //上海虹桥上行信号机第四
+			x=1140+pianzhi3x;y=440+pianzhi3y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1120+pianzhi3x,450+pianzhi3y,'SII')
+			xieshuzi(745+pianzhi3x,335+pianzhi3y,'3')
+			//上海虹桥上行信号机第五
+			x=1220+pianzhi3x;y=500+pianzhi3y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1200+pianzhi3x,510+pianzhi3y,'S4')
+			xieshuzi(1005+pianzhi3x,440+pianzhi3y,'7')
+			//上海虹桥上行信号机第六
+			x=1250+pianzhi3x;y=560+pianzhi3y
+			shangxingxinhaoji(x,y);
+			xieshuzi(1230+pianzhi3x,570+pianzhi3y,'S6')
+			
+			//上海虹桥下行信号机第一
+			x=1460+pianzhi3x;y=230+pianzhi3y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1430+pianzhi3x,205+pianzhi3y,'X5')
+			xieshuzi(1520+pianzhi3x,280+pianzhi3y,'6')
+			//上海虹桥下行信号机第二
+			x=1500+pianzhi3x;y=290+pianzhi3y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1465+pianzhi3x,265+pianzhi3y,'X3')
+			xieshuzi(1145+pianzhi3x,280+pianzhi3y,'9')
+			//上海虹桥下行信号机第三
+			x=1600+pianzhi3x;y=350+pianzhi3y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1570+pianzhi3x,325+pianzhi3y,'XI')
+			xieshuzi(1675+pianzhi3x,335+pianzhi3y,'2')
+			//上海虹桥下行信号机第四
+			x=1600+pianzhi3x;y=410+pianzhi3y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1570+pianzhi3x,385+pianzhi3y,'XII')
+			xieshuzi(1675+pianzhi3x,440+pianzhi3y,'4')
+			//上海虹桥下行信号机第五
+			x=1500+pianzhi3x;y=470+pianzhi3y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1470+pianzhi3x,445+pianzhi3y,'X4')
+			xieshuzi(1145+pianzhi3x,500+pianzhi3y,'11')
+			//上海虹桥下行信号机第六
+			x=1460+pianzhi3x;y=530+pianzhi3y
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1430+pianzhi3x,505+pianzhi3y,'X6')
+			xieshuzi(1520+pianzhi3x,500+pianzhi3y,'8')
+				
+			
+			//上海虹桥站道岔编号
+			xieshuzi(1330+pianzhi3x,250+pianzhi3y,'5G')
+			xieshuzi(1330+pianzhi3x,310+pianzhi3y,'3G')
+			xieshuzi(1330+pianzhi3x,370+pianzhi3y,'IG')
+			xieshuzi(1330+pianzhi3x,430+pianzhi3y,'IIG')
+			xieshuzi(1330+pianzhi3x,490+pianzhi3y,'4G')
+			xieshuzi(1330+pianzhi3x,550+pianzhi3y,'6G')
+		
+		
+			//连接状态
+			
+
+			lianjiezhuangtaibiaojikong1(150,145)
+			
+			
+        }
+		function lianjiezhuangtaibiaoji(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,7,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+		}
+		function lianjiezhuangtaibiaojikong(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,7,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = '#000';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#000";
+            context.fill();
+            context.stroke();
+		}
+		function lianjiezhuangtaibiaojikong1(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,28,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = '#000';
+            context.arc(x-30,y-13,25,0,2*Math.PI);
+            context.fillStyle="#000";
+            context.fill();
+            context.stroke();
+		}
+		function lianjiezhuangtaibiaojigreen(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,7,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+		}
+		
+		function shangxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+		function xiaxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+		
+		function bisaifenqu(x,y1,y2)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			//context.fillStyle = "#FFF";
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+            context.moveTo( x, y1 );
+			context.lineTo( x, y2 );
+			context.stroke();
+		
+		}
+		function zuocechedang(x1,x2,y1,y2)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+			context.lineWidth = 2; 
+            context.moveTo( x1, y1 );
+			context.lineTo( x2, y1 );
+            context.lineTo( x2, y2 );
+			context.lineTo( x1, y2 );
+		    context.stroke();
+		}
+		function chezhanbiaozhi(x,y,w,h,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "#FFF";
+			context.fillRect(x, y, w, h);
+			context.fillStyle = "#000";
+			context.fillRect(x+5, y+5, w-10, h-10);
+			context.fillStyle = "#FDFD00";
+			context.font="30px bold 宋体";
+            context.fillText(text,x+33,y+38);
+		}
+		
+		function xieshuzi(x,y,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+	
+			context.fillStyle = "#FFF";
+			context.font="12px bold 宋体";
+            context.fillText(text,x-10,y);
+		}
+		function huaxiaxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "blue";
+            
+		    context.fillRect(490, 335, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(326, 350, 427, 5);
+			
+		}
+		function changceguidaohuizhi()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x1=1105+pianzhi1x;
+			y1=358+pianzhi1y;
+			x2=1535+pianzhi1x;
+			y2=405+pianzhi1y;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+						
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+			context.lineWidth = 2;
+            context.moveTo( 1335+pianzhi1x,378+pianzhi1y);
+			context.lineTo( 1330+pianzhi1x, 387 +pianzhi1y);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x1=245+pianzhi3x;
+			y1=405+pianzhi3y;
+			x2=695+pianzhi3x;
+			y2=358+pianzhi3y;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+						
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+			context.lineWidth = 2;
+            context.moveTo( 465+pianzhi3x,378+pianzhi3y);
+			context.lineTo( 470+pianzhi3x, 387+pianzhi3y );
+			context.stroke();
+			
+		}
+		function beijingnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=195+pianzhi1x;
+			y=348+pianzhi1y;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    x=315+pianzhi1x;
+			y=290+pianzhi1y;
+			k=50;
+			context.moveTo( x+40, y-3 ); // x+7,y-1
+			context.lineTo( x+40+k, y-3-k);
+			//context.moveTo( 157, 185 );
+			//context.lineTo( 205, 138 );
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=655+pianzhi1x;
+			y=230+pianzhi1y;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=810+pianzhi1x;
+			y=290+pianzhi1y;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=195+pianzhi1x;
+			y=417+pianzhi1y;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=315+pianzhi1x;
+			y=475+pianzhi1y;
+			k=50;
+			context.moveTo( x+40, y+3 ); // x+7,y-1
+			context.lineTo( x+40+k, y+3+k);
+			context.stroke();
+
+			x=810+pianzhi1x;
+			y=470+pianzhi1y;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+			x=655+pianzhi1x;
+			y=530+pianzhi1y;
+			k=50;
+			context.moveTo( x, y-3 ); // x+7,y-1
+			context.lineTo( x+k, y-3-k);
+			context.stroke();
+		
+			
+					
+			
+			}
+			function nanjingnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=583+pianzhi2x;
+			y=348+pianzhi2y;
+			k=50; 
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=1215+pianzhi2x;
+			y=290+pianzhi2y;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=583+pianzhi2x;
+			y=417+pianzhi2y;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+
+			x=1215+pianzhi2x;
+			y=470+pianzhi2y;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+		}
+		function shanghaihongqiaocexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=990+pianzhi3x;
+			y=348+pianzhi3y;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    x=1115+pianzhi3x;
+			y=290+pianzhi3y;
+			k=50;
+			context.moveTo( x+40, y-3 ); // x+7,y-1
+			context.lineTo( x+40+k, y-3-k);
+			//context.moveTo( 157, 185 );
+			//context.lineTo( 205, 138 );
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=1455+pianzhi3x;
+			y=230+pianzhi3y;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=1610+pianzhi3x;
+			y=290+pianzhi3y;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=990+pianzhi3x;
+			y=417+pianzhi3y;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=1115+pianzhi3x;
+			y=475+pianzhi3y;
+			k=50;
+			context.moveTo( x+40, y+3 ); // x+7,y-1
+			context.lineTo( x+40+k, y+3+k);
+			context.stroke();
+
+			x=1610+pianzhi3x;
+			y=470+pianzhi3y;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+			x=1455+pianzhi3x;
+			y=530+pianzhi3y;
+			k=50;
+			context.moveTo( x, y-3 ); // x+7,y-1
+			context.lineTo( x+k, y-3-k);
+			context.stroke();
+		}
+    </script>
+</head>
+<body>
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+  
+    <div class='nav'>
+  <ul>
+    <li><a>站场图</a>
+    <ul>
+      <li><a>北京南站站场图</a></li>
+      <li><a>南京南站站场图</a></li>
+      <li><a>上海虹桥站站场图</a></li>
+     </ul>
+    </li>
+    <li><a>计划图</a>
+    <ul>
+      <li><a>基本运行图</a></li>
+      <li><a>调整运行图</a></li>
+      <li><a>列车时刻表</a></li>
+      <li><a>显示运行图方向</a></li>
+      <li><a>删除所有运行线</a></li>
+    </ul>
+    </li>
+    <li><a>行车日志</a>
+    <ul>
+      <li><a>新增记录</a></li>
+      <li><a>删除当前记录</a></li>
+      <li><a>删除当前记录的到达信息</a></li>
+      <li><a>删除当前记录的出发信息</a></li>
+      <li><a>打印</a></li>
+      <li><a>历史记录查询</a></li>
+      <li><a>行车日志数据恢复</a></li>
+    </ul>
+    </li>
+    <li><a>系统</a>
+    <ul>
+      <li><a>初始化站场</a></li>
+      <li><a>交接班</a></li>
+      <li><a>人工过表</a></li>
+      <li><a>值班员登录</a></li>
+      <li><a>值班员注销</a></li>
+      <li><a>系统维护</a></li>
+      <li><a>报警信息</a></li>
+      <li><a>系统日志</a></li>
+      <li><a>维护工具</a></li>
+      <li><a>全屏显示</a></li>
+      <li><a>退出系统</a></li>
+    </ul>
+    </li>
+    <li><a>功能</a>
+    <ul>
+      <li><a>停止自动走车</a></li>
+      <li><a>自动走车</a></li>
+      <li><a>当前站申请自律模式</a></li>
+      <li><a>当前站退出自律模式</a></li>
+      <li><a>显示各部分名称</a></li>
+      <li><a>隐藏各部分名称</a></li>
+      <li><a>站间显示</a></li>
+      <li><a>日志</a></li>
+      <li><a>模式转换</a></li>
+       <li><a>转为自律模式</a></li>
+       <li><a>转为非常站控模式</a></li>
+      <li><a>删除计划</a></li>
+    </ul>
+    </li>
+    <li><a>临时计划</a>
+    <ul>
+      <li><a>调车作业单</a></li>
+      <li><a>增删改计划</a></li>
+    </ul>
+    </li>
+    <li><a>模式转换</a>
+    <ul>
+      <li><a>申请模式转换</a></li>
+      <li><a>同意模式转换</a></li>
+    </ul>
+    </li>
+
+  </ul>
+</div>
+    
+    
+
+    <div class="zhegntibeijing">
+    <!--<div style="float:left;margin-top:5px; color:#000; background-color:#FFF;">北京南站:</div>-->
+    <button  id="beijingnanzhanxuanze" class="beijingnanzhanxuanze" >北京南站</button>
+    <button  id="nanjingnanzhanxuanze" class="nanjingnanzhanxuanze" >南京南站</button>
+    <button  id="shanghaihongqiaozhanxuanze" class="shanghaihongqiaozhanxuanze" >上海虹桥站</button>
+    <button  id="wangluolianjiexuanze" class="wangluolianjiexuanze" >网络连接</button>
+    <button  id="zhanjianxianshixuanze" class="zhanjianxianshixuanze" >站间显示</button>
+    
+    
+
+
+</div>
+
+<button  id="chushihua" class="chushihuaclass" >站场初始化</button>
+    <canvas id="canvas" class="cancss" width="3000" height="3100">
+
+    
+    </canvas>
+
+
+
+</body>
+</html>
+ <script type="text/javascript">
+ showTime();
+function showTime(){ 
+ var week=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ var date = now.getDate();
+ var day = now.getDay();
+ var hour = now.getHours();
+ var minutes = now.getMinutes();
+ var second = now.getSeconds(); 
+  month=month+1;
+     month<10?month='0'+month:month; 
+     
+     hour<10?hour='0'+hour:hour; 
+     minutes<10?minutes='0'+minutes:minutes; 
+     second<10?second='0'+second:second;
+     var now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' '; 
+     document.getElementById('timetext').value=now_time; 
+     setTimeout("showTime();",1000);      //每隔1秒刷新一次
+ } 
+     beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#FFF'
+  $('#beijingnanzhanxuanze').click(function () {
+
+    beijingnanzhanxuanze.style.backgroundColor='#FFF'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#999'
+	
+	window.location.href="zhudiao.html";
+	
+	
+});
+
+  $('#nanjingnanzhanxuanze').click(function () {
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#FFF'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#999'	
+	window.location.href="zhudiao.html";
+    
+});
+
+
+		
+  $('#shanghaihongqiaozhanxuanze').click(function () {
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#FFF'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#999'
+	window.location.href="zhudiao.html";
+	
+    
+});
+  $('#wangluolianjiexuanze').click(function () {
+
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#FFF'
+	zhanjianxianshixuanze.style.backgroundColor='#999'
+	window.location.href="zhudiaowangluolianjie.html";
+});
+  $('#zhanjianxianshixuanze').click(function () {
+
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#FFF'
+	
+	
+});
+$('#chushihua').click(function () {
+
+alert("站场初始化成功");
+});
+
+    </script>

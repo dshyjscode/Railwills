@@ -1,0 +1,1136 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>01列调</title>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.css"><!--图标-->
+    <link rel="stylesheet" href="css/td.css"/>
+    
+    <style>
+        body,header,section,div,svg,button,input {
+            margin: 0;
+            padding: 0;
+        }	
+    </style>  
+   
+</head>
+<body>
+
+<header >
+
+  <!--导航栏-->
+  <nav class="nav nav-pillS Nav">
+    <ul>
+    
+      <li class="navLi dropdown" role="presentation">
+        <a  class="dropdown-toggle" data-toggle="dropdown" href="#"  role="button" aria-haspopup="true" aria-expanded="false">交接班<span class="caret"></span></a>
+        <ul class="dropdown-menu" > 
+          <li id="nav_login" ><a href="#">接班登陆</a></li>
+          <li id="print" ><a href="#">打印</a></li>       
+          <li><a id="Change_Password" href="#">修改密码</a></li> 
+          <li><a id="Select_Section" href="#">选择区段</a></li> 
+          <li><a id="sign_out" href="#">退出</a></li>   
+        </ul>
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">编辑<span class="caret"></span></a>
+        <ul class="dropdown-menu" > 
+          <li><a id="Delete_plan_line" href="#">删除线</a></li>
+          <li id="deleteLine" ><a href="#">删除多条计划线</a></li>       
+          <li><a id="Mobile_plan_line" href="#">移动计划线</a></li> 
+          <li><a id="Train_decomposition" href="#">列车分解</a></li> 
+          <li><a id="Train_combination" href="#">列车组合</a></li>   
+        </ul>
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">绘制<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li id="Draw"><a href="#">计划线</a></li>
+        </ul>
+      </li> 
+                     
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">阶段计划<span class="caret"></span></a>
+        <ul class="dropdown-menu" > 
+          <li><a id="Fixed_plan" href="#">固定计划</a></li>
+          <li><a id="Issue_train_plan" href="#">下达行车计划</a></li>       
+          <li><a id="Reporting_information" href="#">报点信息</a></li>   
+        </ul>  
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">调度命令<span class="caret"></span></a>
+        <ul class="dropdown-menu" > 
+          <li id="order" ><a href="#">调度命令</a></li>
+          <li id="orderM" ><a href="#">调度命令管理</a></li>       
+          <li id="orderTemplateM" ><a href="#">调度命令模板管理</a></li>  
+        </ul>  
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" id="windows" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">窗口<span class="caret"></span></a>
+      </li>  
+                    
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">查询<span class="caret"></span></a>
+        <ul class="dropdown-menu" > 
+          <li><a id="Historical_maps" href="#">调阅历史图</a></li>
+          <li><a id="Adjacent_stations" href="#">调阅邻台</a></li>       
+          <li><a id="infrared" href="#">查询红外线设置</a></li> 
+          <li><a id="Detailed_train_data" href="#">列车详细数据</a></li> 
+        </ul> 
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">限速命令<span class="caret"></span></a>
+        <ul class="dropdown-menu" > 
+          <li id="rateLimitingIn"><a href="#">限速命令输入</a></li>
+          <li><a id="Speed_limit_command_management" href="#">限速命令管理</a></li>         
+        </ul> 
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">系统参数<span class="caret"></span></a>
+        <ul class="dropdown-menu" > 
+          <li><a id="Parameter_setting" href="#">参数设置</a></li> 
+        </ul> 
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" id="option" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">选项<span class="caret"></span></a>
+      </li>
+      
+      <li class="navLi dropdown" role="presentation">
+        <a class="dropdown-toggle" id="help" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">帮助<span class="caret"></span></a>
+      </li>
+      
+      <div class="clear"></div> 
+      
+    </ul>      
+  </nav>
+    
+  <!--工具栏-->
+  <div class="icon-bar">
+    <div class="bq-line">    
+      <img src="images/toolbar_sign.png" alt="工具栏标志" title="工具栏标志" >
+    </div>
+    <div class="btn-toolbar" role="toolbar" >
+      <div class="btn-group" >
+        <a  id="login" href="#" >登录</a>
+        <a  id="chartPlan" href="#" >图定</a>
+        <a  id="bc" href="#" >保存</a>
+        <a  id="sx" href="#" >刷新</a>
+      </div>
+      <div class="btn-group div-line"></div>
+      <div class="btn-group">
+        <a  id="hx" href="#" >画线</a>
+        <a  id="sc" href="#" >删除</a>
+        <a  id="yd" href="#" >移动</a>
+        <a  id="zh" href="#" >组合</a>
+        <a  id="fj" href="#" >分解</a>
+      </div>
+      <div class="btn-group div-line"></div>
+      <div class="btn-group">
+        <a  id="skb" href="#" >时刻表</a> <!--id="skb"-->
+        <a  id="bdxx" href="#" >报点信息</a>
+        <a  id="xs" href="#" >限速</a>
+        <a  id="xsmlb" href="#" >限速命令表</a>
+      </div>
+      <div class="btn-group div-line"></div>
+      <div class="btn-group">
+        <a  id="xjh" href="#" >下计划</a>
+        <a  id="ddml" href="#" >调度命令</a>
+        <a  id="wllj" href="#" >网络连接</a>
+      </div>
+      <div class="btn-group div-line"></div>
+	  <div class="btn-group">
+		<a  id="deleteAllCookies" href="#" >恢复初始状态</a>
+	  </div>
+     <!--临时测试-->
+      <button  type="button"  onClick="getCookie()">获取cookies</button>
+     <!--临时测试-->    
+    </div>
+    <div class="xianshi">    
+      <a  id="receipt" href="#" >  ﹀  </a>
+      
+    </div>
+  </div>  
+</header>
+
+
+
+
+
+
+<!--待改-->
+
+
+
+
+
+<!--计划线-->
+<section>
+   <div class="secD" id="Sec">
+     <div class="secLeft" id="SL">   
+        <div class="beijingstation" >北京南站</div >
+        <div class="tianjinstation" >天津南站</div >
+        <div class="jinanstation" >济南西站</div >
+        <div class="nanjingstation" >南京南站</div >
+        <div class="suzhoustation" >苏州北站</div >
+        <div class="shanghaistation" >上海虹桥</div >   
+     </div>  
+ 
+     <div class="svgYxt">
+       <div id="timSvg">
+         <svg id="Tim" width="2900px" height="30px" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid meet" ></svg>
+       </div>
+       <div class="shiTime" id="sTime"></div>
+       <div class="lineTime" id="lTime"></div>
+       <div class="svgF">
+         <svg id="YXT" width="2900px" height="850px" xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid meet" >
+                    <g id="YXTg" fill="red" stroke="red"></g>
+         </svg>
+       </div>
+       
+      
+     </div>
+   </div>
+</section>
+
+<!--站场图-->
+<footer>
+  <div class="footF" id = "footF">
+    <div id = "top"></div>
+    <div class="btn-group footBDiv" role="group">
+      <button  type="button"  class="btn btn-default footBtn" id="bUp">放大</button>
+      <button  type="button"  class="btn btn-default footBtn" id="shrink">缩小</button>
+      <button  type="button"  class="btn btn-default footBtn" onClick="statement()">转实际</button>
+      <button  type="button"  id="xjhButton" class="btn btn-default footBtn">下计划</button>
+      <button  type="button"  class="btn btn-default footBtn" onClick="statement()">发邻台</button>
+      <button  type="button"  class="btn btn-default footBtn" onClick="statement()">接收计划</button>
+      
+      <div class="footBtn footdiv"> <input  type="radio" name="go" class="middle"   value="上行" /> <span class="middle">上行</span></div>
+      <div class="footBtn footdiv"> <input  type="radio" name="go"  class="middle"  value="下行"/> <span class="middle">下行</span></div>
+      <div class="footBtn footdiv"> <input  type="radio" name="go"  class="middle" value="上下行" checked /> <span class="middle">上下行</span></div>
+      <div class="footBtn footdiv"> <input  type="checkbox" class="middle"  /> <span class="middle">鼠标收点</span></div>
+      <button  type="button"  class="btn btn-default footBtn" onClick="statement()">多点调整</button>          
+      <button  type="button"  id="startDraw" class="btn btn-default footBtn">开始画线</button>
+      <button  type="button"  class="btn btn-default footBtn" onClick="alert('右键结束画线!')">结束画线</button>
+      <button  type="button"  id="orderButton" class="btn btn-default footBtn" >调度命令</button>
+      <button  type="button"   class="btn btn-default footBtn" onClick="statement()">命令管理</button>
+      <button  type="button"  class= "btn btn-default footBtn" onClick="statement()">临时限速</button>
+      <button  type="button"  class="btn btn-default footBtn" onClick="statement()">限速管理</button>
+      <button  type="button"  id="tdjhButton" class="btn btn-default footBtn">图定计划</button>
+      <button  type="button"  class="btn btn-default footBtn" onClick="statement()">图标注释</button>
+    </div>
+    <div>
+      <input type="text" id="txt1"   value="系统调试" class="xitongtiaoshi"  />
+      <input type="text" id="txt2"   value="手动调整状态" class="shoudongtiaozhengzhuangtai"  />
+      <input type="text" id="txt3"   value="正常" class="zhengchang"  />
+      <input type="text" id="txt4"   value="网络连接状况" class="wangluolianjiezhuangkuang"  />
+      <input type="text" id="txt5"   value="未连接" class="weilianjie"  />
+      <input type="text" id="txt6"   value="" class="xiaoxi"  />
+    </div>
+  </div>
+  <div  id ="zct" class="zct" > 
+    
+    <canvas id="canvas" class="cancss" width="6622" height="289">
+    </canvas>
+    
+  </div>
+</footer>
+
+
+<!--加载图->
+
+
+<!--各种弹出选择框->
+
+
+<div class="alrt_div" id="lineAlert_div">
+    <ul class="alrt_ul">
+        <!-- <li class="li_go">车股号</li>->
+        <li class="li_go" id="cNum" ><a href="#">变更车次</a></li>
+        <li class="li_go" id="cDel" ><a href="#">删除列车</a></li>
+        <li class="li_go" id="cCopy"><a href="#">复制列车</a></li>
+        <li class="li_go" id="cEdi"><a href="#">编辑列车</a></li>
+        <!-- <li class="li_go">剪切线</li>
+         <li class="li_go">粘贴线</li>->
+    </ul>
+</div>
+
+<!--车股号->
+<div class="alrt_div" id="RectAlert_div">
+    <ul class="alrt_ul">
+        <li class="li_go" id="GDnum">车股号
+            <ul id="ul">
+                <li class="li_go Gnum" >1</li>
+                <li class="li_go Gnum" >2</li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+
+<!--画线结束取消-->
+<div class="alrt_div" id="DraOver">
+  <ul class="alrt_ul">
+    <li class="li_go" id="Over" ><a href="#">结束</a></li>
+    <li class="li_go" id="None"><a href="#">取消</a></li>
+  </ul>
+</div>
+
+
+
+<!--计划线-->
+<div class="modal fade bs-example-modal-sm" id="lineModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modalContent">
+      <div class="modal-header modalH">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title" id="lineModalLabel">计划线</h4>
+      </div>
+      <div class="modal-body modalB">
+        <label>车次号</label>
+        <input type="number" min="1" id="carNum" step="1"/>
+        <br/>
+        <input class="CarWhere" type="radio" name="going"  value="down" checked/>下行
+		<input class="CarWhere" type="radio" name="going"  value="up" />上行
+      </div>
+      <div class="modal-footer modalF">
+        <button type="button" class="btn btn-primary" id="DrawTrue">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--时刻表-->
+
+<div class="modal fade bs-example-modal-sm" id="skbModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content skbModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="lineModalLabel">列车时刻表</h4>
+            </div>
+            <div class="modal-body skbModalB">
+                <label>车次</label>
+                <input type="number" min="1" id="carNum" step="1"/>
+                <br/>
+                <!--<input class="CarWhere" type="radio" name="going" style="margin: 5px 0 0 10px" value="up" checked/>上行
+                <input class="CarWhere" type="radio" name="going" style="margin: 5px 0 0 10px" value="down"/>下行
+           -->
+            </div>
+            <div class="modal-footer skbModalF">
+                 <textarea class="linshi"></textarea>
+                <!--<button type="button" class="btn btn-primary" id="DrawTrue">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="bdxxModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content bdxxModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="lineModalLabel">报点信息</h4>
+            </div>
+            <div class="modal-body bdxxModalB">
+                <label>车站</label>
+                <input type="text" min="1" id="station" step="1"/>
+                <br/>
+                <textarea class="bdxxData"></textarea>
+            </div>
+             
+        </div>
+    </div>
+</div>
+
+<!--login-->
+<div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loginModalLabel">CTC用户登录</h4>
+            </div>
+            <div class="modal-body  modalB">
+                <img src="images/高铁图标.ico" alt="高铁图标" title="高铁图标" >
+                <br/>
+                <br/>
+                <div  id="errorMessages"></div>
+                <form>
+                  <label>姓名：</label>
+                  <input type="text"  id="uname" name= "uname">                 
+                  <br/>
+                  <label>学号：</label>
+                  <input type="text"  id="studentNum" name="studentNum">                   
+                  <br/>
+                  <label id="passchange" >密码：</label>
+                  <input type="password"  id="pass" name="pass">
+                  <div id="loginTime" ></div>
+                  <br/> 
+                  <br/>  
+                  <div class="logintip" id="loginTip">未登录</div> 
+                  <button type="button" class="btn btn-primary" id="loginTrue" >登录</button>   
+                  <button type="button" class="btn btn-primary" id="cancerLogin">注销</button>        
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--loaded->
+<div class="modal fade bs-example-modal-sm" id="loadedModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content loadModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">CTC用户登录</h4>
+            </div>
+            <div class="modal-body  loadModalB">
+                <img src="images/高铁图标.ico" width="326px" height="189px">
+                <br/>
+                <br/>
+                <label>姓名：</label>
+                <label ></label>                   
+                <br/>
+                <label>学号：</label>
+                <label>123</label>                  
+                <br/>
+                <label>登录时间：</label>
+                <label>12:22:36</label>                    
+                <br/>
+            </div>
+            <div class="modal-footer loadModalF">
+                <h6 class="loadedtip">已登录</h6>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="cancerTrue">注销</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!--print-->
+<div class="modal fade bs-example-modal-sm" id="printModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content printModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">打印</h4>
+            </div>
+            <div class="modal-body  printModalB">
+                <div style="width:100%;padding:22px 0px 10px 32px">
+                     <label>日期</label>
+                     <input type="date"  id="mllx" style="width:148px">  
+                </div>
+                <div style="width:100%;padding:10px 0px 10px 32px">
+                     <label>时间 &ensp;</label>
+                     <input type="text"  id="mllx" style="width:32px">
+                     <label>&nbsp;时</label>
+                     <input type="text"  id="mllx" style="width:32px">
+                     <label>&nbsp;分 &ensp;-&nbsp;</label>
+                     <input type="text"  id="mllx" style="width:32px">
+                     <label>&nbsp;时</label>
+                     <input type="text"  id="mllx" style="width:32px">
+                     <label>&nbsp;分</label>
+                </div>
+                <div style="width:100%;padding:10px 0px 10px 32px">
+                     <button style="width:75px;">打印</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--deleteLine-->
+<div class="modal fade bs-example-modal-sm" id="deleteLineModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content deleteLineModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">删除计划线</h4>
+            </div>
+            <div class="modal-body  deleteLineModalB">
+                <div style="background:#999;border:1px solid #000;width:100%;height:214px;">
+                  <table style="width:100%;background:#FFF" border="1">					
+                       <tr >	
+                           <th width="20%"></th>			
+                           <th width="40%">是否勾选</th>				
+                           <th width="40%">车次号</th>		
+                       </tr>
+                        <tr >	
+                           <th width="20%" style="font-size:18px;text-align:center">.</th>			
+                           <th width="40%" style="text-align:center"><input name="" type="checkbox" value="" /></th>				
+                           <th width="40%"></th>		
+                       </tr>							
+                  </table>
+               </div> 
+               <div style="width:100%;padding:20px 0px 10px;text-align:center">
+                    <button style="width:75px;"> 确定</button>
+                    &emsp;&emsp;
+                    <button style="width:75px;"> 取消</button>  
+               </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--order-->
+<div class="modal fade bs-example-modal-sm" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content modalContent">
+      <div class="modal-header modalH">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title" id="loadModalLabel">调度命令编辑</h4>
+      </div>
+      <div class="modal-body  modalB">
+        <div class="waitSend" >
+          <fieldset class="waitSend">
+            <legend>待发箱</legend>
+            <div class="waitSendBox"></div>
+          </fieldset> 
+          <fieldset class="waitSend">
+            <legend>发令箱</legend>
+            <div class="waitSendBox"></div>
+          </fieldset> 
+          <fieldset class="waitSend">
+            <legend>储令箱</legend>
+            <div class="waitSendBox"></div>
+          </fieldset>
+        </div> 
+        <div class="B2">                             
+          <fieldset class="orderModal-B2-top">
+            <div>
+              <label>命令类型：&emsp;</label>
+              <input type="text"  id="minglingleixing">
+              &nbsp;  
+              <button style="width:75px"> 确定</button>
+            </div>
+            <div>
+              <label>命令号码：&emsp;</label>
+              <input type="text"  id="minglinghaoma" > 
+              &nbsp;
+              <label><input name="" type="radio" value="" />&nbsp;普通命令 </label>
+              &nbsp; 
+              <label><input name="" type="radio" value="" />&nbsp;施工命令 </label> 
+              &ensp;
+              <label>发令日期：&emsp;</label>
+              <input type="text"  id="falingriqi" > 
+            </div>
+            <div>
+              <label>调度员姓名：</label>
+              <input type="text"  id="diaoduyanxingming">
+              &nbsp;
+              <label>发令单位：&nbsp;</label>
+              <input type="text"  id="falingdanwei">
+              &ensp;
+              <label>发令时间：&emsp;</label>
+              <input type="text"  id="falingshijian"> 
+            </div>
+            <div>
+              <label>值班主任名：</label>
+              <input type="text"  id="zhibanzhurenming" >  
+               &nbsp;
+              <label>审核时间：&nbsp;</label>
+              <input type="text"  id="shenheshijian">
+              &ensp;
+              <label>复通人姓名：</label>
+              <input type="text"  id="futongrenxingming"> 
+            </div>
+          </fieldset>
+          <fieldset class="orderModal-B2-middle">
+            <legend>命令内容</legend>
+            <div></div>
+          </fieldset>
+          <fieldset class="orderModal-B2-bottom">
+            <legend>受令单位：</legend>
+            <div>
+              <label ><input name="" type="checkbox" value="" />&nbsp;北京南站 </label>
+            </div>
+            <div>
+              <label ><input name="" type="checkbox" value="" />&nbsp;南京南站 </label>
+            </div>
+            <div>
+              <label ><input name="" type="checkbox" value="" />&nbsp;上海虹桥站 </label>
+            </div>
+            </br>
+            <button> 发送</button>
+            <button> 保存</button>
+            <button> 打印</button>
+            <button> 关闭</button>
+          </fieldset>
+        </div>
+        <div class="B3" >
+          <fieldset class="orderModal-B3-top">
+            <legend>常用词汇</legend>
+            <div>
+              <input type="text"  id="mllx" >
+            </div>
+            <div>
+              <button> 增加</button>
+              &nbsp;
+              <button> 编辑</button>
+              &nbsp;
+              <button> 删除</button> 
+            </div>
+            <div class="textbox" >
+            </div>
+          </fieldset> 
+          <fieldset class="orderModal-B3-bottom">
+            <legend>无线调度命令</legend>
+            <label>命令类型：</label>
+            <input type="text"  id="mllx" style="width:170px">
+            <br/>
+            <label>车次号</label>
+            <input type="text"  id="mllx" style="width:48px">
+            &emsp;&emsp;&emsp;
+            <label>机车号</label>
+            <input type="text"  id="mllx" style="width:48px">
+            <br/>
+            <label>转发站</label>
+            <input type="text"  id="mllx" style="width:58px">
+            &emsp;&ensp;
+            <button style="width:32px;"> 增</button> 
+            <button style="width:32px;"> 删</button> 
+            <button style="width:32px;"> 改</button> 
+            <br/>
+            <div style="border:1px solid #000;width:237px;height:101px;"></div>
+            <label>发送方式：</label>
+            <label><input name="" type="radio" value="" />&nbsp;智能发送 </label>
+             &ensp;
+            <label><input name="" type="radio" value="" />&nbsp;立即发送 </label>
+          </fieldset> 
+        </div>              
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--orderM-->
+<div class="modal fade bs-example-modal-sm" id="orderMModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content orderMModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">调度命令管理</h4>
+            </div>
+            <div class="modal-body  orderMModalB">
+               <div style="padding:20px 0px 10px">
+                  <fieldset >
+                     <button style="width:100px;height:33px;"> 待发箱</button>
+                     <button style="width:100px;height:33px;"> 发令箱</button>
+                     <button style="width:100px;height:33px;"> 储令箱</button>
+                     <button style="width:100px;height:33px;"> 中转箱</button>
+                  </fieldset>  
+               </div>
+               <div style="padding:10px 0px" >
+                  <fieldset >
+                     <label>查询时间：&ensp;从</label>
+                     <input type="text"  id="mllx" style="width:118px">
+                     <label>至</label>
+                     <input type="text"  id="mllx" style="width:118px">
+                     &ensp;
+                     <button style="width: 75px;"> 查询</button>
+                  </fieldset>
+               </div>
+               <div style="padding:20px 0px 10px">
+                   <fieldset >
+                     <div style="display:inline-block;width:326px">
+                        <label>命令管理</label>
+                        <br/>
+                        <div style="background:#FFF;border:1px solid #000;width:326px;height:265px;">
+                        </div>                    
+                     </div>
+                     <div style="display:inline-block;width:337px;">
+                        <label>命令内容</label>
+                        <br/>
+                        <div style="background:#FFF;border:1px solid #000;width:337px;height:265px;">
+                        </div>       
+                     </div>
+                  </fieldset>
+               </div>
+               
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<!--orderTemplateM-->
+<div class="modal fade bs-example-modal-sm" id="orderTemplateMModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content orderTemplateMModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">调度命令模板管理</h4>
+            </div>
+            <div class="modal-body  orderTemplateMModalB">
+                <div style="display:inline-block;width:302px;">
+                   <fieldset >
+                       <div style="background:#FFF;border:1px solid #000;width:290px;height:346px;">
+                       </div>                    
+                  </fieldset>
+                </div>
+                <div style="display:inline-block;width:351px;">
+                    <fieldset style="width:351px;" >       
+                       <div style="padding:4px 0px;">
+                          <label>命令模板编号：</label>
+                          <input type="text"  id="mllx" style="width:100px">
+                       </div>
+                       <div style="padding:4px 0px;">
+                          <label>命令标题：</label>
+                          <input type="text"  id="mllx" style="width:260px"> 
+                       </div>
+                       <div style="padding:4px 0px;">
+                          <label>命令内容：</label>
+                          <br/>
+                          <div style="background:#FFF;border:1px solid #000;width:336px;height:249px;overflow-y:scroll;">
+                          </div>  
+                       </div>
+                    </fieldset>
+                </div>
+                 <div style="display:inline-block;width:100%;text-align:center;padding:20px 0px 10px">
+                   <fieldset >
+                     <button style="width:100px;height:33px;"> 增加</button>
+                     <button style="width:100px;height:33px;"> 删除</button>
+                     <button style="width:100px;height:33px;"> 保存</button>
+                     <button style="width:100px;height:33px;"> 关闭</button>                   
+                  </fieldset>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--chartPlan-->
+<div class="modal fade bs-example-modal-sm" id="chartPlanModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content chartPlanModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">图定计划</h4>
+            </div>
+            <div class="modal-body  chartPlanModalB">
+                <button id="jbt" style="width:300px;height:40px;"> 从基本图生成</button>
+                <button style="width:300px;height:40px;"> 从历史图生成</button>
+                <div  style="background:#FFF;border:1px solid #000;width:815px;height:358px;overflow-y:scroll;">
+                     <table class = "basic-suggest" id="tab">
+                     
+                     </table>
+                </div>
+            </div>
+            <div class="modal-footer chartPlanModalF">
+                <button type="button" class="btn btn-primary" id="">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--下计划-->
+<div class="modal fade bs-example-modal-sm" id="xjhModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content xjhModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal" onClick="xjhclearData()"><span>&times;</span></button>
+                <h4 class="modal-title" id="xjhModalLabel">下计划</h4>
+            </div>
+            <div class="modal-body  xjhModalB">
+               <div style="background:#999;border:1px solid #000;width:100%;height:214px;overflow-y: auto;">
+                  <table class="xjh-table" id="addtable" border ="1">					
+                       <tr >	
+                           <th></th>			
+                           <th>序号</th>				
+                           <th>选择</th>
+                           <th>车站</th>
+                           <th>上次下达</th>
+                           <th>开始时间</th>
+                           <th>结束时间</th>
+                           <th>是否接收</th>
+                           <th>是否签收</th>
+                           <th>签收人</th>			
+                       </tr> 
+                           							
+                  </table>
+                 <!-- <table id="addtable" style="width:100%;background:#FFF" border="1">
+                  
+                  </table>-->
+               </div> 
+               <div style="width:100%;padding:20px 0px 10px 59px">
+                   <label >选择全部车站&ensp;<input  id="staCheckbox" name="staCheckbox" type="checkbox" value="" /> </label>  
+               </div> 
+               <div style="width:100%;padding:10px 0px 10px 59px">
+                   <label>开始时间：</label>
+                   <input type="time"  id="sT"  name="sT" min="00:00" max="24:00" required >
+                   &emsp;&emsp;
+                   <label>结束时间：</label>
+                   <input type="time"  id="eT"  name="eT" min="00:00" max="24:00" required >
+                   &emsp;&emsp;
+                   <button style="width: 75px;">确定</button>
+               </div> 
+            </div>
+            <div class="modal-footer xjhModalF">
+                <button type="button"  id="xiajihuaTrue" style="width: 75px;" >确定</button>
+                <button type="button" style="width: 75px;" data-dismiss="modal" onClick="xjhclearData()">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--xsmlb->
+<div class="modal fade bs-example-modal-sm" id="xsmlbModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content xsmlbModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">CTC用户登录</h4>
+            </div>
+            <div class="modal-body  xsmlbModalB">
+                <ul class="nav nav-tabs">
+	                <li class="active"><a href="#">Home</a></li>
+	                <li  class="active"><a href="#">SVN</a></li>
+	                <li  class="active"><a href="#">iOS</a></li>
+	                <li  class="active"><a href="#">VB.Net</a></li>
+	                <li  class="active"><a href="#">Java</a></li>
+	                <li  class="active"><a href="#">PHP</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--rateLimitingIn->
+<div class="modal fade bs-example-modal-sm" id="rateLimitingInModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content loadModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">CTC用户登录</h4>
+            </div>
+            <div class="modal-body  loadModalB">
+                <img src="images/高铁图标.ico" width="326px" height="189px">
+                <br/>
+                <br/>
+                <label>姓名：</label>
+                <input type="text"  id="user">                   
+                <br/>
+                <label>工号：</label>
+                <input type="password"  id="workNumber">                   
+                <br/>
+                <label>密码：</label>
+                <input type="password"  id="pwd">                   
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改车次号-->
+<div class="modal fade bs-example-modal-sm" id="changeNumModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content changeNumModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="lineModalLabel">修改车次号</h4>
+            </div>
+            <div class="modal-body changeNumModalB">
+                <label>车次号</label>
+                <input type="trainNumber"  id="trainNum">
+                <br/>
+            </div>
+            <div class="modal-footer changeNumModalF">
+                 
+                <button type="button" class="btn btn-primary" id="changeTrue">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--回执弹窗-->
+<div id="receiptModal">
+	<h4>阶段计划</h4>
+	<div class="receiptContent">
+		<div class="bjReceipt" id="bjReceipt">
+			<h4>北京南</h4>
+			<div class="circle1">
+				<h4 id="">0/0</h4> 
+			</div>
+			<div class="circle2">
+				<h4 id="">0/0</h4> 
+			</div>
+		</div>
+		<div class="tjReceipt" id="tjReceipt">
+			<h4>天津南</h4>
+			<div class="circle1">
+				<h4 id="">0/0</h4> 
+			</div>
+			<div class="circle2">
+				<h4 id="">0/0</h4> 
+			</div>
+		</div>
+		<div class="jnReceipt" id="jnReceipt">
+			<h4>济南西</h4>
+			<div class="circle1">
+				<h4 id="">0/0</h4> 
+			</div>
+			<div class="circle2">
+				<h4 id="">0/0</h4> 
+			</div>
+		</div>
+		<div class="njReceipt" id="njReceipt">
+			<h4>南京南</h4>
+			<div class="circle1">
+				<h4 id="">0/0</h4> 
+			</div>
+			<div class="circle2">
+				<h4 id="">0/0</h4> 
+			</div>
+		</div>
+		<div class="szReceipt" id="szReceipt">
+			<h4>苏州北</h4>
+			<div class="circle1">
+				<h4 id="">0/0</h4> 
+			</div>
+			<div class="circle2">
+				<h4 id="">0/0</h4> 
+			</div>
+		</div>
+		<div class="shReceipt" id="shReceipt">
+			<h4>上海虹桥</h4>
+			<div class="circle1">
+				<h4 id="">0/0</h4> 
+			</div>
+			<div class="circle2">
+				<h4 id="">0/0</h4> 
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--修改车次号->
+<div class="modal fade bs-example-modal-sm" id="changeNum" tabindex="'-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改车次</h4>
+            </div>
+            <div class="modal-body modalB">
+                <div>
+                    <div id="oldCarNum">
+                        <lable>旧车次号:</lable>
+                        <input type="text" value=""/>
+                    </div>
+                    <div id="newCarNum">
+                        <lable>新车次号:</lable>
+                        <input type="text" value=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modalF">
+                <button type="button" class="btn btn-primary" id="changeCarNumT">确定</button>
+                <button type="button" class="btn btn-default" id="changeCarNumF"  data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--删除列车->
+<div class="modal fade bs-example-modal-sm" id="CarDle" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">警告</h4>
+            </div>
+            <div class="modal-body modalB" id="DelBody">
+                <h6>确认删除车次<span></span>吗</h6>
+            </div>
+            <div class="modal-footer modalF">
+                <button type="button" class="btn btn-primary" id="delCarT">确定</button>
+                <button type="button" class="btn btn-default"  data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--复制车次->
+<div class="modal fade bs-example-sm" id="CarCop" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">复制线</h4>
+            </div>
+            <div class="modal-body modalB">
+                <div id="copyCarNum">
+                    <lable>复制车新次号:</lable>
+                    <input type="text" value=""/>
+                </div>
+            </div>
+            <div class="modal-footer modalF">
+                <button class="btn btn-primary" id="copyCarT">确定</button>
+                <button class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--提示保存->
+<div class="modal fade bs-example-sm" id="saveSvg" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body modalB">
+                <div id="saveSvgDiv">
+                   您的修改尚未保存，是否保存？
+                </div>
+            </div>
+            <div class="modal-footer modalF">
+                <button class="btn btn-primary" id="saveSvgT">保存</button>
+                <button class="btn btn-default" data-dismiss="modal" id="saveSvgF">不保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--窗口属性栏->
+
+<!--<div id="attr" class="attrAlert">
+    <div><h3>
+        <button type="button" class="close" data-dismiss="attrAlert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </h3></div>
+    <div class="attrBody">
+        <div class="attrDivBody">
+            <div class="attrDivBtn">
+                <button class="btn btn-default attrBtn">区段汇总</button>
+                <button class="btn btn-default attrBtn">车次标记</button>
+                <button class="btn btn-default attrBtn">详细参数</button>
+                <button class="btn btn-default attrBtn">列车编组</button>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div>
+                    <a href="#InfoNow" class="" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="allCar">本班实际信息</a>
+                    <div id="InfoNow" class="in">
+                        <table class="table table-bordered " style="width: 800px">
+                            <tr>
+                                <td>区段号</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>区段名称</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班别</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>本班起始时间</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>本班结束时间</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>旅客列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>货物列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>施工符号总数</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <a href="#InfoTu" class="" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="CarInfo">本班图定信息</a>
+                    <div id="InfoTu">
+                        <table>
+                            <tr>
+                                <td>图定客车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>图定货车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>图定列车总数</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <a href="#InfoW" class="" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="InfoW">本班班计划信息</a>
+                    <div id="InfoW">
+                        <table>
+                            <tr>
+                                <td>班计划客车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班计划货车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班计划列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班计划施工总数</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div></div>
+</div>-->
+
+</body>
+<script src="js/td.js"></script>
+<script src="js/td-another.js"></script>
+<script src="js/td-time.js"></script>
+<script src="js/td-station_map.js"></script>
+<script src="js/td-AJAX.js"></script>
+<script src="js/td-cookies.js"></script>
+<!--<script src="do.js"></script>-->
+<script src="js/td-tdadj.js" charset="gb2312"></script>
+<script src="js/td-change_table.js" charset="gb2312"></script>
+
+</html>

@@ -1,0 +1,3560 @@
+<!DOCTYPE html>
+
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"; charset=gbk" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/zhanchangtu_1.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <title>CTCS-3站场图</title>
+    <script type="text/javascript">
+　　window.open("rtccvsec.bjtu.edu.cn");
+        window.onload = function () {
+			var x,y,x1,x2,y1,y2,w,h,text;
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#000";
+            context.fillRect(0, 0, 11323, 1300);
+			//主轨道
+            context.fillStyle = "#848284";
+					
+            //北京南站主轨道
+            context.fillRect(410, 130, 240, 5);
+			
+			context.fillRect(250, 190, 560, 5);
+
+			context.fillRect(20, 250, 10933, 5);
+			context.fillRect(20, 310, 10933, 5);
+			context.fillRect(250, 370, 560, 5);
+			context.fillRect(410, 430, 240, 5);
+			
+			//天津南站主轨道
+			context.fillRect(2375, 190, 560, 5);
+			context.fillRect(2375, 370, 560, 5);
+			
+			//济南南站主轨道
+			context.fillRect(4336, 190, 560, 5);
+			context.fillRect(4336, 370, 560, 5);
+			
+			//南京南站主轨道
+			context.fillRect(6277, 190, 560, 5);
+			context.fillRect(6277, 370, 560, 5);
+			
+			//苏州北站主轨道
+			context.fillRect(8218, 190, 560, 5);
+			context.fillRect(8218, 370, 560, 5);
+			
+
+
+			
+			//上海虹桥站主轨道
+            context.fillRect(10308, 130, 240, 5);
+			context.fillRect(10148, 190, 560, 5);
+			context.fillRect(10148, 370, 560, 5);
+			context.fillRect(10308, 430, 240, 5);
+			
+			
+			//画下行小车
+			x=490;y=235
+            huaxiaxingxiaoche(x,y)
+			
+			//画上行小车
+			x=10399;y=295
+            huashangxingxiaoche(x,y)
+
+ 			//北京南站站标
+			x=440;y=485;w=190;h=60
+			text="北京南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			x=2560;y=485;w=190;h=60
+			text="天津南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			x=4521;y=485;w=190;h=60
+			text="济南南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			x=6462;y=485;w=190;h=60
+			text="南京南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			x=8403;y=485;w=190;h=60
+			text="苏州北站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			x=10333;y=485;w=210;h=60
+			text="上海虹桥站"
+			chezhanbiaozhi(x,y,w,h,text)
+			//车档
+			x1=15;x2=20;y1=247;y2=258
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=15;x2=20;y1=307;y2=318
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=10958;x2=10953;y1=247;y2=258
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=10958;x2=10953;y1=307;y2=318
+			zuocechedang(x1,x2,y1,y2)
+            
+			
+			//闭塞分区标志
+			bisaifenqu(163,248,257)
+			bisaifenqu(163,308,317)
+			bisaifenqu(905,248,257)
+			bisaifenqu(905,308,317)
+			bisaifenqu(1050,248,257)
+			bisaifenqu(1050,308,317)
+			bisaifenqu(1230,248,257)
+			bisaifenqu(1230,308,317)
+			bisaifenqu(1410,248,257)
+			bisaifenqu(1410,308,317)
+			
+			
+			bisaifenqu(1590,248,257)
+			bisaifenqu(1590,308,317)
+			bisaifenqu(1770,248,257)
+			bisaifenqu(1770,308,317)
+			bisaifenqu(1950,248,257)
+			bisaifenqu(1950,308,317)
+			bisaifenqu(2130,248,257)
+			bisaifenqu(2130,308,317)
+			bisaifenqu(2274,248,257)
+			bisaifenqu(2274,308,317)
+			
+			
+			bisaifenqu(3025,248,257)
+			bisaifenqu(3025,308,317)
+			
+			bisaifenqu(3180,248,257)
+			bisaifenqu(3180,308,317)
+			bisaifenqu(3360,248,257)
+			bisaifenqu(3360,308,317)
+			bisaifenqu(3540,248,257)
+			bisaifenqu(3540,308,317)
+			
+			bisaifenqu(3720,248,257)
+			bisaifenqu(3720,308,317)
+			
+			bisaifenqu(3900,248,257)
+			bisaifenqu(3900,308,317)
+			bisaifenqu(4080,248,257)
+			bisaifenqu(4080,308,317)
+			bisaifenqu(4235,248,257)
+			bisaifenqu(4235,308,317)
+			
+			bisaifenqu(4986,248,257)
+			bisaifenqu(4986,308,317)
+			
+			
+			bisaifenqu(326,188,197)
+			bisaifenqu(326,248,257)
+			bisaifenqu(326,308,317)
+			bisaifenqu(326,368,377)
+			
+			bisaifenqu(406,188,197)
+			bisaifenqu(406,368,377)
+			
+		    bisaifenqu(436,128,137)
+			bisaifenqu(436,428,437)
+			
+		    bisaifenqu(613,128,137)
+			bisaifenqu(613,428,437)
+			
+			bisaifenqu(653,188,197)
+			bisaifenqu(653,368,377)
+			
+			bisaifenqu(753,248,257)
+			bisaifenqu(753,308,317)
+			
+			bisaifenqu(753,188,197)
+			bisaifenqu(753,368,377)
+			
+			bisaifenqu(2377,248,257)
+			bisaifenqu(2377,308,317)
+			
+			bisaifenqu(2417,188,197)
+			bisaifenqu(2417,368,377)
+			
+			bisaifenqu(2883,188,197)
+			bisaifenqu(2883,368,377)
+			
+			bisaifenqu(2923,248,257)
+			bisaifenqu(2923,308,317)
+			
+			bisaifenqu(4338,248,257)
+			bisaifenqu(4338,308,317)		
+			
+			bisaifenqu(4378,188,197)
+			bisaifenqu(4378,368,377)
+			
+			bisaifenqu(4844,188,197)
+			bisaifenqu(4844,368,377)
+			
+			bisaifenqu(6319,188,197)
+			bisaifenqu(6319,368,377)
+			
+			bisaifenqu(6785,188,197)
+			bisaifenqu(6785,368,377)
+			
+			bisaifenqu(8260,188,197)
+			bisaifenqu(8260,368,377)
+			
+			bisaifenqu(8726,188,197)
+			bisaifenqu(8726,368,377)			
+			
+			bisaifenqu(10190,188,197)
+			bisaifenqu(10190,368,377)
+			
+			bisaifenqu(10300,188,197)
+			bisaifenqu(10300,368,377)
+			
+			bisaifenqu(10340,128,137)
+			bisaifenqu(10340,428,437)
+						
+			bisaifenqu(10516,128,137)
+			bisaifenqu(10516,428,437)
+			
+			bisaifenqu(10556,188,197)
+			bisaifenqu(10556,368,377)
+			
+			bisaifenqu(10666,188,197)
+			bisaifenqu(10666,368,377)
+			
+			bisaifenqu(4884,248,257)
+			bisaifenqu(4884,308,317)
+			
+			bisaifenqu(5131,248,257)
+			bisaifenqu(5131,308,317)
+			
+			bisaifenqu(5311,248,257)
+			bisaifenqu(5311,308,317)
+			
+			bisaifenqu(5491,248,257)
+			bisaifenqu(5491,308,317)
+			
+			bisaifenqu(5671,248,257)
+			bisaifenqu(5671,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(6279,248,257)
+			bisaifenqu(6279,308,317)
+			
+			bisaifenqu(6825,248,257)
+			bisaifenqu(6825,308,317)
+			
+			bisaifenqu(6927,248,257)
+			bisaifenqu(6927,308,317)
+			
+			bisaifenqu(7072,248,257)
+			bisaifenqu(7072,308,317)
+			
+			bisaifenqu(7252,248,257)
+			bisaifenqu(7252,308,317)
+	
+			bisaifenqu(7432,248,257)
+			bisaifenqu(7432,308,317)
+			
+			bisaifenqu(7612,248,257)
+			bisaifenqu(7612,308,317)
+			
+			bisaifenqu(7792,248,257)
+			bisaifenqu(7792,308,317)
+			
+			bisaifenqu(7972,248,257)
+			bisaifenqu(7972,308,317)
+			
+			bisaifenqu(8117,248,257)
+			bisaifenqu(8117,308,317)
+			
+			bisaifenqu(8220,248,257)
+			bisaifenqu(8220,308,317)
+			
+			bisaifenqu(8766,248,257)
+			bisaifenqu(8766,308,317)
+			
+			bisaifenqu(8868,248,257)
+			bisaifenqu(8868,308,317)
+			
+			bisaifenqu(9013,248,257)
+			bisaifenqu(9013,308,317)
+			
+			bisaifenqu(9193,248,257)
+			bisaifenqu(9193,308,317)
+			
+			bisaifenqu(9373,248,257)
+			bisaifenqu(9373,308,317)
+			
+			bisaifenqu(9553,248,257)
+			bisaifenqu(9553,308,317)
+			
+			bisaifenqu(9733,248,257)
+			bisaifenqu(9733,308,317)
+			
+			bisaifenqu(9913,248,257)
+			bisaifenqu(9913,308,317)
+			
+			bisaifenqu(10058,248,257)
+			bisaifenqu(10058,308,317)
+			
+			bisaifenqu(10190,248,257)
+			bisaifenqu(10190,308,317)
+			
+			bisaifenqu(10697,248,257)
+			bisaifenqu(10697,308,317)
+			
+			bisaifenqu(10798,248,257)
+			bisaifenqu(10798,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+
+            //长侧向轨道
+			changceguidaohuizhi();
+            
+			
+			//北京南站侧向轨道
+			beijingnanzhancexiangguidao();
+			tianjinnanzhancexiangguidao();
+			jinannanzhancexiangguidao();
+			nanjingnanzhancexiangguidao();
+			suzhoubeizhancexiangguidao();
+			shanghaihongqiaozhancexiangguidao();
+            
+			
+			//北京南站信号机
+			//北京南站上行信号机第一
+			x=450;y=160
+			shangxingxinhaoji(x,y);
+			xieshuzi(430,170,'S5')
+			
+            //context.strokeRect(150, 450, 100, 100);
+            //北京南站上行信号机第二
+			x=420;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(400,230,'S3')
+			xieshuzi(350,180,'5')
+			//北京南站上行信号机第三
+			x=340;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(320,290,'SI')
+			xieshuzi(205,235,'1')
+            //北京南站上行信号机第四
+			x=340;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(320,350,'SII')
+			xieshuzi(205,340,'3')
+			//北京南站上行信号机第五
+			x=420;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(400,410,'S4')
+			xieshuzi(350,400,'7')
+			//北京南站上行信号机第六
+			x=450;y=460
+			shangxingxinhaoji(x,y);
+			xieshuzi(430,470,'S6')
+			
+			//北京南站下行信号机第一
+			x=660;y=130
+            xiaxingxinhaoji(x,y)
+			xieshuzi(630,105,'X5')
+			//北京南站下行信号机第二
+			x=700;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(665,165,'X3')
+			xieshuzi(715,180,'10')
+			//北京南站下行信号机第三
+			x=800;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(770,225,'XI')
+			xieshuzi(875,235,'6')
+			//北京南站下行信号机第四
+			x=800;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(770,285,'XII')
+			xieshuzi(875,340,'8')
+			//北京南站下行信号机第五
+			x=700;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(670,345,'X4')
+			xieshuzi(715,400,'12')
+			//北京南站下行信号机第六
+			x=660;y=430
+            xiaxingxinhaoji(x,y)
+			xieshuzi(630,405,'X6')
+			
+			//北京南站下行信号机第七
+			x=210;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(180,225,'X')
+			xieshuzi(1075,235,'4')
+			//北京南站下行信号机第八
+			x=210;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(180,350,'XF')
+			xieshuzi(1555,340,'2')
+			
+			//北京南站中间段1
+			x=1423;y=250
+			shangxingxinhaoji(x,y);
+			xieshuzi(1403,225,'SF')
+            //北京南站中间段2
+			x=1423;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(1408,350,'S')
+			
+			
+			//天津南站下行正向进站信号机
+			x=2320;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2295,225,'X')
+			//天津南站下行反方向进站信号机
+			x=2320;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2290,350,'XF')
+			
+			//天津南站上行正向进站信号机
+			x=3193;y=340
+            shangxingxinhaoji(x,y)
+			xieshuzi(3178,350,'S')
+			//天津南站上行反方向进站信号机
+			x=3193;y=250
+            shangxingxinhaoji(x,y)
+			xieshuzi(3173,225,'SF')
+			
+			
+			//天津南站上行信号机第二
+			x=2430;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(2410,230,'S3')
+			//天津南站上行信号机第三
+			x=2390;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(2370,290,'SI')
+			xieshuzi(2315,235,'1')
+            //天津南站上行信号机第四
+			x=2390;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(2370,350,'SII')
+			xieshuzi(2315,340,'3')
+			//天津南站上行信号机第五
+			x=2430;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(2410,410,'S4')
+			
+			
+			//天津南站下行信号机第二
+			x=2930;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2900,165,'X3')
+			//天津南站下行信号机第三
+			x=2970;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2940,225,'XI')
+			xieshuzi(3005,235,'2')
+			//天津南站下行信号机第四
+			x=2970;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2940,285,'XII')
+			xieshuzi(3005,340,'4')
+			//天津南站下行信号机第五
+			x=2930;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2900,345,'X4')
+			
+			//济南南站下行正向进站信号机
+			x=4281;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4256,225,'X')
+			//济南南站下行反方向进站信号机
+			x=4281;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4251,350,'XF')
+			
+			//济南南站上行正向进站信号机
+			x=5144;y=340
+            shangxingxinhaoji(x,y)
+			xieshuzi(5129,350,'S')
+			//济南南站上行反方向进站信号机
+			x=5144;y=250
+            shangxingxinhaoji(x,y)
+			xieshuzi(5124,225,'SF')
+			
+			
+			//济南南站上行信号机第二
+			x=4391;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(4371,230,'S3')
+			//济南南站上行信号机第三
+			x=4351;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(4331,290,'SI')
+			xieshuzi(4276,235,'1')
+            //济南南站上行信号机第四
+			x=4351;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(4331,350,'SII')
+			xieshuzi(4276,340,'3')
+			//济南南站上行信号机第五
+			x=4391;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(4371,410,'S4')
+			
+			
+			//济南南站下行信号机第二
+			x=4891;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4861,165,'X3')
+			//济南南站下行信号机第三
+			x=4931;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4901,225,'XI')
+			xieshuzi(4966,235,'2')
+			//济南南站下行信号机第四
+			x=4931;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4901,285,'XII')
+			xieshuzi(4966,340,'4')
+			//济南南站下行信号机第五
+			x=4891;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4861,345,'X4')
+			
+			
+			//南京南站下行正向进站信号机
+			x=6222;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(6197,225,'X')
+			//南京南站下行反方向进站信号机
+			x=6222;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(6192,350,'XF')
+			
+			//南京南站上行正向进站信号机
+			x=7085;y=340
+            shangxingxinhaoji(x,y)
+			xieshuzi(7070,350,'S')
+			//南京南站上行反方向进站信号机
+			x=7085;y=250
+            shangxingxinhaoji(x,y)
+			xieshuzi(7065,225,'SF')
+			
+			
+			//南京南站上行信号机第二
+			x=6332;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(6312,230,'S3')
+			//南京南站上行信号机第三
+			x=6292;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(6272,290,'SI')
+			xieshuzi(6217,235,'1')
+            //南京南站上行信号机第四
+			x=6292;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(6272,350,'SII')
+			xieshuzi(6217,340,'3')
+			//南京南站上行信号机第五
+			x=6332;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(6312,410,'S4')
+			
+			
+			//南京南站下行信号机第二
+			x=6832;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(6802,165,'X3')
+			//南京南站下行信号机第三
+			x=6872;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(6842,225,'XI')
+			xieshuzi(6907,235,'2')
+			//南京南站下行信号机第四
+			x=6872;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(6842,285,'XII')
+			xieshuzi(6907,340,'4')
+			//南京南站下行信号机第五
+			x=6832;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(6802,345,'X4')
+			
+			//苏州北站下行正向进站信号机
+			x=8163;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(8138,225,'X')
+			//苏州北站下行反方向进站信号机
+			x=8163;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(8133,350,'XF')
+			
+			//苏州北站上行正向进站信号机
+			x=9026;y=340
+            shangxingxinhaoji(x,y)
+			xieshuzi(9011,350,'S')
+			//苏州北站上行反方向进站信号机
+			x=9026;y=250
+            shangxingxinhaoji(x,y)
+			xieshuzi(9006,225,'SF')
+			
+			
+			//苏州北站上行信号机第二
+			x=8273;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(8253,230,'S3')
+			//苏州北站上行信号机第三
+			x=8233;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(8213,290,'SI')
+			xieshuzi(8158,235,'1')
+            //苏州北站上行信号机第四
+			x=8233;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(8213,350,'SII')
+			xieshuzi(8158,340,'3')
+			//苏州北站上行信号机第五
+			x=8273;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(8253,410,'S4')
+			
+			
+			//苏州北站下行信号机第二
+			x=8773;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(8743,165,'X3')
+			//苏州北站下行信号机第三
+			x=8813;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(8783,225,'XI')
+			xieshuzi(8848,235,'2')
+			//苏州北站下行信号机第四
+			x=8813;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(8783,285,'XII')
+			xieshuzi(8848,340,'4')
+			//苏州北站下行信号机第五
+			x=8773;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(8743,345,'X4')
+			
+			
+			//上海虹桥站信号机
+			//上海虹桥上行信号机第一
+			x=10353;y=160
+			shangxingxinhaoji(x,y);
+			xieshuzi(10333,170,'S5')
+            //上海虹桥上行信号机第二
+			x=10313;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(10293,230,'S3')
+			xieshuzi(10243,180,'9')
+	
+			//上海虹桥上行信号机第三
+			x=10203;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(10183,290,'SI')
+			xieshuzi(10088,235,'5')
+			xieshuzi(9873,235,'3')
+            //上海虹桥上行信号机第四
+			x=10203;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(10183,350,'SII')
+			xieshuzi(10088,340,'7')
+			xieshuzi(9418,340,'1')
+			//上海虹桥上行信号机第五
+			x=10313;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(10298,410,'S4')
+			xieshuzi(10243,400,'11')
+			//上海虹桥上行信号机第六
+			x=10353;y=460
+			shangxingxinhaoji(x,y);
+			xieshuzi(10333,470,'S6')
+			
+			//上海虹桥下行信号机第一
+			x=10563;y=130
+            xiaxingxinhaoji(x,y)
+			xieshuzi(10533,105,'X5')
+			//上海虹桥下行信号机第二
+			x=10603;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(10563,165,'X3')
+			xieshuzi(10618,180,'6')
+
+			//上海虹桥下行信号机第三
+			x=10743;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(10713,225,'XI')
+			xieshuzi(10778,235,'2')
+			//上海虹桥下行信号机第四
+			x=10743;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(10713,285,'XII')
+			xieshuzi(10778,340,'4')
+			//上海虹桥下行信号机第五
+			x=10603;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(10568,345,'X4')
+			xieshuzi(10618,400,'8')
+			//上海虹桥下行信号机第六
+			x=10563;y=430
+            xiaxingxinhaoji(x,y)
+			xieshuzi(10533,405,'X6')
+			//上海虹桥下行正方向信号机
+			x=9959;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(9934,225,'X')
+			//上海虹桥下行反方向信号机
+			x=9959;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(9929,350,'XF')
+			
+			//股道编号
+			//北京南站股道
+			xieshuzi(530,150,'5G')
+			xieshuzi(530,210,'3G')
+			xieshuzi(530,270,'IG')
+			xieshuzi(530,330,'IIG')
+			xieshuzi(530,390,'4G')
+			xieshuzi(530,450,'6G')
+			
+			//天津南站股道
+			xieshuzi(2655,210,'3G')
+			xieshuzi(2655,270,'IG')
+			xieshuzi(2655,330,'IIG')
+			xieshuzi(2655,390,'4G')
+			
+			//济南南站股道
+			xieshuzi(4616,210,'3G')
+			xieshuzi(4616,270,'IG')
+			xieshuzi(4616,330,'IIG')
+			xieshuzi(4616,390,'4G')
+			
+			//南京南站股道
+			xieshuzi(6557,210,'3G')
+			xieshuzi(6557,270,'IG')
+			xieshuzi(6557,330,'IIG')
+			xieshuzi(6557,390,'4G')
+			
+			//苏州北站股道
+			xieshuzi(8498,210,'3G')
+			xieshuzi(8498,270,'IG')
+			xieshuzi(8498,330,'IIG')
+			xieshuzi(8498,390,'4G')
+			
+			//上海虹桥站股道
+			xieshuzi(10428,150,'5G')
+			xieshuzi(10428,210,'3G')
+			xieshuzi(10428,270,'IG')
+			xieshuzi(10428,330,'IIG')
+			xieshuzi(10428,390,'4G')
+			xieshuzi(10428,450,'6G')
+			
+			//信号机编号
+        }
+		function shangxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+		
+		function xiaxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+		
+		function bisaifenqu(x,y1,y2)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			//context.fillStyle = "#FFF";
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+            context.moveTo( x, y1 );
+			context.lineTo( x, y2 );
+			context.stroke();
+		
+		}
+		function zuocechedang(x1,x2,y1,y2)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+			context.lineWidth = 2; 
+            context.moveTo( x1, y1 );
+			context.lineTo( x2, y1 );
+            context.lineTo( x2, y2 );
+			context.lineTo( x1, y2 );
+		    context.stroke();
+		}
+		function chezhanbiaozhi(x,y,w,h,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "#FFF";
+			context.fillRect(x, y, w, h);
+			context.fillStyle = "#000";
+			context.fillRect(x+5, y+5, w-10, h-10);
+			context.fillStyle = "#FDFD00";
+			context.font="30px bold 宋体";
+            context.fillText(text,x+33,y+38);
+		}
+		
+		function xieshuzi(x,y,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+	
+			context.fillStyle = "#FFF";
+			context.font="12px bold 宋体";
+            context.fillText(text,x-10,y);
+		}
+		function huaxiaxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "blue";
+            
+		    context.fillRect(490, 235, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(326, 250, 427, 5);
+			
+		}
+		
+		function huashangxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "blue";
+            
+		    context.fillRect(10399, 295, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(10190, 310, 507, 5);
+			
+		}
+		
+		function changceguidaohuizhi()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x1=1105;
+			y1=258;
+			x2=1535;
+			y2=305;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+			context.lineWidth = 2;
+            context.moveTo( 1335,278);
+			context.lineTo( 1330, 287 );
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x1=9433;
+			y1=305;
+			x2=9843;
+			y2=258;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+			context.lineWidth = 2;
+            context.moveTo( 9623,278);
+			context.lineTo( 9628, 287 );
+			context.stroke();
+			
+		}
+		
+		function beijingnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=195;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    x=315;
+			y=190;
+			k=50;
+			context.moveTo( x+40, y-3 ); // x+7,y-1
+			context.lineTo( x+40+k, y-3-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=655;
+			y=130;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=195;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=315;
+			y=375;
+			k=50;
+			context.moveTo( x+40, y+3 ); // x+7,y-1
+			context.lineTo( x+40+k, y+3+k);
+			context.stroke();
+
+			x=810;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+			x=655;
+			y=430;
+			k=50;
+			context.moveTo( x, y-3 ); // x+7,y-1
+			context.lineTo( x+k, y-3-k);
+			context.stroke();
+		}
+		function tianjinnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=2310;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=2310;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=2938;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+			
+			x=2938;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			
+		}
+		
+		function jinannanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=4271;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=4271;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=4899;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+			
+			x=4899;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			
+		}
+		
+		function nanjingnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=6212;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=6212;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=6840;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+			
+			x=6840;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			
+		}
+		
+		function suzhoubeizhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=8153;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=8153;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=8781;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+			
+			x=8781;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			
+		}
+		
+		function shanghaihongqiaozhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=10083;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    x=10213;
+			y=190;
+			k=50;
+			context.moveTo( x+40, y-3 ); // x+7,y-1
+			context.lineTo( x+40+k, y-3-k);
+			//context.moveTo( 157, 185 );
+			//context.lineTo( 205, 138 );
+			context.stroke();
+			
+			x=10553;
+			y=130;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			x=10713;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=10083;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=10213;
+			y=375;
+			k=50;
+			context.moveTo( x+40, y+3 ); // x+7,y-1
+			context.lineTo( x+40+k, y+3+k);
+			context.stroke();
+
+			x=10713;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+			x=10553;
+			y=430;
+			k=50;
+			context.moveTo( x, y-3 ); // x+7,y-1
+			context.lineTo( x+k, y-3-k);
+			context.stroke();
+			
+	    }
+    </script>
+</head>
+<body>
+  
+    <div class='nav'>
+  <ul>
+    <li><a href="yxtNex/YXTNex.html" target="_blank">列调</a></li>
+    <li><a href="zhudiao.html" target="_blank">助调</a></li>
+    <li><a href="yyfwqzs.html" target="_blank">应用服务器</a></li>
+    <li><a href="lsxsfwq.html" target="_blank">临时限速服务器</a></li>
+    <li><a href="rbc.html" target="_blank">无线闭塞中心</a></li>
+    
+    <li><a href='#'>北京南站</a>
+        <ul>
+      <li><a href="bjnliansuo.html" target="_blank">联锁</a></li>
+      <li><a href="bjnzilvji.html" target="_blank">自律机</a></li>
+      <li><a href="bjn_cwzd.html" target="_blank">车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>天津南站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='#'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>济南南站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='#'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+    
+     <li><a href='#'>南京南站</a>
+        <ul>
+       <li><a href="njnzliansuo.html" target="_blank">联锁</a></li>
+      <li><a href="njnzilvji.html" target="_blank">自律机</a></li>
+      <li><a href="njn_cwzd.html" target="_blank">车务终端</a></li>
+      </ul>
+    </li>   
+    
+    <li><a href='#'>苏州北站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='#'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>上海虹桥站</a>
+        <ul>
+      <li><a href="shhqliansuo.html" target="_blank">联锁</a></li>
+      <li><a href="shhqzilvji.html" target="_blank">自律机</a></li>
+      <li><a href="shanghaihq_cwzd.html" target="_blank">车务终端</a></li>
+      </ul>
+    </li>
+    
+        <li><a>行车测试</a>
+        <ul>
+      <li  id="xiaxingxingche"><a>下行行车</a></li>
+      <li  id="shangxingxingche"><a>上行行车</a></li>
+      <li  id="shangxingxingcheguzhang"><a>上行行车故障</a></li>
+      <li  id="zhanchangtu_yuexing"><a href="zhanchangtu_yuexingck.html" target="_blank">下行行车越行场景</a></li>   
+      <li  id="zhanchantujiansu"><a href="zhanchangtuhouchejiansu.html" target="_blank">后车减速场景</a></li>                  
+      <li  id="zhanqianzhefan"><a href="zhanchangtugaick.html" target="_blank">站前折返</a></li>
+      <li  id="zhanhouzhefan"><a href="zhanchangtugaick.html" target="_blank">站后折返</a></li>
+      </li>
+      </ul>
+    </li>
+
+  </ul>
+  
+  
+</div>
+     
+    
+    <canvas id="canvas" class="cancss" width="11323" height="1300">
+
+    
+    </canvas>
+</body>
+</html>
+
+<script>
+
+//写cookies 
+function setCookie(name,value) 
+{ 
+    var Days = 30; 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() + Days*24*60*60*1000); 
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
+} 
+
+//读取cookies 
+function getCookie(name) 
+{ 
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]); 
+    else 
+        return null; 
+} 
+
+//删除cookies 
+function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 1); 
+    var cval=getCookie(name); 
+    if(cval!=null) 
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString(); 
+} 
+/***
+ * @param {string} cookieName Cookie名称
+ * @param {string} cookieValue Cookie值
+ * @param {number} nDays Cookie过期天数
+ */
+
+
+$('#zhanchangtu_yuexing').click(function () {
+	
+	setCookie("ZCTYX","1"); 
+    alert("下行行车越行命令发送成功！");
+   // alert("下行行车越行命令发送失败！");
+});
+
+$('#zhanqianzhefan').click(function () {
+	
+	setCookie("ZQZF","1"); 
+    alert("站前折返命令发送成功！");
+   // alert("站前折返命令发送失败！");
+});
+
+$('#zhanhouzhefan').click(function () {
+	
+	setCookie("ZHZF","1"); 
+    alert("站后折返命令发送成功！");
+   // alert("站后折返命令发送失败！");
+});
+ </script>
+ 
+ <script type="text/javascript">
+ 
+ function test() {
+
+// alert("test");
+//每两秒，调用这个空函数吧
+
+}
+
+
+//setTimeout(test, 2000);
+//setInterval("test()","2000"); //每隔2000毫秒执行一次test()函数，执行无数次。
+
+
+var fenjiedian=new Array()
+    fenjiedian[0]=0
+    fenjiedian[1]=163
+	fenjiedian[2]=326
+	fenjiedian[3]=753
+    fenjiedian[4]=905
+	fenjiedian[5]=1050
+	fenjiedian[6]=1230
+	fenjiedian[7]=1410
+	fenjiedian[8]=1590
+	fenjiedian[9]=1770
+	fenjiedian[10]=1950
+	fenjiedian[11]=2130
+	fenjiedian[12]=2274
+    fenjiedian[13]=2377
+    fenjiedian[14]=2923
+	fenjiedian[15]=3025
+	fenjiedian[16]=3180
+	fenjiedian[17]=3360
+	fenjiedian[18]=3540
+	fenjiedian[19]=3720
+	fenjiedian[20]=3900
+	fenjiedian[21]=4080
+	fenjiedian[22]=4235
+	fenjiedian[23]=4338
+    fenjiedian[24]=4884
+	fenjiedian[25]=4986
+	fenjiedian[26]=5131
+	fenjiedian[27]=5311
+	fenjiedian[28]=5491
+	fenjiedian[29]=5671
+	fenjiedian[30]=5851
+	fenjiedian[31]=6031
+	fenjiedian[32]=6176
+	fenjiedian[33]=6279
+	fenjiedian[34]=6825
+	fenjiedian[35]=6927
+    fenjiedian[36]=7072
+    fenjiedian[37]=7252
+	fenjiedian[38]=7432
+	fenjiedian[39]=7612
+	fenjiedian[40]=7792
+	fenjiedian[41]=7972
+	fenjiedian[42]=8117
+	fenjiedian[43]=8220
+	fenjiedian[44]=8766
+	fenjiedian[45]=8868
+	fenjiedian[46]=9013
+    fenjiedian[47]=9193
+	fenjiedian[48]=9373
+	fenjiedian[49]=9553
+	fenjiedian[50]=9733
+	fenjiedian[51]=9913
+	fenjiedian[52]=10058
+	fenjiedian[53]=10190
+	fenjiedian[54]=10697
+	fenjiedian[55]=10798
+	
+
+
+      // $('#zhanchangtu_yuexing').click(function () {
+    //  window.localStorage.name="123";	
+	
+//});
+ 
+	$('#xiaxingxingche').click(function () {
+
+    alert("下行行车命令发送成功");
+
+    i=3
+	//x=490;y=235
+    //danduhuaxiaxingxiaoche(x,y)	
+	setInterval("dingshidanduhuaxiaxingxiaoche()","1000");
+
+	
+			    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+						x=800;y=250
+            xiaxingxinhaojilvdeng(x,y)
+	
+	
+});
+function danduhuaxiaxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.restore();
+			
+		}
+
+
+function dingshidanduhuaxiaxingxiaoche()
+{
+	
+			 var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+	if(i==3)
+	{x=490;y=235
+		context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+						x=800;y=250
+            xiaxingxinhaojihongdeng(x,y)
+			
+			//fenge
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();	
+
+	}
+	else
+	{
+
+		
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-50
+	 y=235
+		context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+	}
+
+	if (i<54)
+	{ i=i+1
+	}
+	if(i==5)
+	{
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}
+	
+	if(i==14)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=2310;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+	
+	if(i==16)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=2938;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}	
+		
+	if(i==24)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=4271;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+	if(i==26)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=4899;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}		
+	
+	if(i==34)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=6212;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+	if(i==36)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=6840;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}			
+
+    if(i==44)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=8153;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+	if(i==46)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=8781;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}			
+	if(i==54)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=10083;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+	
+	
+	
+	
+	//经过天津南站时
+	if(i==12)
+	{
+			x=2320;y=250
+            xiaxingxinhaojilvdeng2(x,y)
+	}
+	if(i==13)
+	{
+			x=2320;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+    if(i==14)
+	{
+			x=2320;y=250
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+	
+	
+	if(i==14)
+	{
+		    x=2970;y=250
+            xiaxingxinhaojilvdeng(x,y)
+	}
+	
+    if(i==15)
+	{			
+	        x=2970;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+	if(i==16)
+	{			
+	        x=2970;y=250
+            xiaxingxinhaojihongdeng3(x,y)	
+	}
+	
+	//经过济南南站时
+	if(i==22)
+	{
+			x=4281;y=250
+            xiaxingxinhaojilvdeng2(x,y)
+	}
+	if(i==23)
+	{
+			x=4281;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+    if(i==24)
+	{
+			x=4281;y=250
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+	
+	
+	if(i==24)
+	{
+			x=4931;y=250
+            xiaxingxinhaojilvdeng(x,y)
+	}
+	
+    if(i==25)
+	{			
+	        x=4931;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+	if(i==26)
+	{			
+	        x=4931;y=250
+            xiaxingxinhaojihongdeng3(x,y)	
+	}
+	
+	//经过南京南站时
+	if(i==32)
+	{
+			x=6222;y=250
+            xiaxingxinhaojilvdeng2(x,y)
+	}
+	if(i==33)
+	{
+			x=6222;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+    if(i==34)
+	{
+		    x=6222;y=250
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+	
+	
+	if(i==34)
+	{
+		    x=6872;y=250
+            xiaxingxinhaojilvdeng(x,y)
+	}
+	
+    if(i==35)
+	{			
+	        x=6872;y=250
+            xiaxingxinhaojihongdeng(x,y)	
+	}
+	if(i==36)
+	{			
+	        x=6872;y=250
+            xiaxingxinhaojihongdeng3(x,y)	
+	}
+	
+	//经过苏州北站时
+	if(i==42)
+	{
+			x=8163;y=250
+            xiaxingxinhaojilvdeng2(x,y)
+	}
+	if(i==43)
+	{
+			x=8163;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+    if(i==44)
+	{
+			x=8163;y=250
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+	
+	
+	if(i==44)
+	{
+			x=8813;y=250
+            xiaxingxinhaojilvdeng(x,y)
+	}
+	
+    if(i==45)
+	{			
+	        x=8813;y=250
+            xiaxingxinhaojihongdeng(x,y)	
+	}
+	if(i==46)
+	{			
+	        x=8813;y=250
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+	
+	//经过上海虹桥站
+	if(i==51)
+	{
+			x=9959;y=250
+            xiaxingxinhaojilvdeng2(x,y)
+	}
+	if(i==52)
+	{			
+	        x=9959;y=250
+            xiaxingxinhaojihongdeng(x,y)
+		
+	}
+	if(i==53)
+	{			
+	        x=9959;y=250
+            xiaxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-50
+	 y=235
+	 
+
+			
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+			
+			//context.restore();
+			
+			
+			//闭塞分区标志
+			bisaifenqu(163,248,257)
+			bisaifenqu(163,308,317)
+			bisaifenqu(905,248,257)
+			bisaifenqu(905,308,317)
+			bisaifenqu(1050,248,257)
+			bisaifenqu(1050,308,317)
+			bisaifenqu(1230,248,257)
+			bisaifenqu(1230,308,317)
+			bisaifenqu(1410,248,257)
+			bisaifenqu(1410,308,317)
+			
+			
+			bisaifenqu(1590,248,257)
+			bisaifenqu(1590,308,317)
+			bisaifenqu(1770,248,257)
+			bisaifenqu(1770,308,317)
+			bisaifenqu(1950,248,257)
+			bisaifenqu(1950,308,317)
+			bisaifenqu(2130,248,257)
+			bisaifenqu(2130,308,317)
+			bisaifenqu(2274,248,257)
+			bisaifenqu(2274,308,317)
+			
+			
+			bisaifenqu(3025,248,257)
+			bisaifenqu(3025,308,317)
+			
+			bisaifenqu(3180,248,257)
+			bisaifenqu(3180,308,317)
+			bisaifenqu(3360,248,257)
+			bisaifenqu(3360,308,317)
+			bisaifenqu(3540,248,257)
+			bisaifenqu(3540,308,317)
+			
+			bisaifenqu(3720,248,257)
+			bisaifenqu(3720,308,317)
+			
+			bisaifenqu(3900,248,257)
+			bisaifenqu(3900,308,317)
+			bisaifenqu(4080,248,257)
+			bisaifenqu(4080,308,317)
+			bisaifenqu(4235,248,257)
+			bisaifenqu(4235,308,317)
+			
+			bisaifenqu(4986,248,257)
+			bisaifenqu(4986,308,317)
+			
+			
+			bisaifenqu(326,188,197)
+			bisaifenqu(326,248,257)
+			bisaifenqu(326,308,317)
+			bisaifenqu(326,368,377)
+			
+			bisaifenqu(406,188,197)
+			bisaifenqu(406,368,377)
+			
+		    bisaifenqu(436,128,137)
+			bisaifenqu(436,428,437)
+			
+		    bisaifenqu(613,128,137)
+			bisaifenqu(613,428,437)
+			
+			bisaifenqu(653,188,197)
+			bisaifenqu(653,368,377)
+			
+			bisaifenqu(753,248,257)
+			bisaifenqu(753,308,317)
+			
+			bisaifenqu(753,188,197)
+			bisaifenqu(753,368,377)
+			
+			bisaifenqu(2377,248,257)
+			bisaifenqu(2377,308,317)
+			
+			bisaifenqu(2417,188,197)
+			bisaifenqu(2417,368,377)
+			
+			bisaifenqu(2883,188,197)
+			bisaifenqu(2883,368,377)
+			
+			bisaifenqu(2923,248,257)
+			bisaifenqu(2923,308,317)
+			
+			bisaifenqu(4338,248,257)
+			bisaifenqu(4338,308,317)		
+			
+			bisaifenqu(4378,188,197)
+			bisaifenqu(4378,368,377)
+			
+			bisaifenqu(4844,188,197)
+			bisaifenqu(4844,368,377)
+			
+			bisaifenqu(6319,188,197)
+			bisaifenqu(6319,368,377)
+			
+			bisaifenqu(6785,188,197)
+			bisaifenqu(6785,368,377)
+			
+			bisaifenqu(8260,188,197)
+			bisaifenqu(8260,368,377)
+			
+			bisaifenqu(8726,188,197)
+			bisaifenqu(8726,368,377)			
+			
+			bisaifenqu(10190,188,197)
+			bisaifenqu(10190,368,377)
+			
+			bisaifenqu(10300,188,197)
+			bisaifenqu(10300,368,377)
+			
+			bisaifenqu(10340,128,137)
+			bisaifenqu(10340,428,437)
+						
+			bisaifenqu(10516,128,137)
+			bisaifenqu(10516,428,437)
+			
+			bisaifenqu(10556,188,197)
+			bisaifenqu(10556,368,377)
+			
+			bisaifenqu(10666,188,197)
+			bisaifenqu(10666,368,377)
+			
+			bisaifenqu(4884,248,257)
+			bisaifenqu(4884,308,317)
+			
+			bisaifenqu(5131,248,257)
+			bisaifenqu(5131,308,317)
+			
+			bisaifenqu(5311,248,257)
+			bisaifenqu(5311,308,317)
+			
+			bisaifenqu(5491,248,257)
+			bisaifenqu(5491,308,317)
+			
+			bisaifenqu(5671,248,257)
+			bisaifenqu(5671,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(6279,248,257)
+			bisaifenqu(6279,308,317)
+			
+			bisaifenqu(6825,248,257)
+			bisaifenqu(6825,308,317)
+			
+			bisaifenqu(6927,248,257)
+			bisaifenqu(6927,308,317)
+			
+			bisaifenqu(7072,248,257)
+			bisaifenqu(7072,308,317)
+			
+			bisaifenqu(7252,248,257)
+			bisaifenqu(7252,308,317)
+	
+			bisaifenqu(7432,248,257)
+			bisaifenqu(7432,308,317)
+			
+			bisaifenqu(7612,248,257)
+			bisaifenqu(7612,308,317)
+			
+			bisaifenqu(7792,248,257)
+			bisaifenqu(7792,308,317)
+			
+			bisaifenqu(7972,248,257)
+			bisaifenqu(7972,308,317)
+			
+			bisaifenqu(8117,248,257)
+			bisaifenqu(8117,308,317)
+			
+			bisaifenqu(8220,248,257)
+			bisaifenqu(8220,308,317)
+			
+			bisaifenqu(8766,248,257)
+			bisaifenqu(8766,308,317)
+			
+			bisaifenqu(8868,248,257)
+			bisaifenqu(8868,308,317)
+			
+			bisaifenqu(9013,248,257)
+			bisaifenqu(9013,308,317)
+			
+			bisaifenqu(9193,248,257)
+			bisaifenqu(9193,308,317)
+			
+			bisaifenqu(9373,248,257)
+			bisaifenqu(9373,308,317)
+			
+			bisaifenqu(9553,248,257)
+			bisaifenqu(9553,308,317)
+			
+			bisaifenqu(9733,248,257)
+			bisaifenqu(9733,308,317)
+			
+			bisaifenqu(9913,248,257)
+			bisaifenqu(9913,308,317)
+			
+			bisaifenqu(10058,248,257)
+			bisaifenqu(10058,308,317)
+			
+			bisaifenqu(10190,248,257)
+			bisaifenqu(10190,308,317)
+			
+			bisaifenqu(10697,248,257)
+			bisaifenqu(10697,308,317)
+			
+			bisaifenqu(10798,248,257)
+			bisaifenqu(10798,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+
+}
+
+ 
+	$('#shangxingxingche').click(function () {
+
+    alert("上行行车命令发送成功");
+
+    i=54
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("dingshidanduhuashangxingxiaoche()","1000");
+
+
+	
+			    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+						x=10203;y=340
+            shangxingxinhaojilvdeng(x,y)
+	
+	
+});
+function danduhuashangxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.restore();
+
+
+			
+		}
+
+
+function dingshidanduhuashangxingxiaoche()
+{
+	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	if(i==54)
+	{x=10399;y=295
+		    context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(fenjiedian[i-1], 310, fenjiedian[i]-fenjiedian[i-1], 5);
+						x=10203;y=340
+            shangxingxinhaojihongdeng(x,y)
+						
+
+	}
+	else
+	{
+
+		
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-20
+	 y=295
+		context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(fenjiedian[i-1], 310, fenjiedian[i]-fenjiedian[i-1], 5);
+	}
+
+	if (i>3)
+	{ i=i-1
+	}
+	
+	if(i==48)
+	{
+		    changceguidaohuizhi();
+	}
+	
+	if(i==7)
+	{
+		    changceguidaohuizhi();
+	}		
+			
+    
+	//小车经过苏州北站时
+	if(i==47)
+	{
+			x=9026;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==46)
+	{
+			x=9026;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==44)
+	{
+			x=8233;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==44)
+	{
+			x=8813;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==43)
+	{			
+	        x=8233;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	//小车经过南京南站时
+	if(i==37)
+	{
+			x=7085;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==36)
+	{
+			x=7085;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==34)
+	{
+			x=6292;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==34)
+	{
+			x=6872;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==33)
+	{			
+	        x=6292;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	//小车经过济南南站时
+	if(i==27)
+	{
+			x=5144;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==26)
+	{
+			x=5144;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==24)
+	{
+			x=4351;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==24)
+	{
+			x=4931;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==23)
+	{			
+	        x=4351;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	//小车经过天津南站时
+	if(i==17)
+	{
+			x=3193;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==16)
+	{
+			x=3193;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==14)
+	{
+			x=2390;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==14)
+	{
+			x=2970;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==13)
+	{			
+	        x=2390;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	
+	//小车经过北京南站时
+	if(i==8)
+	{
+			x=1423;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	
+    if(i==7)
+	{			
+	        x=1423;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-20
+	 y=295
+	 
+
+			
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(fenjiedian[i-1], 310, fenjiedian[i]-fenjiedian[i-1], 5);
+			
+			//context.restore();
+			
+            //闭塞分区标志
+			bisaifenqu(163,248,257)
+			bisaifenqu(163,308,317)
+			bisaifenqu(905,248,257)
+			bisaifenqu(905,308,317)
+			bisaifenqu(1050,248,257)
+			bisaifenqu(1050,308,317)
+			bisaifenqu(1230,248,257)
+			bisaifenqu(1230,308,317)
+			bisaifenqu(1410,248,257)
+			bisaifenqu(1410,308,317)
+			
+			
+			bisaifenqu(1590,248,257)
+			bisaifenqu(1590,308,317)
+			bisaifenqu(1770,248,257)
+			bisaifenqu(1770,308,317)
+			bisaifenqu(1950,248,257)
+			bisaifenqu(1950,308,317)
+			bisaifenqu(2130,248,257)
+			bisaifenqu(2130,308,317)
+			bisaifenqu(2274,248,257)
+			bisaifenqu(2274,308,317)
+			
+			
+			bisaifenqu(3025,248,257)
+			bisaifenqu(3025,308,317)
+			
+			bisaifenqu(3180,248,257)
+			bisaifenqu(3180,308,317)
+			bisaifenqu(3360,248,257)
+			bisaifenqu(3360,308,317)
+			bisaifenqu(3540,248,257)
+			bisaifenqu(3540,308,317)
+			
+			bisaifenqu(3720,248,257)
+			bisaifenqu(3720,308,317)
+			
+			bisaifenqu(3900,248,257)
+			bisaifenqu(3900,308,317)
+			bisaifenqu(4080,248,257)
+			bisaifenqu(4080,308,317)
+			bisaifenqu(4235,248,257)
+			bisaifenqu(4235,308,317)
+			
+			bisaifenqu(4986,248,257)
+			bisaifenqu(4986,308,317)
+			
+			
+			bisaifenqu(326,188,197)
+			bisaifenqu(326,248,257)
+			bisaifenqu(326,308,317)
+			bisaifenqu(326,368,377)
+			
+			bisaifenqu(406,188,197)
+			bisaifenqu(406,368,377)
+			
+		    bisaifenqu(436,128,137)
+			bisaifenqu(436,428,437)
+			
+		    bisaifenqu(613,128,137)
+			bisaifenqu(613,428,437)
+			
+			bisaifenqu(653,188,197)
+			bisaifenqu(653,368,377)
+			
+			bisaifenqu(753,248,257)
+			bisaifenqu(753,308,317)
+			
+			bisaifenqu(753,188,197)
+			bisaifenqu(753,368,377)
+			
+			bisaifenqu(2377,248,257)
+			bisaifenqu(2377,308,317)
+			
+			bisaifenqu(2417,188,197)
+			bisaifenqu(2417,368,377)
+			
+			bisaifenqu(2883,188,197)
+			bisaifenqu(2883,368,377)
+			
+			bisaifenqu(2923,248,257)
+			bisaifenqu(2923,308,317)
+			
+			bisaifenqu(4338,248,257)
+			bisaifenqu(4338,308,317)		
+			
+			bisaifenqu(4378,188,197)
+			bisaifenqu(4378,368,377)
+			
+			bisaifenqu(4844,188,197)
+			bisaifenqu(4844,368,377)
+			
+			bisaifenqu(6319,188,197)
+			bisaifenqu(6319,368,377)
+			
+			bisaifenqu(6785,188,197)
+			bisaifenqu(6785,368,377)
+			
+			bisaifenqu(8260,188,197)
+			bisaifenqu(8260,368,377)
+			
+			bisaifenqu(8726,188,197)
+			bisaifenqu(8726,368,377)			
+			
+			bisaifenqu(10190,188,197)
+			bisaifenqu(10190,368,377)
+			
+			bisaifenqu(10300,188,197)
+			bisaifenqu(10300,368,377)
+			
+			bisaifenqu(10340,128,137)
+			bisaifenqu(10340,428,437)
+						
+			bisaifenqu(10516,128,137)
+			bisaifenqu(10516,428,437)
+			
+			bisaifenqu(10556,188,197)
+			bisaifenqu(10556,368,377)
+			
+			bisaifenqu(10666,188,197)
+			bisaifenqu(10666,368,377)
+			
+			bisaifenqu(4884,248,257)
+			bisaifenqu(4884,308,317)
+			
+			bisaifenqu(5131,248,257)
+			bisaifenqu(5131,308,317)
+			
+			bisaifenqu(5311,248,257)
+			bisaifenqu(5311,308,317)
+			
+			bisaifenqu(5491,248,257)
+			bisaifenqu(5491,308,317)
+			
+			bisaifenqu(5671,248,257)
+			bisaifenqu(5671,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(6279,248,257)
+			bisaifenqu(6279,308,317)
+			
+			bisaifenqu(6825,248,257)
+			bisaifenqu(6825,308,317)
+			
+			bisaifenqu(6927,248,257)
+			bisaifenqu(6927,308,317)
+			
+			bisaifenqu(7072,248,257)
+			bisaifenqu(7072,308,317)
+			
+			bisaifenqu(7252,248,257)
+			bisaifenqu(7252,308,317)
+	
+			bisaifenqu(7432,248,257)
+			bisaifenqu(7432,308,317)
+			
+			bisaifenqu(7612,248,257)
+			bisaifenqu(7612,308,317)
+			
+			bisaifenqu(7792,248,257)
+			bisaifenqu(7792,308,317)
+			
+			bisaifenqu(7972,248,257)
+			bisaifenqu(7972,308,317)
+			
+			bisaifenqu(8117,248,257)
+			bisaifenqu(8117,308,317)
+			
+			bisaifenqu(8220,248,257)
+			bisaifenqu(8220,308,317)
+			
+			bisaifenqu(8766,248,257)
+			bisaifenqu(8766,308,317)
+			
+			bisaifenqu(8868,248,257)
+			bisaifenqu(8868,308,317)
+			
+			bisaifenqu(9013,248,257)
+			bisaifenqu(9013,308,317)
+			
+			bisaifenqu(9193,248,257)
+			bisaifenqu(9193,308,317)
+			
+			bisaifenqu(9373,248,257)
+			bisaifenqu(9373,308,317)
+			
+			bisaifenqu(9553,248,257)
+			bisaifenqu(9553,308,317)
+			
+			bisaifenqu(9733,248,257)
+			bisaifenqu(9733,308,317)
+			
+			bisaifenqu(9913,248,257)
+			bisaifenqu(9913,308,317)
+			
+			bisaifenqu(10058,248,257)
+			bisaifenqu(10058,308,317)
+			
+			bisaifenqu(10190,248,257)
+			bisaifenqu(10190,308,317)
+			
+			bisaifenqu(10697,248,257)
+			bisaifenqu(10697,308,317)
+			
+			bisaifenqu(10798,248,257)
+			bisaifenqu(10798,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+}
+
+    $('#shangxingxingcheguzhang').click(function () {
+
+    alert("上行行车故障设置成功");
+
+    i=54
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("dingshidanduhuashangxingxingcheguzhang()","1000");
+
+
+	
+			    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+						x=10203;y=340
+            shangxingxinhaojilvdeng(x,y)
+	
+	
+});
+function danduhuashangxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.restore();
+
+
+			
+		}
+
+
+function dingshidanduhuashangxingxingcheguzhang()
+{
+	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	if(i==54)
+	{x=10399;y=295
+		    context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(fenjiedian[i-1], 310, fenjiedian[i]-fenjiedian[i-1], 5);
+						x=10203;y=340
+            shangxingxinhaojihongdeng(x,y)
+						
+
+	}
+	else
+	{
+
+		
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-20
+	 y=295
+		context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(fenjiedian[i-1], 310, fenjiedian[i]-fenjiedian[i-1], 5);
+	}
+
+	if (i>3)
+	{ i=i-1
+	}
+	
+	if(i==48)
+	{
+		    changceguidaohuizhi();
+	}
+	
+	if(i==7)
+	{
+		    changceguidaohuizhi();
+	}		
+			
+    
+	//小车经过苏州北站时
+	if(i==47)
+	{
+			x=9026;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==46)
+	{
+			x=9026;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==44)
+	{
+			x=8233;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==44)
+	{
+			x=8813;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==43)
+	{			
+	        x=8233;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	//小车经过南京南站时
+	if(i==37)
+	{
+			x=7085;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==36)
+	{
+			x=7085;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==34)
+	{
+			x=6292;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==34)
+	{
+			x=6872;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==33)
+	{			
+	        x=6292;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	//小车经过济南南站时
+	if(i==27)
+	{
+			x=5144;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==26)
+	{
+			x=5144;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==24)
+	{
+			x=4351;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==24)
+	{
+			x=4931;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==23)
+	{			
+	        x=4351;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	//小车经过天津南站时
+	if(i==17)
+	{
+			x=3193;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==16)
+	{
+			x=3193;y=340
+            shangxingxinhaojihongdeng(x,y)
+	}
+	
+	if(i==14)
+	{
+			x=2390;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	if(i==14)
+	{
+			x=2970;y=310
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+    if(i==13)
+	{			
+	        x=2390;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	
+	//小车经过北京南站时
+	if(i==8)
+	{
+			x=1423;y=340
+            shangxingxinhaojilvdeng2(x,y)
+	}
+	
+    if(i==7)
+	{			
+	        x=1423;y=340
+            shangxingxinhaojihongdeng(x,y)
+		
+	}
+	
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-20
+	 y=295
+	 
+
+			
+	if(i>=31)
+	{
+	
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-20
+	 y=295
+	 
+
+			
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(fenjiedian[i-1], 310, fenjiedian[i]-fenjiedian[i-1], 5);
+			
+			//context.restore();
+	}
+	
+	if(3<=i<31)
+	{
+	
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-20
+	 y=295
+	 
+
+			
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 20, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x, y ); // x+7,y-1
+			context.lineTo( x, y+15);
+			context.lineTo( x-30, y+15);
+			context.lineTo( x, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(fenjiedian[i-1], 310, fenjiedian[i]-fenjiedian[i-1], 5);
+			
+			//context.restore();
+	}
+	
+	if(i==30)
+	{
+		x=(fenjiedian[i]+fenjiedian[i+1])/2-20
+	 y=295
+	 
+
+			
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x+20, y, 40, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			
+			
+			context.fillStyle = "red";
+			context.fillRect(fenjiedian[i], 310, fenjiedian[i+1]-fenjiedian[i], 5);
+			
+			//context.restore();
+	}
+			
+            //闭塞分区标志
+			bisaifenqu(163,248,257)
+			bisaifenqu(163,308,317)
+			bisaifenqu(905,248,257)
+			bisaifenqu(905,308,317)
+			bisaifenqu(1050,248,257)
+			bisaifenqu(1050,308,317)
+			bisaifenqu(1230,248,257)
+			bisaifenqu(1230,308,317)
+			bisaifenqu(1410,248,257)
+			bisaifenqu(1410,308,317)
+			
+			
+			bisaifenqu(1590,248,257)
+			bisaifenqu(1590,308,317)
+			bisaifenqu(1770,248,257)
+			bisaifenqu(1770,308,317)
+			bisaifenqu(1950,248,257)
+			bisaifenqu(1950,308,317)
+			bisaifenqu(2130,248,257)
+			bisaifenqu(2130,308,317)
+			bisaifenqu(2274,248,257)
+			bisaifenqu(2274,308,317)
+			
+			
+			bisaifenqu(3025,248,257)
+			bisaifenqu(3025,308,317)
+			
+			bisaifenqu(3180,248,257)
+			bisaifenqu(3180,308,317)
+			bisaifenqu(3360,248,257)
+			bisaifenqu(3360,308,317)
+			bisaifenqu(3540,248,257)
+			bisaifenqu(3540,308,317)
+			
+			bisaifenqu(3720,248,257)
+			bisaifenqu(3720,308,317)
+			
+			bisaifenqu(3900,248,257)
+			bisaifenqu(3900,308,317)
+			bisaifenqu(4080,248,257)
+			bisaifenqu(4080,308,317)
+			bisaifenqu(4235,248,257)
+			bisaifenqu(4235,308,317)
+			
+			bisaifenqu(4986,248,257)
+			bisaifenqu(4986,308,317)
+			
+			
+			bisaifenqu(326,188,197)
+			bisaifenqu(326,248,257)
+			bisaifenqu(326,308,317)
+			bisaifenqu(326,368,377)
+			
+			bisaifenqu(406,188,197)
+			bisaifenqu(406,368,377)
+			
+		    bisaifenqu(436,128,137)
+			bisaifenqu(436,428,437)
+			
+		    bisaifenqu(613,128,137)
+			bisaifenqu(613,428,437)
+			
+			bisaifenqu(653,188,197)
+			bisaifenqu(653,368,377)
+			
+			bisaifenqu(753,248,257)
+			bisaifenqu(753,308,317)
+			
+			bisaifenqu(753,188,197)
+			bisaifenqu(753,368,377)
+			
+			bisaifenqu(2377,248,257)
+			bisaifenqu(2377,308,317)
+			
+			bisaifenqu(2417,188,197)
+			bisaifenqu(2417,368,377)
+			
+			bisaifenqu(2883,188,197)
+			bisaifenqu(2883,368,377)
+			
+			bisaifenqu(2923,248,257)
+			bisaifenqu(2923,308,317)
+			
+			bisaifenqu(4338,248,257)
+			bisaifenqu(4338,308,317)		
+			
+			bisaifenqu(4378,188,197)
+			bisaifenqu(4378,368,377)
+			
+			bisaifenqu(4844,188,197)
+			bisaifenqu(4844,368,377)
+			
+			bisaifenqu(6319,188,197)
+			bisaifenqu(6319,368,377)
+			
+			bisaifenqu(6785,188,197)
+			bisaifenqu(6785,368,377)
+			
+			bisaifenqu(8260,188,197)
+			bisaifenqu(8260,368,377)
+			
+			bisaifenqu(8726,188,197)
+			bisaifenqu(8726,368,377)			
+			
+			bisaifenqu(10190,188,197)
+			bisaifenqu(10190,368,377)
+			
+			bisaifenqu(10300,188,197)
+			bisaifenqu(10300,368,377)
+			
+			bisaifenqu(10340,128,137)
+			bisaifenqu(10340,428,437)
+						
+			bisaifenqu(10516,128,137)
+			bisaifenqu(10516,428,437)
+			
+			bisaifenqu(10556,188,197)
+			bisaifenqu(10556,368,377)
+			
+			bisaifenqu(10666,188,197)
+			bisaifenqu(10666,368,377)
+			
+			bisaifenqu(4884,248,257)
+			bisaifenqu(4884,308,317)
+			
+			bisaifenqu(5131,248,257)
+			bisaifenqu(5131,308,317)
+			
+			bisaifenqu(5311,248,257)
+			bisaifenqu(5311,308,317)
+			
+			bisaifenqu(5491,248,257)
+			bisaifenqu(5491,308,317)
+			
+			bisaifenqu(5671,248,257)
+			bisaifenqu(5671,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(6279,248,257)
+			bisaifenqu(6279,308,317)
+			
+			bisaifenqu(6825,248,257)
+			bisaifenqu(6825,308,317)
+			
+			bisaifenqu(6927,248,257)
+			bisaifenqu(6927,308,317)
+			
+			bisaifenqu(7072,248,257)
+			bisaifenqu(7072,308,317)
+			
+			bisaifenqu(7252,248,257)
+			bisaifenqu(7252,308,317)
+	
+			bisaifenqu(7432,248,257)
+			bisaifenqu(7432,308,317)
+			
+			bisaifenqu(7612,248,257)
+			bisaifenqu(7612,308,317)
+			
+			bisaifenqu(7792,248,257)
+			bisaifenqu(7792,308,317)
+			
+			bisaifenqu(7972,248,257)
+			bisaifenqu(7972,308,317)
+			
+			bisaifenqu(8117,248,257)
+			bisaifenqu(8117,308,317)
+			
+			bisaifenqu(8220,248,257)
+			bisaifenqu(8220,308,317)
+			
+			bisaifenqu(8766,248,257)
+			bisaifenqu(8766,308,317)
+			
+			bisaifenqu(8868,248,257)
+			bisaifenqu(8868,308,317)
+			
+			bisaifenqu(9013,248,257)
+			bisaifenqu(9013,308,317)
+			
+			bisaifenqu(9193,248,257)
+			bisaifenqu(9193,308,317)
+			
+			bisaifenqu(9373,248,257)
+			bisaifenqu(9373,308,317)
+			
+			bisaifenqu(9553,248,257)
+			bisaifenqu(9553,308,317)
+			
+			bisaifenqu(9733,248,257)
+			bisaifenqu(9733,308,317)
+			
+			bisaifenqu(9913,248,257)
+			bisaifenqu(9913,308,317)
+			
+			bisaifenqu(10058,248,257)
+			bisaifenqu(10058,308,317)
+			
+			bisaifenqu(10190,248,257)
+			bisaifenqu(10190,308,317)
+			
+			bisaifenqu(10697,248,257)
+			bisaifenqu(10697,308,317)
+			
+			bisaifenqu(10798,248,257)
+			bisaifenqu(10798,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+			bisaifenqu(5851,248,257)
+			bisaifenqu(5851,308,317)
+			
+			bisaifenqu(6031,248,257)
+			bisaifenqu(6031,308,317)
+			
+			bisaifenqu(6176,248,257)
+			bisaifenqu(6176,308,317)
+			
+}
+
+
+        function xiaxingxinhaojihongdeng(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+        function xiaxingxinhaojihongdeng3(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+        function xiaxingxinhaojilvdeng(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+        function xiaxingxinhaojilvdeng2(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+
+        function shangxingxinhaojihongdeng(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+        function shangxingxinhaojihongdeng3(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+        function shangxingxinhaojilvdeng(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+        function shangxingxinhaojilvdeng2(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+
+    </script>

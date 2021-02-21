@@ -1,0 +1,8 @@
+﻿文件下载网址  =>  文件保存路径
+http://www.railwills.com/WEBATS/yxtNex/images/ui-bg_gloss-wave_35_f6a828_500x100.png  =>  D:\实验室工作\网站\调度集中\www.railwills.com\images\ui-bg_gloss-wave_35_f6a828_500x100.png
+http://www.railwills.com/WEBATS/yxtNex/jquery-ui.min.js  =>  D:\实验室工作\网站\调度集中\www.railwills.com\js\jquery-ui.min.js
+http://www.railwills.com/WEBATS/yxtNex/YXTNex.js  =>  D:\实验室工作\网站\调度集中\www.railwills.com\js\yxtnex.js
+http://www.railwills.com/WEBATS/yxtNex/ChangeTable.js  =>  D:\实验室工作\网站\调度集中\www.railwills.com\js\changetable.js
+http://www.railwills.com/WEBATS/yxtNex/YXTAnotherNex.js  =>  D:\实验室工作\网站\调度集中\www.railwills.com\js\yxtanothernex.jshttp://www.railwills.com/WEBATS/yxtNex/jquery-2.1.1.min.js  =>  D:\实验室工作\网站\调度集中\www.railwills.com\js\jquery-2.1.1.min.js
+http://www.railwills.com/WEBATS/yxtNex/bootstrap.min.js  =>  D:\实验室工作\网站\调度集中\www.railwills.com\js\bootstrap.min.js
+http://www.railwills.com/WEBATS/yxtNex/TDAdj.js  =>  D:\实验室工作\网站\调度集中\www.railwills.com\js\tdadj.js

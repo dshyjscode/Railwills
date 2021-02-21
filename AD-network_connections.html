@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/ad-network_connections.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <title>助调</title>
+</head>
+<body>
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+  
+    <div class='nav'>
+  <ul>
+    <li><a>站场图</a>
+    <ul>
+      <li><a>北京南站站场图</a></li>
+      <li><a>南京南站站场图</a></li>
+      <li><a>上海虹桥站站场图</a></li>
+     </ul>
+    </li>
+    <li><a>计划图</a>
+    <ul>
+      <li><a>基本运行图</a></li>
+      <li><a>调整运行图</a></li>
+      <li><a>列车时刻表</a></li>
+      <li><a>显示运行图方向</a></li>
+      <li><a>删除所有运行线</a></li>
+    </ul>
+    </li>
+    <li><a>行车日志</a>
+    <ul>
+      <li><a>新增记录</a></li>
+      <li><a>删除当前记录</a></li>
+      <li><a>删除当前记录的到达信息</a></li>
+      <li><a>删除当前记录的出发信息</a></li>
+      <li><a>打印</a></li>
+      <li><a>历史记录查询</a></li>
+      <li><a>行车日志数据恢复</a></li>
+    </ul>
+    </li>
+    <li><a>系统</a>
+    <ul>
+      <li><a>初始化站场</a></li>
+      <li><a>交接班</a></li>
+      <li><a>人工过表</a></li>
+      <li><a>值班员登录</a></li>
+      <li><a>值班员注销</a></li>
+      <li><a>系统维护</a></li>
+      <li><a>报警信息</a></li>
+      <li><a>系统日志</a></li>
+      <li><a>维护工具</a></li>
+      <li><a>全屏显示</a></li>
+      <li><a>退出系统</a></li>
+    </ul>
+    </li>
+    <li><a>功能</a>
+    <ul>
+      <li><a>停止自动走车</a></li>
+      <li><a>自动走车</a></li>
+      <li><a>当前站申请自律模式</a></li>
+      <li><a>当前站退出自律模式</a></li>
+      <li><a>显示各部分名称</a></li>
+      <li><a>隐藏各部分名称</a></li>
+      <li><a>站间显示</a></li>
+      <li><a>日志</a></li>
+      <li><a>模式转换</a></li>
+       <li><a>转为自律模式</a></li>
+       <li><a>转为非常站控模式</a></li>
+      <li><a>删除计划</a></li>
+    </ul>
+    </li>
+    <li><a>临时计划</a>
+    <ul>
+      <li><a>调车作业单</a></li>
+      <li><a>增删改计划</a></li>
+    </ul>
+    </li>
+    <li><a>模式转换</a>
+    <ul>
+      <li><a>申请模式转换</a></li>
+      <li><a>同意模式转换</a></li>
+    </ul>
+    </li>
+
+  </ul>
+</div>
+    
+    
+
+    <div class="zhegntibeijing">
+    <!--<div style="float:left;margin-top:5px; color:#000; background-color:#FFF;">北京南站:</div>-->
+    <button  id="beijingnanzhanxuanze" class="beijingnanzhanxuanze" >北京南站</button>
+    <button  id="nanjingnanzhanxuanze" class="nanjingnanzhanxuanze" >南京南站</button>
+    <button  id="shanghaihongqiaozhanxuanze" class="shanghaihongqiaozhanxuanze" >上海虹桥站</button>
+    <button  id="wangluolianjiexuanze" class="wangluolianjiexuanze" >网络连接</button>
+    <button  id="zhanjianxianshixuanze" class="zhanjianxianshixuanze" >站间显示</button>
+    
+    <div class="wangluolianjie" >网络连接:</div >
+   <div class="ipweizhi" >IP:</div >
+<input type="text" class="ipweizhidezhi"  value="192.168.1.214" />
+   <div class="duankouweizhi" >端口:</div >
+<input type="text" class="duankouweizhizhi"  value="60" />
+<div class="neirong" >内容:</div >
+
+<textarea name="a" class="neironginput"></textarea>
+
+<button  id="lianjiedaofuwuqianniu" class="lianjiedaofuwuqi" >连接到服务器</button>
+<button  id="dakaishujukuanniu" class="dakaishujuku" >打开数据库</button>
+<button  id="xianshishujuanniu" class="xianshishuju" >显示数据</button>
+
+
+</div>
+    
+
+
+
+</body>
+</html>
+ <script type="text/javascript">
+ showTime();
+function showTime(){ 
+ var week=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ var date = now.getDate();
+ var day = now.getDay();
+ var hour = now.getHours();
+ var minutes = now.getMinutes();
+ var second = now.getSeconds(); 
+  month=month+1;
+     month<10?month='0'+month:month; 
+     
+     hour<10?hour='0'+hour:hour; 
+     minutes<10?minutes='0'+minutes:minutes; 
+     second<10?second='0'+second:second;
+     var now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' '; 
+     document.getElementById('timetext').value=now_time; 
+     setTimeout("showTime();",1000);      //每隔1秒刷新一次
+ } 
+     beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#FFF'
+	zhanjianxianshixuanze.style.backgroundColor='#999'
+  $('#beijingnanzhanxuanze').click(function () {
+
+    beijingnanzhanxuanze.style.backgroundColor='#FFF'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#999'
+	
+	window.location.href="AD.html";
+	
+	
+});
+
+  $('#nanjingnanzhanxuanze').click(function () {
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#FFF'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#999'	
+	window.location.href="AD.html";
+    
+});
+
+
+		
+  $('#shanghaihongqiaozhanxuanze').click(function () {
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#FFF'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#999'
+	window.location.href="AD.html";
+	
+    
+});
+  $('#wangluolianjiexuanze').click(function () {
+
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#FFF'
+	zhanjianxianshixuanze.style.backgroundColor='#999'
+});
+  $('#zhanjianxianshixuanze').click(function () {
+
+    beijingnanzhanxuanze.style.backgroundColor='#999'
+	nanjingnanzhanxuanze.style.backgroundColor='#999'
+	shanghaihongqiaozhanxuanze.style.backgroundColor='#999'
+	wangluolianjiexuanze.style.backgroundColor='#999'
+	zhanjianxianshixuanze.style.backgroundColor='#FFF'
+	
+	window.location.href="AD-inter_station_display.html";
+});
+ $('#lianjiedaofuwuqianniu').click(function () {
+	 
+	 alert("连接服务器失败");
+ });
+  $('#dakaishujukuanniu').click(function () {
+	 
+	 alert("打开数据库失败");
+ });
+   $('#xianshishujuanniu').click(function () {
+	 
+	 alert("显示数据失败");
+ });
+    </script>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/zilvjiyangshi.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+	<script src="js/bjnzzlj.js"></script>
+	<script src="js/showtime.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/BJNZZLJclick.js"></script>
+    <title>北京南站自律机</title>
+</head>
+<body>
+<button  id="lianjiechewuzhongduan" class="lianjiechewuzhongduan" onclick="BJNZCWZD()">车务终端断开</button>
+<button  id="lianjieliansuo" class="lianjieliansuo" onclick="BJNZLS()">联锁断开</button>
+<button  id="lianjieyingyongfuwuqi" class="lianjieyingyongfuwuqi" onclick="BJNZYYFWQ()">应用服务器断开</button>
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+<button  id="banlijinlu" class="banlijinlu" >办理进路</button>
+	
+	
+    <div class='nav'>
+  <ul>
+    <li><a>文件</a>
+    <ul>
+      <li><a onClick="tuichu()">退出</a></li>
+
+      </ul>
+    </li>
+    <li><a>查看</a></li>
+    <li><a>信息窗口</a>
+    <ul>
+      <li><a onclick="shujuxinxi()">数据信息窗口</a></li>
+      </ul>
+    </li>
+    <li><a>桌面管理</a></li>
+    <li><a>帮助</a></li>
+    
+    <li><a>通信</a>
+      <ul>
+      <li><a>启动服务器</a></li>
+      <li><a>连接到通用前置服务器</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</div>
+    
+    <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+    </canvas>
+	<style type="text/css">
+
+</style>
+	
+<table width="100%" align="center">
+<tr>
+<td><table width="100%" class="gridtable">
+<tr>
+	<th colspan="7">列车进路序列:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>接发车</th><th>股道</th><th>计划开行时间</th><th>进路</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></td>
+<td><table width="100%" class="gridtable">
+<tr>
+	<th colspan="6">调度命令序列:</th>
+</tr>
+<tr>
+    <th></th><th>命令序号</th><th>发令单位</th><th>受令单位</th><th>命令编号</th><th>发令时间</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></td>
+</tr>
+</table>
+
+	
+</div>
+
+		<div class="zhezhao" id='zhezhao'>
+			<div class="tankuang">
+				<div id="header">
+					<span>数据信息窗口</span>
+					<div id="header-right" onclick="hidder()">x</div>
+
+					
+<div style="margin-top:5%">										
+<center><table width="95%" class="gridtable">
+<tr>
+	<th colspan="6">办理进路-接车:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>计划到开时间</th><th>发车车站</th><th>到达车站</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></center>
+</div>
+
+<div style="margin-top:10%">
+<center><table width="95%" class="gridtable">
+<tr>
+	<th colspan="6">办理进路-发车:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>计划到开时间</th><th>发车车站</th><th>到达车站</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></center>
+</div>
+	
+<div style="margin-top:10%">	
+<center><table width="95%" class="gridtable">
+<tr>
+	<th colspan="6">创建服务</th>
+</tr>
+<tr>
+    <th></th><th>时间</th><th>创建对象</th><th>连接对象</th><th>地址</th><th>端口</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></center>
+</div>
+
+				</div>
+			</div>
+		</div>
+</body>
+</html>
+ <script type="text/javascript">
+ 	showTime(); 
+	setCookie();
+	getCookie();
+    delCookie();
+	liansuocookie();
+	document.getElementById('zhezhao').style.display="none";
+	function shujuxinxi(){
+	document.getElementById('zhezhao').style.display="";
+	}
+	function hidder(){
+	document.getElementById('zhezhao').style.display="none";
+	}
+
+ </script>

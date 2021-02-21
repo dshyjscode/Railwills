@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"; charset=gbk" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/zhanchangtu_1.css"/>
+                <script src="js/jquery-2.1.1.min.js"></script>
+                <script src="js/jquery.bubble-slider.js"></script>
+                <script src="js/zhanchangtu_liuzhan.js"></script>
+                <script src="js/xingchechangjing.js"></script>
+                <script src="js/cookies.js"></script>
+    <title>CTCS-3站场图</title>
+    
+</head>
+<body>
+  
+    <div class='nav'>
+  <ul>
+    <li><a href="yxtNex/YXTNex.html" target="_blank">列调</a></li>
+    <li><a href="zhudiao.html" target="_blank">助调</a></li>
+    <li><a href="yyfwqzs.html" target="_blank">应用服务器</a></li>
+    <li><a href="lsxsfwq.html" target="_blank">临时限速服务器</a></li>
+    <li><a href="rbc.html" target="_blank">无线闭塞中心</a></li>
+    
+    <li><a href='#'>北京南站</a>
+        <ul>
+      <li><a href="bjnliansuo.html" target="_blank">联锁</a></li>
+      <li><a href="bjnzilvji.html" target="_blank">自律机</a></li>
+      <li><a href="bjn_cwzd.html" target="_blank">车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>天津南站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='#'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>济南南站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='#'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+    
+     <li><a href='#'>南京南站</a>
+        <ul>
+       <li><a href="njnzliansuo.html" target="_blank">联锁</a></li>
+      <li><a href="njnzilvji.html" target="_blank">自律机</a></li>
+      <li><a href="njn_cwzd.html" target="_blank">车务终端</a></li>
+      </ul>
+    </li>   
+    
+    <li><a href='#'>苏州北站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='#'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>上海虹桥站</a>
+        <ul>
+      <li><a href="shhqliansuo.html" target="_blank">联锁</a></li>
+      <li><a href="shhqzilvji.html" target="_blank">自律机</a></li>
+      <li><a href="shanghaihq_cwzd.html" target="_blank">车务终端</a></li>
+      </ul>
+    </li>
+    
+        <li><a>行车测试</a>
+        <ul>
+      <li  id="xiaxingxingche"><a>下行行车</a></li>
+      <li  id="shangxingxingche"><a>上行行车</a></li>
+      <li  id="shangxingxingcheguzhang"><a>上行行车故障</a></li>
+      <li  id="zhanchangtu_yuexing"><a href="zhanchangtu_yuexingck.html" target="_blank">下行行车越行场景</a></li>   
+      <li  id="zhanchantujiansu"><a href="zhanchangtuhouchejiansu.html" target="_blank">后车减速场景</a></li>                  
+      <li  id="zhanqianzhefan"><a href="zhanchangtugaick.html" target="_blank">站前折返</a></li>
+      <li  id="zhanhouzhefan"><a href="zhanchangtugaick.html" target="_blank">站后折返</a></li>
+      </li>
+      </ul>
+    </li>
+
+  </ul>
+  
+  
+</div>
+     
+    
+    <canvas id="canvas" class="cancss" width="11323" height="1300">
+
+    
+    </canvas>
+</body>
+</html>
+ 
+ <script type="text/javascript">
+ 
+                 setCookie();
+	 getCookie();
+	 delCookie();
+
+$('#zhanchangtu_yuexing').click(function () {
+	
+	setCookie("ZCTYX","1"); 
+    alert("下行行车越行命令发送成功！");
+   // alert("下行行车越行命令发送失败！");
+});
+
+$('#zhanqianzhefan').click(function () {
+	
+	setCookie("ZQZF","1"); 
+    alert("站前折返命令发送成功！");
+   // alert("站前折返命令发送失败！");
+});
+
+$('#zhanhouzhefan').click(function () {
+	
+	setCookie("ZHZF","1"); 
+    alert("站后折返命令发送成功！");
+   // alert("站后折返命令发送失败！");
+});
+
+ function test() {
+
+// alert("test");
+//每两秒，调用这个空函数吧
+
+}
+
+
+//setTimeout(test, 2000);
+//setInterval("test()","2000"); //每隔2000毫秒执行一次test()函数，执行无数次。
+
+
+var fenjiedian=new Array()
+    fenjiedian[0]=0
+    fenjiedian[1]=163
+	fenjiedian[2]=326
+	fenjiedian[3]=753
+    fenjiedian[4]=905
+	fenjiedian[5]=1050
+	fenjiedian[6]=1230
+	fenjiedian[7]=1410
+	fenjiedian[8]=1590
+	fenjiedian[9]=1770
+	fenjiedian[10]=1950
+	fenjiedian[11]=2130
+	fenjiedian[12]=2274
+    fenjiedian[13]=2377
+    fenjiedian[14]=2923
+	fenjiedian[15]=3025
+	fenjiedian[16]=3180
+	fenjiedian[17]=3360
+	fenjiedian[18]=3540
+	fenjiedian[19]=3720
+	fenjiedian[20]=3900
+	fenjiedian[21]=4080
+	fenjiedian[22]=4235
+	fenjiedian[23]=4338
+    fenjiedian[24]=4884
+	fenjiedian[25]=4986
+	fenjiedian[26]=5131
+	fenjiedian[27]=5311
+	fenjiedian[28]=5491
+	fenjiedian[29]=5671
+	fenjiedian[30]=5851
+	fenjiedian[31]=6031
+	fenjiedian[32]=6176
+	fenjiedian[33]=6279
+	fenjiedian[34]=6825
+	fenjiedian[35]=6927
+    fenjiedian[36]=7072
+    fenjiedian[37]=7252
+	fenjiedian[38]=7432
+	fenjiedian[39]=7612
+	fenjiedian[40]=7792
+	fenjiedian[41]=7972
+	fenjiedian[42]=8117
+	fenjiedian[43]=8220
+	fenjiedian[44]=8766
+	fenjiedian[45]=8868
+	fenjiedian[46]=9013
+    fenjiedian[47]=9193
+	fenjiedian[48]=9373
+	fenjiedian[49]=9553
+	fenjiedian[50]=9733
+	fenjiedian[51]=9913
+	fenjiedian[52]=10058
+	fenjiedian[53]=10190
+	fenjiedian[54]=10697
+	fenjiedian[55]=10798
+	
+
+
+      // $('#zhanchangtu_yuexing').click(function () {
+    //  window.localStorage.name="123";	
+	
+//});
+ 
+	$('#xiaxingxingche').click(function () {
+
+    alert("下行行车命令发送成功");
+
+    i=3
+	//x=490;y=235
+    //danduhuaxiaxingxiaoche(x,y)	
+	setInterval("dingshidanduhuaxiaxingxiaoche()","1000");
+
+	
+			    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+						x=800;y=250
+            xiaxingxinhaojilvdeng(x,y)
+            
+            context.fillStyle = "#FFF";
+			context.fillRect(fenjiedian[i], 250, fenjiedian[i+3]-fenjiedian[i], 5);
+	
+	
+});
+
+
+ 
+	$('#shangxingxingche').click(function () {
+
+    alert("上行行车命令发送成功");
+
+    i=54
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("dingshidanduhuashangxingxiaoche()","1000");
+
+
+	
+			    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+						x=10203;y=340
+            shangxingxinhaojilvdeng(x,y)
+            
+            context.fillStyle = "#FFF";
+			context.fillRect(fenjiedian[i-4], 310, fenjiedian[i-1]-fenjiedian[i-4], 5);
+	
+	
+});
+
+    $('#shangxingxingcheguzhang').click(function () {
+
+    alert("上行行车故障设置成功");
+
+    i=54
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("dingshidanduhuashangxingxingcheguzhang()","1000");
+
+
+	
+			    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+						x=10203;y=340
+            shangxingxinhaojilvdeng(x,y)
+            
+            context.fillStyle = "#FFF";
+			context.fillRect(fenjiedian[i-4], 310, fenjiedian[i-1]-fenjiedian[i-4], 5);
+	
+	
+});
+
+
+    </script>

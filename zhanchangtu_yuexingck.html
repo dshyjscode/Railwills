@@ -1,0 +1,2463 @@
+<!DOCTYPE html>
+
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"; charset="gbk" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/zhanchangtu.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <title>CTCS-3站场图</title>
+    <script type="text/javascript">
+        window.onload = function () {
+			var x,y,m,n,x1,x2,y1,y2,w,h,text;
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#000";
+            context.fillRect(0, 0, 5500, 1300);
+			//主轨道
+            context.fillStyle = "#848284";
+					
+            //北京南站主轨道
+            context.fillRect(410, 130, 240, 5);
+			
+			context.fillRect(250, 190, 560, 5);
+
+			context.fillRect(20, 250, 5110, 5);
+			context.fillRect(20, 310, 5110, 5);
+			context.fillRect(250, 370, 560, 5);
+			context.fillRect(410, 430, 240, 5);
+			
+			//南京南站主轨道
+			context.fillRect(2375, 190, 560, 5);
+			context.fillRect(2375, 370, 560, 5);
+			
+
+
+			
+			//上海虹桥站主轨道
+            context.fillRect(4485, 130, 240, 5);
+			context.fillRect(4325, 190, 560, 5);
+			context.fillRect(4325, 370, 560, 5);
+			context.fillRect(4485, 430, 240, 5);
+			
+			
+			//画下行小车
+			x=490;y=235
+            huaxiaxingxiaoche(x,y)
+
+ 			//北京南站站标
+			x=440;y=480;w=190;h=60
+			text="北京南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			x=2560;y=485;w=190;h=60
+			text="南京南站"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			x=4510;y=485;w=210;h=60
+			text="上海虹桥站"
+			chezhanbiaozhi(x,y,w,h,text)
+			//车档
+			x1=15;x2=20;y1=247;y2=258
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=15;x2=20;y1=307;y2=318
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=5135;x2=5130;y1=247;y2=258
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=5135;x2=5130;y1=307;y2=318
+			zuocechedang(x1,x2,y1,y2)
+            
+			
+			//闭塞分区标志
+			bisaifenqu(163,248,257)
+			bisaifenqu(163,308,317)
+			bisaifenqu(905,248,257)
+			bisaifenqu(905,308,317)
+			bisaifenqu(1050,248,257)
+			bisaifenqu(1050,308,317)
+			bisaifenqu(1230,248,257)
+			bisaifenqu(1230,308,317)
+			bisaifenqu(1410,248,257)
+			bisaifenqu(1410,308,317)
+			
+			
+			bisaifenqu(1590,248,257)
+			bisaifenqu(1590,308,317)
+			bisaifenqu(1770,248,257)
+			bisaifenqu(1770,308,317)
+			bisaifenqu(1950,248,257)
+			bisaifenqu(1950,308,317)
+			bisaifenqu(2130,248,257)
+			bisaifenqu(2130,308,317)
+			bisaifenqu(2274,248,257)
+			bisaifenqu(2274,308,317)
+			
+			
+			bisaifenqu(3025,248,257)
+			bisaifenqu(3025,308,317)
+			
+			bisaifenqu(3180,248,257)
+			bisaifenqu(3180,308,317)
+			bisaifenqu(3360,248,257)
+			bisaifenqu(3360,308,317)
+			bisaifenqu(3540,248,257)
+			bisaifenqu(3540,308,317)
+			
+			bisaifenqu(3720,248,257)
+			bisaifenqu(3720,308,317)
+			
+			bisaifenqu(3900,248,257)
+			bisaifenqu(3900,308,317)
+			bisaifenqu(4080,248,257)
+			bisaifenqu(4080,308,317)
+			bisaifenqu(4235,248,257)
+			bisaifenqu(4235,308,317)
+			
+			bisaifenqu(4975,248,257)
+			bisaifenqu(4975,308,317)
+			
+			
+			bisaifenqu(326,188,197)
+			bisaifenqu(326,248,257)
+			bisaifenqu(326,308,317)
+			bisaifenqu(326,368,377)
+			
+			bisaifenqu(406,188,197)
+			bisaifenqu(406,368,377)
+			
+		    bisaifenqu(436,128,137)
+			bisaifenqu(436,428,437)
+			
+		    bisaifenqu(613,128,137)
+			bisaifenqu(613,428,437)
+			
+			bisaifenqu(653,188,197)
+			bisaifenqu(653,368,377)
+			
+			bisaifenqu(753,248,257)
+			bisaifenqu(753,308,317)
+			
+			bisaifenqu(753,188,197)
+			bisaifenqu(753,368,377)
+			
+			bisaifenqu(2377,248,257)
+			bisaifenqu(2377,308,317)
+			
+			bisaifenqu(2417,188,197)
+			bisaifenqu(2417,368,377)
+			
+			bisaifenqu(2883,188,197)
+			bisaifenqu(2883,368,377)
+			
+			bisaifenqu(2923,248,257)
+			bisaifenqu(2923,308,317)
+			
+			bisaifenqu(4367,248,257)
+			bisaifenqu(4367,308,317)
+			
+			bisaifenqu(4367,188,197)
+			bisaifenqu(4367,368,377)
+			
+			bisaifenqu(4477,188,197)
+			bisaifenqu(4477,368,377)
+			
+			bisaifenqu(4517,128,137)
+			bisaifenqu(4517,428,437)
+						
+			bisaifenqu(4693,128,137)
+			bisaifenqu(4693,428,437)
+			
+			bisaifenqu(4733,188,197)
+			bisaifenqu(4733,368,377)
+			
+			bisaifenqu(4843,188,197)
+			bisaifenqu(4843,368,377)
+			
+			bisaifenqu(4874,248,257)
+			bisaifenqu(4874,308,317)
+
+            //长侧向轨道
+			changceguidaohuizhi();
+            
+			
+			//北京南站侧向轨道
+			beijingnanzhancexiangguidao();
+			nanjingnanzhancexiangguidao();
+			shanghaihongqiaozhancexiangguidao();
+            
+			
+			//北京南站信号机
+			//北京南站上行信号机第一
+			x=450;y=160
+			shangxingxinhaoji(x,y);
+			xieshuzi(430,170,'S5')
+			
+            //context.strokeRect(150, 450, 100, 100);
+            //北京南站上行信号机第二
+			x=420;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(400,230,'S3')
+			xieshuzi(350,180,'5')
+			//北京南站上行信号机第三
+			x=340;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(320,290,'SI')
+			xieshuzi(205,235,'1')
+            //北京南站上行信号机第四
+			x=340;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(320,350,'SII')
+			xieshuzi(205,340,'3')
+			//北京南站上行信号机第五
+			x=420;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(400,410,'S4')
+			xieshuzi(350,400,'7')
+			//北京南站上行信号机第六
+			x=450;y=460
+			shangxingxinhaoji(x,y);
+			xieshuzi(430,470,'S6')
+			
+			//北京南站下行信号机第一
+			x=660;y=130
+            xiaxingxinhaoji(x,y)
+			xieshuzi(630,105,'X5')
+			//北京南站下行信号机第二
+			x=700;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(665,165,'X3')
+			xieshuzi(715,180,'10')
+			//北京南站下行信号机第三
+			x=800;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(770,225,'XI')
+			xieshuzi(875,235,'6')
+			//北京南站下行信号机第四
+			x=800;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(770,285,'XII')
+			xieshuzi(875,340,'8')
+			//北京南站下行信号机第五
+			x=700;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(670,345,'X4')
+			xieshuzi(715,400,'12')
+			//北京南站下行信号机第六
+			x=660;y=430
+            xiaxingxinhaoji(x,y)
+			xieshuzi(630,405,'X6')
+			
+			//北京南站下行信号机第七
+			x=210;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(180,225,'X')
+			xieshuzi(1075,235,'4')
+			//北京南站下行信号机第八
+			x=210;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(180,350,'XF')
+			xieshuzi(1555,340,'2')
+			
+			//北京南站中间段1
+			x=1423;y=250
+			shangxingxinhaoji(x,y);
+			xieshuzi(1403,225,'SF')
+            //北京南站中间段2
+			x=1423;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(1408,350,'S')
+			
+			x=2320;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2295,225,'X')
+			//北京南站下行信号机第三
+			x=2320;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2290,350,'XF')
+			//北京南站下行信号机第四
+			
+			
+			//南京南站上行信号机第二
+			x=2430;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(2410,230,'S3')
+			//南京南站上行信号机第三
+			x=2390;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(2370,290,'SI')
+			xieshuzi(2315,235,'1')
+            //南京南站上行信号机第四
+			x=2390;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(2370,350,'SII')
+			xieshuzi(2315,340,'3')
+			//南京南站上行信号机第五
+			x=2430;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(2410,410,'S4')
+			
+			
+			//南京南站下行信号机第二
+			x=2930;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2900,165,'X3')
+			//南京南站下行信号机第三
+			x=2970;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2940,225,'XI')
+			xieshuzi(3005,235,'2')
+			//南京南站下行信号机第四
+			x=2970;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2940,285,'XII')
+			xieshuzi(3005,340,'4')
+			//南京南站下行信号机第五
+			x=2930;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(2900,345,'X4')
+			
+			//上海虹桥站信号机
+			//上海虹桥上行信号机第一
+			x=4530;y=160
+			shangxingxinhaoji(x,y);
+			xieshuzi(4510,170,'S5')
+            //上海虹桥上行信号机第二
+			x=4490;y=220
+			shangxingxinhaoji(x,y);
+			xieshuzi(4470,230,'S3')
+			xieshuzi(4420,180,'9')
+	
+			//上海虹桥上行信号机第三
+			x=4380;y=280
+			shangxingxinhaoji(x,y);
+			xieshuzi(4360,290,'SI')
+			xieshuzi(4265,235,'5')
+			xieshuzi(4050,235,'3')
+            //上海虹桥上行信号机第四
+			x=4380;y=340
+			shangxingxinhaoji(x,y);
+			xieshuzi(4360,350,'SII')
+			xieshuzi(4265,340,'7')
+			xieshuzi(3595,340,'1')
+			//上海虹桥上行信号机第五
+			x=4490;y=400
+			shangxingxinhaoji(x,y);
+			xieshuzi(4475,410,'S4')
+			xieshuzi(4420,400,'11')
+			//上海虹桥上行信号机第六
+			x=4530;y=460
+			shangxingxinhaoji(x,y);
+			xieshuzi(4510,470,'S6')
+			
+			//上海虹桥下行进站信号机
+			x=4128;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4105,220,'X')
+		   //上海虹桥下行反向进站信号机
+			x=4128;y=340
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4105,350,'XF')
+			
+			
+			//上海虹桥下行信号机第一
+			x=4740;y=130
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4710,105,'X5')
+			//上海虹桥下行信号机第二
+			x=4780;y=190
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4740,165,'X3')
+			xieshuzi(4795,180,'6')
+
+			//上海虹桥下行信号机第三
+			x=4920;y=250
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4890,225,'XI')
+			xieshuzi(4955,235,'2')
+			//上海虹桥下行信号机第四
+			x=4920;y=310
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4890,285,'XII')
+			xieshuzi(4955,340,'4')
+			//上海虹桥下行信号机第五
+			x=4780;y=370
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4745,345,'X4')
+			xieshuzi(4795,400,'8')
+			//上海虹桥下行信号机第六
+			x=4740;y=430
+            xiaxingxinhaoji(x,y)
+			xieshuzi(4710,405,'X6')
+			
+			//股道编号
+			xieshuzi(530,150,'5G')
+			xieshuzi(530,210,'3G')
+			xieshuzi(530,270,'IG')
+			xieshuzi(530,330,'IIG')
+			xieshuzi(530,390,'4G')
+			xieshuzi(530,450,'6G')
+			
+			xieshuzi(2655,210,'3G')
+			xieshuzi(2655,270,'IG')
+			xieshuzi(2655,330,'IIG')
+			xieshuzi(2655,390,'4G')
+			
+			xieshuzi(4605,150,'3G')
+			xieshuzi(4605,210,'3G')
+			xieshuzi(4605,270,'IG')
+			xieshuzi(4605,330,'IIG')
+			xieshuzi(4605,390,'4G')
+			xieshuzi(4605,450,'6G')
+			
+			//信号机编号
+        }
+		function shangxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+		function xiaxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+		
+		function bisaifenqu(x,y1,y2)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			//context.fillStyle = "#FFF";
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+            context.moveTo( x, y1 );
+			context.lineTo( x, y2 );
+			context.stroke();
+		
+		}
+		function zuocechedang(x1,x2,y1,y2)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+			context.lineWidth = 2; 
+            context.moveTo( x1, y1 );
+			context.lineTo( x2, y1 );
+            context.lineTo( x2, y2 );
+			context.lineTo( x1, y2 );
+		    context.stroke();
+		}
+		function chezhanbiaozhi(x,y,w,h,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "#FFF";
+			context.fillRect(x, y, w, h);
+			context.fillStyle = "#000";
+			context.fillRect(x+5, y+5, w-10, h-10);
+			context.fillStyle = "#FDFD00";
+			context.font="30px bold 宋体";
+            context.fillText(text,x+33,y+38);
+		}
+		
+		function xieshuzi(x,y,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+	
+			context.fillStyle = "#FFF";
+			context.font="12px bold 宋体";
+            context.fillText(text,x-10,y);
+		}
+		function huaxiaxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "blue";
+            
+		    context.fillRect(490, 235, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(326, 250, 427, 5);
+			
+		}
+		function changceguidaohuizhi()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x1=1105;
+			y1=258;
+			x2=1535;
+			y2=305;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+			context.lineWidth = 2;
+            context.moveTo( 1335,278);
+			context.lineTo( 1330, 287 );
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x1=3600;
+			y1=305;
+			x2=4010;
+			y2=258;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+			context.lineWidth = 2;
+            context.moveTo( 3790,278);
+			context.lineTo( 3795, 287 );
+			context.stroke();
+			
+		}
+		function beijingnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=195;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    x=315;
+			y=190;
+			k=50;
+			context.moveTo( x+40, y-3 ); // x+7,y-1
+			context.lineTo( x+40+k, y-3-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=655;
+			y=130;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=195;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=315;
+			y=375;
+			k=50;
+			context.moveTo( x+40, y+3 ); // x+7,y-1
+			context.lineTo( x+40+k, y+3+k);
+			context.stroke();
+
+			x=810;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+			x=655;
+			y=430;
+			k=50;
+			context.moveTo( x, y-3 ); // x+7,y-1
+			context.lineTo( x+k, y-3-k);
+			context.stroke();
+		}
+		function nanjingnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=2310;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=2310;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=2938;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+			
+			x=2938;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			
+		}
+		function shanghaihongqiaozhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=4260;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    x=4390;
+			y=190;
+			k=50;
+			context.moveTo( x+40, y-3 ); // x+7,y-1
+			context.lineTo( x+40+k, y-3-k);
+			//context.moveTo( 157, 185 );
+			//context.lineTo( 205, 138 );
+			context.stroke();
+			
+			x=4730;
+			y=130;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			x=4890;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=4260;
+			y=317;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=4390;
+			y=375;
+			k=50;
+			context.moveTo( x+40, y+3 ); // x+7,y-1
+			context.lineTo( x+40+k, y+3+k);
+			context.stroke();
+
+			x=4890;
+			y=370;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+			x=4730;
+			y=430;
+			k=50;
+			context.moveTo( x, y-3 ); // x+7,y-1
+			context.lineTo( x+k, y-3-k);
+			context.stroke();
+			
+	    }
+    </script>
+</head>
+<body>
+  
+    <div class='nav'>
+  <ul>
+    <li><a href='yxtNex/YXTNex.html'>列调</a></li>
+    <li><a href='zhudiao.html'>助调</a></li>
+    <li><a href='yyfwq.html'>应用服务器</a></li>
+    <li><a href='lsxsfwq.html'>临时限速服务器</a></li>
+    <li><a href='rbc.html'>无线闭塞中心</a></li>
+    
+    <li><a href='#'>北京南站</a>
+        <ul>
+      <li><a href='bjnliansuo.html'>联锁</a></li>
+      <li><a href='bjnzilvji.html'>自律机</a></li>
+      <li><a href='bjn_cwzd.html'>车务终端</a></li>
+      </ul>
+    </li>
+    <li><a href='#'>南京南站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='njnzilvji.html'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+    <li><a href='#'>上海虹桥站</a>
+        <ul>
+      <li><a href='#'>联锁</a></li>
+      <li><a href='#'>自律机</a></li>
+      <li><a href='#'>车务终端</a></li>
+      </ul>
+    </li>
+        <li><a>行车测试</a>
+        <ul>
+      <li  id="xiaxingxingche"><a>下行行车</a></li>
+      <li  id="shangxingxingche"><a>上行行车</a></li>
+      <li  id="xiaxingxingcheyuexingchangjing"><a>下行行车越行场景</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</div>
+    
+    
+    <canvas id="canvas" class="cancss" width="5500" height="1300">
+
+    
+    </canvas>
+</body>
+</html>
+
+
+ <script type="text/javascript">
+ 
+ //function test() {
+  
+// alert("test");
+//每两秒，调用这个空函数吧
+
+//}
+
+
+//setTimeout(test, 2000);
+//setInterval("test()","2000"); //每隔2000毫秒执行一次test()函数，执行无数次。
+
+
+var fenjiedian=new Array()
+    fenjiedian[0]=0
+    fenjiedian[1]=163
+	fenjiedian[2]=326
+	fenjiedian[3]=753
+    fenjiedian[4]=905
+	fenjiedian[5]=1050
+	fenjiedian[6]=1230
+	fenjiedian[7]=1410
+	fenjiedian[8]=1590
+	fenjiedian[9]=1770
+	fenjiedian[10]=1950
+	fenjiedian[11]=2130
+	fenjiedian[12]=2274
+    fenjiedian[13]=2377
+    fenjiedian[14]=2923
+	fenjiedian[15]=3025
+	fenjiedian[16]=3180
+	fenjiedian[17]=3360
+	fenjiedian[18]=3540
+	fenjiedian[19]=3720
+	fenjiedian[20]=3900
+	fenjiedian[21]=4080
+	fenjiedian[22]=4235
+	fenjiedian[23]=4367
+    fenjiedian[24]=4874
+	fenjiedian[25]=4975
+	
+	var zhongjianzhan_cexiantingche=new Array()
+    zhongjianzhan_cexiantingche[0]=0
+    zhongjianzhan_cexiantingche[1]=163
+	zhongjianzhan_cexiantingche[2]=326
+	zhongjianzhan_cexiantingche[3]=753
+    zhongjianzhan_cexiantingche[4]=905
+	zhongjianzhan_cexiantingche[5]=1050
+	zhongjianzhan_cexiantingche[6]=1230
+	zhongjianzhan_cexiantingche[7]=1410
+	zhongjianzhan_cexiantingche[8]=1590
+	zhongjianzhan_cexiantingche[9]=1770
+	zhongjianzhan_cexiantingche[10]=1950
+	zhongjianzhan_cexiantingche[11]=2130
+	zhongjianzhan_cexiantingche[12]=2274
+    zhongjianzhan_cexiantingche[13]=2417
+    zhongjianzhan_cexiantingche[14]=2883
+	zhongjianzhan_cexiantingche[15]=3025
+	zhongjianzhan_cexiantingche[16]=3180
+	zhongjianzhan_cexiantingche[17]=3360
+	zhongjianzhan_cexiantingche[18]=3540
+	zhongjianzhan_cexiantingche[19]=3720
+	zhongjianzhan_cexiantingche[20]=3900
+	zhongjianzhan_cexiantingche[21]=4080
+	zhongjianzhan_cexiantingche[22]=4235
+	zhongjianzhan_cexiantingche[23]=4367
+    zhongjianzhan_cexiantingche[24]=4874
+	zhongjianzhan_cexiantingche[25]=4975
+	
+	var zhongdianzhan_cexiantingche=new Array()
+    zhongdianzhan_cexiantingche[0]=0
+    zhongdianzhan_cexiantingche[1]=163
+	zhongdianzhan_cexiantingche[2]=326
+	zhongdianzhan_cexiantingche[3]=753
+    zhongdianzhan_cexiantingche[4]=905
+	zhongdianzhan_cexiantingche[5]=1050
+	zhongdianzhan_cexiantingche[6]=1230
+	zhongdianzhan_cexiantingche[7]=1410
+	zhongdianzhan_cexiantingche[8]=1590
+	zhongdianzhan_cexiantingche[9]=1770
+	zhongdianzhan_cexiantingche[10]=1950
+	zhongdianzhan_cexiantingche[11]=2130
+	zhongdianzhan_cexiantingche[12]=2274
+    zhongdianzhan_cexiantingche[13]=2377
+    zhongdianzhan_cexiantingche[14]=2923
+	zhongdianzhan_cexiantingche[15]=3025
+	zhongdianzhan_cexiantingche[16]=3180
+	zhongdianzhan_cexiantingche[17]=3360
+	zhongdianzhan_cexiantingche[18]=3540
+	zhongdianzhan_cexiantingche[19]=3720
+	zhongdianzhan_cexiantingche[20]=3900
+	zhongdianzhan_cexiantingche[21]=4080
+	zhongdianzhan_cexiantingche[22]=4235
+	zhongdianzhan_cexiantingche[23]=4367
+    zhongdianzhan_cexiantingche[24]=4477
+	zhongdianzhan_cexiantingche[25]=4733
+	
+	x=490;y=235
+	i=3
+ 
+	$('#xiaxingxingche').click(function () {
+
+    alert("下行行车命令发送成功");
+
+	//x=490;y=235
+    //danduhuaxiaxingxiaoche(x,y)	
+	//每隔3000ms调用一次dingshidanduhuaxiaxingxiaoche()函数
+	setInterval("dingshidanduhuaxiaxingxiaoche()","3000");
+
+
+	
+			    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+						x=800;y=250
+            xiaxingxinhaojilvdeng(x,y)
+	
+	
+});
+
+
+//写cookies 
+function setCookie(name,value) 
+{ 
+    var Days = 30; 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() + Days*24*60*60*1000); 
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
+} 
+
+//读取cookies 
+function getCookie(name) 
+{ 
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]); 
+    else 
+        return null; 
+} 
+
+//删除cookies 
+function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 1); 
+    var cval=getCookie(name); 
+    if(cval!=null) 
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString(); 
+} 
+/***
+ * @param {string} cookieName Cookie名称
+ * @param {string} cookieValue Cookie值
+ * @param {number} nDays Cookie过期天数
+ */
+	 
+if(getCookie("ZCTYX")=="1")
+{
+//下行行车越行场景
+ 
+	//x=490;y=235
+    //danduhuaxiaxingxiaoche(x,y);
+       	
+	//每隔3000ms调用一次dingshidanduhuaxiaxingxiaoche()函数
+	setInterval("xiaxingxingcheyuexingchangjing()","2000");
+	
+             var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            x=800;y=250
+            xiaxingxinhaojilvdeng(x,y)
+
+setCookie("ZCTYX","0"); 
+}
+
+function dingshidanduhuaxiaxingxiaoche()
+{
+	 var canvas = document.getElementById("canvas");
+     var context = canvas.getContext("2d");
+	//在第一个闭塞分区内，即站内
+	if(i==3)
+	{   x=490;y=235
+		context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle ="#848284"; //'yellow';
+			context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+						x=800;y=250
+            xiaxingxinhaojihongdeng(x,y);
+			
+			//fenge
+			context.beginPath();
+			context.lineWidth =5;
+			context.strokeStyle = '#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+
+	}
+	//车在其他闭塞分区内
+	else
+	{
+	
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-50
+	 y=235
+		context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+	}
+
+	if (i<24)
+	{ i=i+1
+	}
+	//小车通过后向侧股道填充灰色，刷新
+	if(i==5)
+	{
+		
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+	}
+	
+	
+	if(i==14)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			x=2310;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+	
+	if(i==16)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=2938;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}		
+	if(i==24)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=4260;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+			
+//车走后刷新XI灯
+	if (i==5)
+	{
+		x=800;y=250
+		xiaxingxinhaojihongdeng3(x,y)
+		
+		}
+	
+	
+	
+	
+	if(i==12)
+	{
+							x=2320;y=250
+            
+			xiaxingxinhaojilvdeng2(x,y)
+			
+	}
+	if(i==13)
+	{
+			        x=2320;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+    if(i==14)
+	{
+			        x=2320;y=250
+            xiaxingxinhaojihongdeng3(x,y)
+	}
+	
+	
+	if(i==14)
+	{
+					x=2970;y=250
+            xiaxingxinhaojilvdeng(x,y)
+	}
+	
+    if(i==15)
+	{			
+	        x=2970;y=250
+            xiaxingxinhaojihongdeng(x,y)
+		
+	}
+	    if(i==16)
+	{			
+	        x=2970;y=250
+            xiaxingxinhaojihongdeng3(x,y)
+		
+	}
+	
+	
+	
+	 x=(fenjiedian[i-1]+fenjiedian[i])/2-50
+	 y=235
+	 
+
+			
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+			
+			//context.restore();
+			
+			//闭塞分区标志
+			bisaifenqu(163,248,257)
+			bisaifenqu(163,308,317)
+			bisaifenqu(326,248,257)
+			bisaifenqu(326,308,317)
+			bisaifenqu(753,248,257)
+			bisaifenqu(753,308,317)
+			bisaifenqu(905,248,257)
+			bisaifenqu(905,308,317)
+			bisaifenqu(1050,248,257)
+			bisaifenqu(1050,308,317)
+			bisaifenqu(1230,248,257)
+			bisaifenqu(1230,308,317)
+			bisaifenqu(1410,248,257)
+			bisaifenqu(1410,308,317)
+			
+			
+			bisaifenqu(1590,248,257)
+			bisaifenqu(1590,308,317)
+			bisaifenqu(1770,248,257)
+			bisaifenqu(1770,308,317)
+			bisaifenqu(1950,248,257)
+			bisaifenqu(1950,308,317)
+			bisaifenqu(2130,248,257)
+			bisaifenqu(2130,308,317)
+			bisaifenqu(2274,248,257)
+			bisaifenqu(2274,308,317)
+			bisaifenqu(2377,248,257)
+			bisaifenqu(2377,308,317)
+			bisaifenqu(2923,248,257)
+			bisaifenqu(2923,308,317)
+			bisaifenqu(3025,248,257)
+			bisaifenqu(3025,308,317)
+			
+			bisaifenqu(3180,248,257)
+			bisaifenqu(3180,308,317)
+			bisaifenqu(3360,248,257)
+			bisaifenqu(3360,308,317)
+			bisaifenqu(3540,248,257)
+			bisaifenqu(3540,308,317)
+			
+			bisaifenqu(3720,248,257)
+			bisaifenqu(3720,308,317)
+			
+			bisaifenqu(3900,248,257)
+			bisaifenqu(3900,308,317)
+			bisaifenqu(4080,248,257)
+			bisaifenqu(4080,308,317)
+			bisaifenqu(4235,248,257)
+			bisaifenqu(4235,308,317)
+			bisaifenqu(4367,248,257)
+			bisaifenqu(4367,308,317)
+			bisaifenqu(4874,248,257)
+			bisaifenqu(4874,308,317)
+			bisaifenqu(4975,248,257)
+			bisaifenqu(4975,308,317)
+			
+			
+			bisaifenqu(326,188,197)
+
+			bisaifenqu(326,368,377)
+			
+			bisaifenqu(406,188,197)
+			bisaifenqu(406,368,377)
+			
+		    bisaifenqu(436,128,137)
+			bisaifenqu(436,428,437)
+			
+		    bisaifenqu(613,128,137)
+			bisaifenqu(613,428,437)
+			
+			bisaifenqu(653,188,197)
+			bisaifenqu(653,368,377)
+			
+
+			
+			bisaifenqu(753,188,197)
+			bisaifenqu(753,368,377)
+			
+
+			
+			bisaifenqu(2417,188,197)
+			bisaifenqu(2417,368,377)
+			
+			bisaifenqu(2883,188,197)
+			bisaifenqu(2883,368,377)
+			
+
+			
+
+			
+			bisaifenqu(4367,188,197)
+			bisaifenqu(4367,368,377)
+			
+			bisaifenqu(4477,188,197)
+			bisaifenqu(4477,368,377)
+			
+			bisaifenqu(4517,128,137)
+			bisaifenqu(4517,428,437)
+						
+			bisaifenqu(4693,128,137)
+			bisaifenqu(4693,428,437)
+			
+			bisaifenqu(4733,188,197)
+			bisaifenqu(4733,368,377)
+			
+			bisaifenqu(4843,188,197)
+			bisaifenqu(4843,368,377)
+			
+
+			
+			
+			
+			
+			
+
+}
+
+//下行行车越行场景
+
+
+function xiaxingxingcheyuexingchangjing()
+{
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	//小车出清闭塞分区，填充黑色，还原//
+	if(i==3)
+	{       x=490;y=235
+		    context.fillStyle = "black";
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle ="#848284"; 
+			context.fillRect(zhongjianzhan_cexiantingche[i-1], 250, zhongjianzhan_cexiantingche[i]-zhongjianzhan_cexiantingche[i-1], 5);
+						x=800;y=250
+            xiaxingxinhaojihongdeng(x,y)
+			
+			//fenge
+			context.beginPath();
+			context.lineWidth =5;
+			context.strokeStyle = '#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}
+	
+	if(i==13){
+	context.fillStyle = '#848284';
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+	context.fillRect(2370, 192, 47, 5);
+	context.beginPath();
+	context.lineWidth = 5;
+    context.strokeStyle ='#848284';
+	x=2310;
+	y=248;
+	k=50;
+	context.moveTo( x+10, y-1 ); // x+7,y-1
+	context.lineTo( x+10+k, y-1-k);
+	context.stroke();
+	
+	      //消除侧线上的小车
+	        x=2345;y=222
+			context.fillStyle = "black";
+
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = "black";
+			
+			context.moveTo( x-25, y+25); // 起点
+			context.lineTo( x+25, y-25);
+			context.lineTo( x+1, y-20);
+			context.lineTo( x-36, y+17);
+			context.fill();
+			context.stroke();
+	
+}
+else if(i==14){
+	
+		
+	context.fillStyle = '#848284';
+	context.fillRect(2417, 192, zhongjianzhan_cexiantingche[i]-zhongjianzhan_cexiantingche[i-1], 5);
+	
+	         x=(zhongjianzhan_cexiantingche[i-1]+zhongjianzhan_cexiantingche[i])/2-50
+	        y=180
+	        context.fillStyle = "black";
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = "black";	
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+	
+}
+
+else if(i==15){
+	context.fillStyle = '#848284';
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+	context.fillRect(2883, 192, 55, 5);
+	        context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			x=2938;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			 //消除侧线上的小车
+	        x=2938;y=192
+			context.fillStyle = "black";
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = "black";
+			
+			context.moveTo( x, y); // 起点
+			context.lineTo( x+50, y+50);
+			context.lineTo( x+40, y+20);
+			context.lineTo( x+10, y-10);
+			context.fill();
+			context.stroke();
+
+}
+	
+	else
+	{
+	 x=(zhongjianzhan_cexiantingche[i-1]+zhongjianzhan_cexiantingche[i])/2-50
+	 y=235
+		    context.fillStyle = "black";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(zhongjianzhan_cexiantingche[i-1], 250, zhongjianzhan_cexiantingche[i]-zhongjianzhan_cexiantingche[i-1], 5);
+	}
+
+	if (i<24)            
+	{   
+	    if(i==14 && j<17)     //控制第一辆车侧线停车
+		{
+		      i=i 
+		}
+		else {
+			i=i+1}
+	}
+	
+	//小车通过后向侧股道填充灰色，刷新//
+	if(i==5)
+	{
+		
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			x=810;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+	}
+	//画第二辆小车
+	if(i==7)
+	{
+		j=2
+	 m=(zhongdianzhan_cexiantingche[j-1]+zhongdianzhan_cexiantingche[j])/2-50
+	 n=235
+
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60, n);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(zhongdianzhan_cexiantingche[j-1], 250, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+			m=800;n=250
+             xiaxingxinhaojilvdeng2(m,n)
+}	
+	
+	if(i==14)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			x=2310;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+	
+	if(i==16)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=2938;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	}	
+	
+		
+	if(i==24)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=4260;
+			y=248;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+	}
+			
+
+//根据车的位置改变信号灯//	
+//车走后刷新XI灯
+             
+	if (i==5)
+	{
+		x=800;y=250
+		xiaxingxinhaojihongdeng3(x,y)
+		
+		}
+			
+	if(i==12)
+	{
+							x=2320;y=250
+            
+			xiaxingxinhaojiUUdeng(x,y)
+	}
+	if(i==13)
+	{
+			        x=2320;y=250
+            xiaxingxinhaojihongdeng(x,y)
+	}
+   
+	
+	
+	if(i==14)
+	{     
+	     if(j==16)
+		{
+				x=2930;y=190
+				xiaxingxinhaojilvdeng(x,y)
+		}
+		else{
+			    x=2930;y=190
+                xiaxingxinhaojihongdeng3(x,y)
+			}
+		
+	}
+	
+    if(i==15)
+	{			
+	       x=2930;y=190
+            xiaxingxinhaojihongdeng(x,y)
+		
+	}
+   	    if(i==21)
+	{			
+	       x=4128;y=250
+          xiaxingxinhaojilvdeng2(x,y)
+		
+	}
+		    if(i==22)
+	{			
+	        x=4128;y=250
+          xiaxingxinhaojihongdeng(x,y)
+		
+	}
+	
+//小车行车显示//	
+if(i==13){
+	context.fillStyle = "red";
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+	context.fillRect(2370, 192, 47, 5);
+	context.beginPath();
+	context.lineWidth = 5;
+    context.strokeStyle ="red";
+	x=2310;
+	y=248;
+	k=50;
+	context.moveTo( x+10, y-1 ); // x+7,y-1
+	context.lineTo( x+10+k, y-1-k);
+	context.stroke();
+	       //画侧线上的小车
+	        x=2345;y=222
+			context.fillStyle = "blue";
+
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = "blue";
+			
+			context.moveTo( x-25, y+25); // 起点
+			context.lineTo( x+25, y-25);
+			context.lineTo( x+1, y-20);
+			context.lineTo( x-36, y+17);
+			context.fill();
+			context.stroke();
+	
+}
+else if(i==14){
+		
+	context.fillStyle = "red";
+	context.fillRect(2417, 192, zhongjianzhan_cexiantingche[i]-zhongjianzhan_cexiantingche[i-1], 5);
+	
+	         x=(zhongjianzhan_cexiantingche[i-1]+zhongjianzhan_cexiantingche[i])/2-50
+	        y=180
+	        context.fillStyle = "blue";
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+	
+}
+
+
+else if(i==15){
+	
+	context.fillStyle = "red";
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+	context.fillRect(2883, 192, 55, 5);
+	        context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ="red";
+			x=2938;
+			y=190;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+	context.fillStyle =  '#848284';
+	context.fillRect(2417, 190, zhongjianzhan_cexiantingche[14]-zhongjianzhan_cexiantingche[13], 5);
+	       //画侧线上的小车
+	        x=2938;y=192
+			context.fillStyle = "blue";
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = "blue";
+			
+			context.moveTo( x, y); // 起点
+			context.lineTo( x+50, y+50);
+			context.lineTo( x+40, y+20);
+			context.lineTo( x+10, y-10);
+			context.fill();
+			context.stroke();
+
+	
+	
+}
+else{
+	 x=(zhongjianzhan_cexiantingche[i-1]+zhongjianzhan_cexiantingche[i])/2-50
+	 y=235
+	 	
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(x, y, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(zhongjianzhan_cexiantingche[i-1], 250, zhongjianzhan_cexiantingche[i]-zhongjianzhan_cexiantingche[i-1], 5);
+}
+
+		
+			
+			
+//第二辆车设置//	
+	
+				
+	//在第一个闭塞分区内，即站内
+	if(j==3)
+	{       m=490;n=235
+		    context.fillStyle = "black";
+            
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60, n);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle ="#848284"; //'yellow';
+			context.fillRect(zhongdianzhan_cexiantingche[j-1], 250, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+						m=800;n=250
+            xiaxingxinhaojihongdeng(m,n)
+			
+			//fenge
+			context.beginPath();
+			context.lineWidth =5;
+			context.strokeStyle = '#848284';
+			m=810;
+			n=190;
+			k=50;
+			context.moveTo( m, n+6 ); // x+7,y-1
+			context.lineTo( m+k, n+6+k);
+			context.stroke();
+
+			
+
+	}
+	else if(j==23)
+	{			
+	context.fillStyle = '#848284';
+	context.fillRect(fenjiedian[j-1], 250, fenjiedian[j]-fenjiedian[j-1], 5);
+	context.fillRect(4320, 192, 47, 5);
+	        context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			m=4260;
+			n=248;
+			k=50;
+			context.moveTo( m+10, n-1 ); // x+7,y-1
+			context.lineTo( m+10+k, n-1-k);
+			context.stroke();  
+			 //消除侧线上的小车
+	        m=4295;n=222
+			context.fillStyle = "black";
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = "black";
+			
+			context.moveTo( m-25, n+25); // 起点
+			context.lineTo( m+25, n-25);
+			context.lineTo( m+1, n-20);
+			context.lineTo( m-36, n+17);
+			context.fill();
+			context.stroke();
+			
+	
+
+	       
+		
+	}
+	 else if(j==24)
+	{			
+	    context.fillStyle = '#848284';   //第24号闭塞刷新
+	    context.fillRect(zhongdianzhan_cexiantingche[j-1], 192, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+	
+	     m=(zhongdianzhan_cexiantingche[j-1]+zhongdianzhan_cexiantingche[j])/2-50
+	        n=180
+	        context.fillStyle = 'black';
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60, n);
+			context.fill();
+			context.stroke(); 
+			  
+		
+	}
+	else if(j==25)
+	{			
+	     context.fillStyle = '#848284';
+	    context.fillRect(zhongdianzhan_cexiantingche[j-1], 192, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+	
+	     m=(zhongdianzhan_cexiantingche[j-1]+zhongdianzhan_cexiantingche[j])/2-50
+	        n=180
+	        context.fillStyle = 'black';
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60, n);
+			context.fill();
+			context.stroke();      
+		
+	}
+	//车在其他闭塞分区内
+	else
+	{
+
+	 m=(zhongdianzhan_cexiantingche[j-1]+zhongdianzhan_cexiantingche[j])/2-50
+	 n=235
+		    context.fillStyle = "black";
+            
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'black';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60, n);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "#848284";
+			context.fillRect(zhongdianzhan_cexiantingche[j-1], 250, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+		
+		
+		
+		}		
+
+
+	if (j<25)
+	{ j=j+1
+	}
+	//小车通过后向侧股道填充灰色，刷新
+	if(j==5)
+	{
+		
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			m=810;
+			n=190;
+			k=50;
+			context.moveTo( m, n+6 ); // x+7,y-1
+			context.lineTo( m+k, n+6+k);
+			context.stroke();
+			
+	}
+	
+	
+	if(j==14)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#848284';
+			m=2310;
+			n=248;
+			k=50;
+			context.moveTo( m+10, n-1 ); // x+7,y-1
+			context.lineTo( m+10+k, n-1-k);
+			context.stroke();
+	}
+	
+	if(j==16)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			m=2938;
+			n=190;
+			k=50;
+			context.moveTo( m, n+6 ); // x+7,y-1
+			context.lineTo( m+k, n+6+k);
+			context.stroke();
+	}	
+	if(j==24){
+		
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    m=4260;           //刷新23号闭塞分区
+			n=248;
+			k=50;
+			context.moveTo( m+10, n-1 ); // x+7,y-1
+			context.lineTo( m+10+k, n-1-k);
+			context.stroke();  
+		}
+		
+	if(j==25)
+	{
+		    context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			m=4419;
+			n=190;
+			k=50;
+			context.moveTo( m+10, n-1 ); // x+7,y-1
+			context.lineTo( m+10+k, n-1-k);
+			context.stroke();
+	}
+			
+//车走后刷新XI灯
+	if (j==5)
+	{
+		m=800;n=250
+		xiaxingxinhaojihongdeng3(m,n)
+		
+		}
+	
+	
+	
+	
+	if(j==12)
+	{
+							m=2320;n=250
+            
+			xiaxingxinhaojilvdeng2(m,n)
+			
+	}
+	if(j==13)
+	{
+			        m=2320;n=250
+            xiaxingxinhaojihongdeng(m,n)
+	}
+    if(j==14)
+	{
+			        m=2320;n=250
+            xiaxingxinhaojihongdeng3(m,n)
+	}
+	
+	
+	if(j==14)
+	{
+					m=2970;n=250
+            xiaxingxinhaojilvdeng(m,n)
+	}
+	
+    if(j==15)
+	{			
+	        m=2970;n=250
+            xiaxingxinhaojihongdeng(m,n)
+		
+	}
+	    if(j==16)
+	{			
+	        m=2970;n=250
+            xiaxingxinhaojihongdeng3(m,n)
+		
+	}
+		    if(j==21)
+	{			
+	        m=4128;n=250
+           xiaxingxinhaojiUUdeng(m,n)
+		
+	}
+		    if(j==22)
+	{			
+	        m=4128;n=250
+          xiaxingxinhaojihongdeng(m,n)
+		
+	}
+	
+	
+	   if(j==23)
+	{			
+	context.fillStyle = "red";
+	context.fillRect(fenjiedian[j-1], 250, fenjiedian[j]-fenjiedian[j-1], 5);
+	context.fillRect(4320, 192, 47, 5);
+	        context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = "red";
+			m=4260;
+			n=248;
+			k=50;
+			context.moveTo( m+10, n-1 ); // x+7,y-1
+			context.lineTo( m+10+k, n-1-k);
+			context.stroke();  
+			//画侧线上的小车
+	        m=4295;n=222
+			context.fillStyle = "blue";
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = "blue";
+			
+			context.moveTo( m-25, n+25); // 起点
+			context.lineTo( m+25, n-25);
+			context.lineTo( m+1, n-20);
+			context.lineTo( m-36, n+17);
+			context.fill();
+			context.stroke(); 
+		
+	}
+	 else if(j==24)
+	{			
+	    context.fillStyle = "red";
+	    context.fillRect(zhongdianzhan_cexiantingche[j-1], 192, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+	
+	     m=(zhongdianzhan_cexiantingche[j-1]+zhongdianzhan_cexiantingche[j])/2-50
+	        n=180
+	        context.fillStyle = "blue";
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60, n);
+			context.fill();
+			context.stroke();   
+		
+	}
+	else if(j==25)
+	{			
+	     context.fillStyle = "red";
+	    context.fillRect(zhongdianzhan_cexiantingche[j-1], 192, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+	
+	     m=(zhongdianzhan_cexiantingche[j-1]+zhongdianzhan_cexiantingche[j])/2-50
+	        n=180
+	        context.fillStyle = "blue";
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60, n);
+			context.fill();
+			context.stroke();      
+		   
+		    context.fillStyle =  '#848284';
+	    context.fillRect(zhongdianzhan_cexiantingche[23], 190, zhongdianzhan_cexiantingche[24]-zhongdianzhan_cexiantingche[23], 5);
+	}
+	
+	else
+	{
+	 m=(zhongdianzhan_cexiantingche[j-1]+zhongdianzhan_cexiantingche[j])/2-50
+	 n=235
+	 
+
+			
+			//context.save();
+			context.fillStyle = "blue";
+            
+		    context.fillRect(m, n, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( m+60, n ); // x+7,y-1
+			context.lineTo( m+60, n+15);
+			context.lineTo( m+90, n+15);
+			context.lineTo( m+60,n);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(zhongdianzhan_cexiantingche[j-1], 250, zhongdianzhan_cexiantingche[j]-zhongdianzhan_cexiantingche[j-1], 5);
+	}
+
+}
+
+
+function xiaxingxinhaojihongdeng(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-18,y-13,6,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-18,y-13,5,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+function xiaxingxinhaojihongdeng3(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+function xiaxingxinhaojilvdeng(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle ='#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+function xiaxingxinhaojilvdeng2(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle ='#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+		//双黄灯
+	function xiaxingxinhaojiUUdeng(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			//第一个灯位
+			context.beginPath();
+			context.strokeStyle ='#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			//第一个黄灯
+			context.beginPath();
+			context.strokeStyle = 'yellow';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="yellow";
+            context.fill();
+            context.stroke();
+			//第二个灯位
+			context.beginPath();
+			context.strokeStyle ='#FFF';
+			context.lineWidth = 2;
+            context.arc(x-18,y-13,6,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			//第二个黄灯
+			context.beginPath();
+			context.strokeStyle = 'yellow';
+            context.arc(x-18,y-13,5,0,2*Math.PI);
+            context.fillStyle="yellow";
+            context.fill();
+            context.stroke(); 
+			
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle ='#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			context.stroke();
+		}
+		
+				//闭塞分区标志
+			bisaifenqu(163,248,257)
+			bisaifenqu(163,308,317)
+			bisaifenqu(326,248,257)
+			bisaifenqu(326,308,317)
+			bisaifenqu(753,248,257)
+			bisaifenqu(753,308,317)
+			bisaifenqu(905,248,257)
+			bisaifenqu(905,308,317)
+			bisaifenqu(1050,248,257)
+			bisaifenqu(1050,308,317)
+			bisaifenqu(1230,248,257)
+			bisaifenqu(1230,308,317)
+			bisaifenqu(1410,248,257)
+			bisaifenqu(1410,308,317)
+			
+			
+			bisaifenqu(1590,248,257)
+			bisaifenqu(1590,308,317)
+			bisaifenqu(1770,248,257)
+			bisaifenqu(1770,308,317)
+			bisaifenqu(1950,248,257)
+			bisaifenqu(1950,308,317)
+			bisaifenqu(2130,248,257)
+			bisaifenqu(2130,308,317)
+			bisaifenqu(2274,248,257)
+			bisaifenqu(2274,308,317)
+			bisaifenqu(2377,248,257)
+			bisaifenqu(2377,308,317)
+			bisaifenqu(2923,248,257)
+			bisaifenqu(2923,308,317)
+			bisaifenqu(3025,248,257)
+			bisaifenqu(3025,308,317)
+			
+			bisaifenqu(3180,248,257)
+			bisaifenqu(3180,308,317)
+			bisaifenqu(3360,248,257)
+			bisaifenqu(3360,308,317)
+			bisaifenqu(3540,248,257)
+			bisaifenqu(3540,308,317)
+			
+			bisaifenqu(3720,248,257)
+			bisaifenqu(3720,308,317)
+			
+			bisaifenqu(3900,248,257)
+			bisaifenqu(3900,308,317)
+			bisaifenqu(4080,248,257)
+			bisaifenqu(4080,308,317)
+			bisaifenqu(4235,248,257)
+			bisaifenqu(4235,308,317)
+			bisaifenqu(4367,248,257)
+			bisaifenqu(4367,308,317)
+			bisaifenqu(4874,248,257)
+			bisaifenqu(4874,308,317)
+			bisaifenqu(4975,248,257)
+			bisaifenqu(4975,308,317)
+			
+			
+			bisaifenqu(326,188,197)
+
+			bisaifenqu(326,368,377)
+			
+			bisaifenqu(406,188,197)
+			bisaifenqu(406,368,377)
+			
+		    bisaifenqu(436,128,137)
+			bisaifenqu(436,428,437)
+			
+		    bisaifenqu(613,128,137)
+			bisaifenqu(613,428,437)
+			
+			bisaifenqu(653,188,197)
+			bisaifenqu(653,368,377)
+			
+
+			
+			bisaifenqu(753,188,197)
+			bisaifenqu(753,368,377)
+			
+
+			
+			bisaifenqu(2417,188,197)
+			bisaifenqu(2417,368,377)
+			
+			bisaifenqu(2883,188,197)
+			bisaifenqu(2883,368,377)
+			
+
+			
+
+			
+			bisaifenqu(4367,188,197)
+			bisaifenqu(4367,368,377)
+			
+			bisaifenqu(4477,188,197)
+			bisaifenqu(4477,368,377)
+			
+			bisaifenqu(4517,128,137)
+			bisaifenqu(4517,428,437)
+						
+			bisaifenqu(4693,128,137)
+			bisaifenqu(4693,428,437)
+			
+			bisaifenqu(4733,188,197)
+			bisaifenqu(4733,368,377)
+			
+			bisaifenqu(4843,188,197)
+			bisaifenqu(4843,368,377)	
+		
+		
+		
+		
+    </script>

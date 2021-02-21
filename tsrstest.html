@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>tsrs</title>
+        <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+</head>
+<body>
+   临时限速报文发送测试
+    <input type="button" onClick="sendJson()" value="点击">
+</body>
+
+<script>
+    function sendJson() {
+
+        var tsrsd={
+            zhentou:"AB",
+            leixing:"D0",
+            gongnengma:01,
+			fasongfang:01,
+			jieshoufang:17,
+			minglingleixing:01,
+			minglinghao:0001,
+			shoulingchezhan:01,
+			xianlu:02,
+			qishizhan:02,
+			jiesuzhan:03,
+			xiansuqidian:"K1010678",
+			xiansuzhongdian:"K1012345",
+			xiansuyuanyin:01,
+			xiansuxitong:03,
+			kaishishijian:20191208141516,
+			jiesushijian:20191228141516,
+			xiansuneirong:04,
+			zhenwei:"AC"
+        };
+        $.ajax({
+            type : "POST",  //提交方式
+            url : "http://172.31.201.120:8002/dashboard/tsrsTest.php",//注意！这个是跟上面不一样的地方
+			//dataType: 'jsonp',  // 请求方式为jsonp
+            //crossDomain: true,
+            data : {
+                "tsrsdata" : tsrsd
+            },//数据，这里使用的是Json格式进行传输
+            success : function(result) {//返回数据根据结果进行相应的处理
+                alert(result);
+            }
+        });
+    }
+</script>
+</html>
