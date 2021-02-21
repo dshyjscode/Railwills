@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="css/tjsmt.css"/>	
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/jquery.bubble-slider.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+   
+	
+    <title>11天津南站车务终端</title>
+</head>
+
+<body>
+<button class="buttonStyle" id="jdjh_pos" onclick="get_jieduanjihua()">阶段计划</button> 
+<button class="buttonStyle" id="mszh_pos" onclick="get_moshizhuanhuan()">模式转换</button>
+<button class="buttonStyle" id="ddmm_pos" onclick="get_diaodumingling()">调度命令</button>
+<button class="buttonStyle" id="qqmm_pos" onclick="get_qingqiumingling()">请求命令</button>
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+<button id="cancelx" class="quxiaoXjinlu" onClick="cancel(this)" >取消下行进路</button>
+<button id="cancels" class="quxiaoSjinlu" onClick="cancel(this)" >取消上行进路</button>
+<!--<button class="banlijinlu" >办理进路</button>-->
+
+<!--排列进路按钮-->
+<button id="Xa" class="jinluanniu" style="margin-left:501px; margin-top:367px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="Xb" class="jinluanniu" style="margin-left:480px; margin-top:367px; background-color:#0F0" onClick="statement()"></button>
+<button id="Xc" class="jinluanniu" style="margin-left:459px; margin-top:367px; background-color:#00F" onClick="statement()"></button>
+<button id="XFa" class="jinluanniu" style="margin-left:501px; margin-top:457px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="XFb" class="jinluanniu" style="margin-left:480px; margin-top:457px; background-color:#0F0" onClick="statement()"></button>
+
+<button id="S3a" class="jinluanniu" style="margin-left:673px; margin-top:337px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="S3b" class="jinluanniu" style="margin-left:694px; margin-top:337px; background-color:#FFF" onClick="statement()"></button>
+
+<button id="SIa" class="jinluanniu" style="margin-left:633px; margin-top:397px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="SIb" class="jinluanniu" style="margin-left:654px; margin-top:397px; background-color:#FFF" onClick="statement()"></button>
+<button id="SIIa" class="jinluanniu" style="margin-left:633px; margin-top:457px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="SIIb" class="jinluanniu" style="margin-left:654px; margin-top:457px; background-color:#FFF" onClick="statement()"></button>
+
+<button id="S4a" class="jinluanniu" style="margin-left:673px; margin-top:517px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="S4b" class="jinluanniu" style="margin-left:694px; margin-top:517px; background-color:#FFF" onClick="statement()"></button>
+
+<button id="X3a" class="jinluanniu" style="margin-left:1111px; margin-top:307px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="X3b" class="jinluanniu" style="margin-left:1090px; margin-top:307px; background-color:#FFF" onClick="statement()"></button>
+
+<button id="XIa" class="jinluanniu" style="margin-left:1151px; margin-top:367px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="XIb" class="jinluanniu" style="margin-left:1130px; margin-top:367px; background-color:#FFF" onClick="statement()"></button>
+<button id="XIIa" class="jinluanniu" style="margin-left:1151px; margin-top:427px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="XIIb" class="jinluanniu" style="margin-left:1130px; margin-top:427px; background-color:#FFF" onClick="statement()"></button>
+
+<button id="X4a" class="jinluanniu" style="margin-left:1111px; margin-top:487px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="X4b" class="jinluanniu" style="margin-left:1090px; margin-top:487px; background-color:#FFF" onClick="statement()"></button>
+
+
+<button id="SFa" class="jinluanniu" style="margin-left:1434px; margin-top:367px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="SFb" class="jinluanniu" style="margin-left:1455px; margin-top:367px; background-color:#0F0" onClick="statement()"></button>
+<button id="Sa" class="jinluanniu" style="margin-left:1434px; margin-top:457px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="Sb" class="jinluanniu" style="margin-left:1455px; margin-top:457px; background-color:#0F0" onClick="statement()"></button>
+<button id="Sc" class="jinluanniu" style="margin-left:1476px; margin-top:457px; background-color:#00F" onClick="statement()"></button>
+
+<div class='nav'>
+<ul>
+                <li><a> 站场图 </a>
+					 <ul>
+						<li><a>北京南站场图</a> </li>
+						<li><a>南京南站场图 </a></li>
+						<li><a>上海虹桥站场图 </a></li>
+						<li><a>多站显示</a></li>
+					</ul>
+				</li>
+		  
+		        <li> 
+		   		<a>计划图 </a>
+					<ul>
+						<li><a>基本运行图</a> </li>
+						<li><a>调整运行图 </a></li>
+						<li><a>列车实际表 </a></li>
+						<li><a>显示运行图方向</a></li>
+						<li><a>删除所有运行线</a></li>
+					</ul>
+				</li>
+
+				<li>
+		   		<a>行车日志</a>
+					<ul>
+						<li><a>北京南站行车日志</a> </li>
+						<li><a>南京南站行车日志 </a></li>
+						<li><a>上海虹桥站行车日志 </a></li>
+						<li><a>打印</a></li>
+						<li><a>历史记录查询</a></li>
+					</ul>
+				</li>
+	
+				<li>
+		   		<a> 功能 </a>
+					<ul>
+						<li><a>自动走车</a> </li>
+						<li><a>停止自动走车 </a></li>
+						<li><a>申请中心控制模式 </a></li>
+						<li><a>申请车站控制模式 </a></li>
+						<li><a>申请分散自律模式 </a></li>
+						<li><a>网络连接</a></li>
+					</ul>
+				</li>
+
+				<li>
+		   		<a> 系统 </a>
+					<ul>
+						<li><a>初始化站场</a> </li>
+						<li><a>交接班</a></li>
+						<li><a>人工过表</a></li>
+						<li><a onClick = "login_account()">值班人员登录</a></li>
+						<li><a>值班人员注销 </a></li>
+						<li><a>系统维护</a></li>
+						<li><a>报警信息</a></li>
+						<li><a>系统日志</a></li>
+						<li><a>维护工具</a></li>
+						<li><a>全屏显示</a></li>
+						<li><a>退出系统</a></li>	
+					</ul>
+				</li>
+</ul>
+	<!--临时测试-->
+      <button  type="button"  onClick="addCookie_ceshi()">发送cookies</button>
+     <!--临时测试-->    
+	 <!--临时测试-->
+      <button  type="button"  onClick="getCookie_ceshi()">获取cookies</button>
+     <!--临时测试-->  
+	<!--临时测试-->
+      <button  type="button"  onClick="startTest()">开始测试</button>
+     <!--临时测试--> 
+</div>
+
+<!--站场图的画布-->
+<canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+</canvas>
+
+<!--列车进路表格-->
+<table width="100%" align="center">
+	<tr>
+	<td>
+		<table id = "recCarTab" width="100%" class="gridtable">
+			<tr>
+				<th colspan="9">列车进路-接车:</th>
+			</tr>
+			<tr>
+				<th></th><th>序号</th><th>车次</th><th>接发车</th><th>股道</th><th>计划开行时间</th><th>进路</th><th>状态</th><th>触发方式</th>
+			</tr>
+			<tr>
+				<td>*</td><td id = "RecOrderNum"></td><td id = "RecCar" ></td><td id = "Rec"></td><td id = "RecTrack">
+                 <select name="tianjin_stationtrack_RX" id="tianjin_stationtrack_RX"><!--接车表股道下拉菜单-->
+					<option value="5G">5G</option>
+					<option value="3G">3G</option>
+					<option value="IG">ⅠG</option>
+					<option value="IIG">ⅡG</option>
+					<option value="4G">4G</option>
+					<option value="6G">6G</option>
+					</select>
+                    </td><td id = "RecTime"></td><td id = "RecRoute"></td><td id = "RecStatus"></td><td>
+                    <input type="checkbox" name="TRIG_RX" value="train" checked/>自动<br/></td>
+			</tr>
+		</table></td>
+	<td>
+		<table id = "sendCarTab" width="100%" class="gridtable">
+			<tr>
+				<th colspan="9">列车进路-发车:</th>
+			</tr>
+			<tr>
+				<th></th><th>序号</th><th>车次</th><th>接发车</th><th>股道</th><th>计划开行时间</th><th>进路</th><th>状态</th><th>触发方式</th>
+			</tr>
+			<tr>
+				<td>*</td><td id = "SendOrderNum"></td><td id = "SendCar"></td><td id = "Send"></td><td id = "SendTrack">
+                  <select name="tianjin_stationtrack_TX" id="tianjin_stationtrack_TX"><!--发车表股道下拉菜单-->
+					<option value="5G">5G</option>
+					<option value="3G">3G</option>
+					<option value="IG">ⅠG</option>
+					<option value="IIG">ⅡG</option>
+					<option value="4G">4G</option>
+					<option value="6G">6G</option>
+					</select>
+                  
+                    </td><td id = "SendTime"></td><td id = "SendRoute"></td><td id = "SendStatus"></td><td><input type="checkbox" name="TRIG_TX" value="train" checked/>自动<br/></td>
+			</tr>
+		</table></td>
+	</tr>
+</table>
+	
+
+</div>
+
+<!--
+阶段计划弹窗
+-->	
+	
+	<div class = "zhezhao" id = 'zhezhao'>
+		<div class = "tankuang">
+			<div id = "header" >
+				<span style = "position:absolute; color: black; left:10px; top:5px; font-size:20px;" >签收计划</span>
+				<div id = "header-right" onclick = "hidder()">x</div>
+															
+				<table width="95%" class="gridtable" style="position:absolute; top:60px; left:23px">
+					<tr>
+						<th colspan="6">办理进路-接车:</th>
+					</tr>
+					<tr>
+						<th></th><th>序号</th><th>车次号</th><th>接收方</th><th>下达时间</th><th>签收计划</th>
+					</tr>
+					<tr>
+						<td>*</td><td></td><td></td><td></td><td></td><td></td>
+					</tr>
+				</table>
+				<button class="button1" id="jdjhqc_pos" >阶段计划签收</button>
+
+			</div>
+		</div>
+	</div>	
+
+<!--
+调度命令弹窗
+-->					
+				
+	<div class="zhezhao1" id='zhezhao1'>
+		<div class="tankuang1">
+			<div id="header1">
+				<span style="position:absolute; color: black; left:10px; top:5px; font-size:20px">签收命令</span>
+					<div id="header-right1" onclick="hidder1()">x</div>
+														
+						<table width="95%" class="gridtable" style="position:absolute; top:60px; left:23px">
+							<tr>
+								<th></th><th>命令序号</th><th>命令编号</th><th>受令单位</th><th>签收命令</th>
+							</tr>
+							<tr>
+								<td>*</td><td></td><td></td><td></td><td></td>
+							</tr>
+						</table>
+					
+					<p  style="position:absolute; left:20px; top:300px; font-size:20px">命令内容</p>
+					<textarea class="mydiv"></textarea>
+					
+					<button class="button1" id="ddmlhz_pos" >调度命令回执</button>
+
+			</div>
+		</div>
+	</div>		
+
+<!--
+请求命令命令弹窗
+-->				
+	
+	<div class="zhezhao2" id='zhezhao2'>
+		<div class="tankuang2">
+			<div id="header2" >
+				<span style="position:absolute; color: black; left:10px; top:5px; font-size:20px;">请求命令</span>
+					<div id="header-right2" onclick="hidder2()">x</div>
+
+						<p  style="position:absolute; left:100px; top:90px; font-size:20px">命令类型</p>
+						<div style="position:absolute; left:220px; top:105px">
+						<select style="font-size:20px">
+							<option ></option>
+  							<option onclick = "get_01()">01</option>
+ 							<option onclick = "get_02()">02</option>
+							<option onclick = "get_03()">03</option>
+  							<option onclick = "get_04()">04</option>
+  							<option onclick = "get_05()">05</option>
+  							<option onclick = "get_06()">06</option>
+  							<option onclick = "get_07()">07</option>
+  							<option onclick = "get_08()">08</option>
+  							<option onclick = "get_09()">09</option>
+  							<option onclick = "get_10()">10</option>
+  							<option onclick = "get_11()">11</option>
+  							<option onclick = "get_12()">12</option>
+  							<option onclick = "get_13()">13</option>
+						</select></div>
+					
+						<p  style="position:absolute; left:500px; top:90px; font-size:20px">命令名称</p>
+						<textarea id="txt1" style="position:absolute; left:600px; top:90px; width:300px; height:50px; font-size:20px"></textarea>
+
+						<p  style="position:absolute; left:100px; top:220px; font-size:20px">命令正文</p>
+						<textarea id="txt2" style="position:absolute; left:220px; top:170px; width:680px; height:200px; font-size:20px"></textarea>
+					
+						<p  style="position:absolute; left:100px; top:420px; font-size:20px">请求状态</p>
+						<div style="margin-top:5%">															
+							<table class="gridtable" style="position:absolute; top:400px; left:220px; width:690px">
+								<tr>
+    								<th></th><th>序号</th><th>命令类型</th><th>命令编号</th><th>请求结果</th>
+								</tr>
+								<tr>
+    								<td>*</td><td></td><td></td><td></td><td></td>
+								</tr>
+							</table>
+						
+						<button class="button1" id="fsqq_pos">发送请求</button>
+						<button class="button1" id="qx_pos">取消</button>
+						</div>
+			</div>
+		</div>
+	</div>
+
+	
+<!--
+用户登录界面
+-->	
+	
+	<div class = "zhezhao3" id = 'zhezhao3'>
+		<div class = "tankuang3">
+			<div id = "header3" >
+				<span style = "position:absolute; color: black; left:10px; top:5px; font-size:20px;" >登录界面</span>
+					<div id = "header-right3" onclick = "hidder3()">x</div>
+
+						<img src = "image/logo_train.jpeg" alt="" style = "position:absolute; width:300px; height:210px; top:40px">	
+						<b style = "position:absolute; top:300px; left:30px; font-size:20px">用户工号</b>
+						<input type = "text" id = "user" style = "position:absolute; left:120px; top:300px"/>
+						<b style = "position:absolute; top:340px; left:30px; font-size:20px">用户姓名</b>
+						<input type = "text" id = "name" style = "position:absolute; left:120px; top:340px"/>
+						<b style = "position:absolute; top:380px; left:30px; font-size:20px">用户密码</b>
+						<input type = "text" id = "password" style = "position:absolute; left:120px; top:380px"/>
+						<button class="button1" id="account_pos" onclick=submit_user()>登录</button>
+
+			</div>
+		</div>
+	</div>	
+
+</body>
+<script src="js/tjsmt.js"></script>
+<script src="js/tjsmt-cookies.js"></script>
+<script src="js/tjsmt-map.js"></script>
+<script src="js/tjsmt-mapRecurrent.js"></script>
+<script src="js/tianjin_cbi_jinlu.js"></script>
+</html>        
+<script type="text/javascript">
+	 setCookie();
+	  if(getCookie("网络连接")== undefined){
+		setCookie("网络连接","00000000000000000000000000000"); 
+	 }
+     if(getCookie("网络连接").substr(4,1)=="2")
+  	{
+		getCookie_one()
+	 
+    } 
+     if(getCookie("模式转换")== undefined){
+                setCookie("模式转换","1"); 
+     }
+	 getCookie();
+	 delCookie();
+	 showTime();
+     //setInterval(clearTable,500)
+	 tjcwzdgetcookies();
+	 //JinLu();
+	 //CancelJinLu();
+    
+    
+    
+    if( $.cookie('刷新界面')==undefined){
+        $.cookie("刷新界面", "000000000000000000000000", { path: '/' })
+    }
+    Refresh();
+    function Refresh(){
+        setTimeout("Refresh();",1000);
+        if($.cookie("刷新界面").substr(10,1)==1){
+        
+           window.location.reload()
+           var str=rePlaceStr($.cookie("刷新界面"),11,"2")
+           $.cookie("刷新界面", str, { path: '/' })
+        }
+    }
+//车务终端getcookies
+	 function tjcwzdgetcookies(){ 
+	
+     setTimeout("tjcwzdgetcookies();",1000);
+	 
+	 if(getCookie("网络连接").substr(4,1)=="1")
+  	{
+		 alert("天津南站自律机连接状态更新")
+		 var str= rePlaceStr(getCookie("网络连接"),5,"2")
+		 setCookie("网络连接",str);
+		 getCookie_one()
+		 
+	 }
+ } 
+
+//模式转换操作
+    function get_mszh(){
+        setTimeout("get_mszh();",500);
+        
+        if(getCookie("模式转换")=="1"){
+            if(model==0){
+                //alert("转换为自律模式")
+                get_moshizhuanhuan()    
+            
+            }
+        }
+        else if(getCookie("模式转换")=="0"){
+            if(model==1){
+                //alert("转换为非常站控模式")
+                get_moshizhuanhuan()    
+            
+            }  
+        }
+    } 
+</script>

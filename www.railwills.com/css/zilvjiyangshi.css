@@ -1,0 +1,308 @@
+.nav{
+  top:0px;
+  height:40px;
+  width:2000px;
+  background:#f3f3f3;
+  position:relative;
+}
+.nav>ul{
+  position:relative;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.nav>ul>li>ul{
+  position:absolute;
+  left:0;
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+.nav>ul>li:hover>ul li a{
+  opacity:1;
+  height:30px;
+   transition:all .3s linear;
+  -o-transition:all .3s linear;
+  -moz-transition:all .3s linear;
+  -webkit-transition:all .3s linear;
+}
+.nav>ul>li>ul a{
+  display:block;
+  color:#222;
+  width:150px;
+  line-height:30px !important;
+  font:400 15px 'PT Sans', sans-serif;
+  background:#eee;
+  border-bottom:1px  #ddd;
+  text-align:center;
+  padding:0 5px;
+   height:0;
+  overflow:hidden;
+  opacity:0;
+    transition:all .3s linear .2s;
+  -o-transition:all .3s linear .2s;
+  -moz-transition:all .3s linear .2s;
+  -webkit-transition:all .3s linear .2s;
+}
+.nav>ul>li{
+  float:left;
+  position:relative;
+}
+.nav>ul>li>a{
+  padding:0 20px;
+  color:#000;
+  display:block;
+  line-height:40px !important;
+  font:400 15px 'PT Sans', sans-serif;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+
+.lianjiechewuzhongduan
+{
+    margin: 7px auto;
+	top:90px;
+	left:100px;
+	width:150px;
+	font-size:16px;
+	color:#000;
+	position: absolute;
+
+	z-index:1
+
+}
+.lianjieliansuo
+{
+    margin: 7px auto;
+	top:130px;
+	left:100px;
+	width:150px;
+	 
+	font-size:16px;
+	color:#000;
+	position: absolute;
+	z-index:1
+
+}
+.lianjieyingyongfuwuqi
+{
+    margin: 7px auto;
+	top:170px;
+	left:100px;
+	width:150px;
+	font-size:16px;
+	color:#000;
+	position: absolute;
+	z-index:1
+
+}
+
+.timetext
+{
+
+
+	top:200px;
+	left:1100px;
+	
+	
+	font-size:18px;
+	color:#F00;
+	background-color:#000;
+	
+	
+	border:#000;
+	position: absolute;
+
+}
+
+.banlijinlu
+{
+    margin: 7px auto;
+	top:670px;
+	left:100px;
+	width:100px;
+	font-size:16px;
+	color:#000;
+	position: absolute;
+	z-index:1
+
+}
+.lianjieyingyongduwuqi
+{
+    margin: 7px auto;
+	top:20px;
+	left:400px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+.lianjierbc
+{
+    margin: 7px auto;
+	top:20px;
+	left:545px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+
+.lianjiebjnliansuo
+{
+    margin: 7px auto;
+	top:50px;
+	left:50px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+.lianjiebjnzilvji
+{
+    margin: 7px auto;
+	top:50px;
+	left:130px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+.lianjiebjnchewuzhongduan
+{
+    margin: 7px auto;
+	top:150px;
+	left:260px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+
+.lianjienjnliansuo
+{
+    margin: 7px auto;
+	top:50px;
+	left:360px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+.lianjienjnzilvji
+{
+    margin: 7px auto;
+	top:50px;
+	left:460px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+
+.lianjienjnchewuzhongduan
+{
+    margin: 7px auto;
+	top:50px;
+	left:560px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+
+.lianjieshhqliansuo
+{
+    margin: 7px auto;
+	top:20px;
+	left:650px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+.lianjieshhqzilvji
+{
+    margin: 7px auto;
+	top:20px;
+	left:830px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+.lianjieshhqchewuzhongduan
+{
+    margin: 7px auto;
+	top:20px;
+	left:1025px;
+	font-size:16px;
+	color:#000;
+	position: fixed;
+	z-index:1
+}
+.cancss
+{z-index:0
+ position: fixed;
+ margin:0;
+
+}
+
+.gridtable {
+    font-family: verdana,arial,sans-serif;
+    font-size:18px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+.gridtable th {
+    border-width: 1px;
+    padding: 10px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
+.gridtable td {
+    border-width: 1px;
+    padding: 10px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #ffffff;
+}
+
+			body{
+				margin: 0px;
+			}
+			.zhezhao{
+				position: fixed;
+				left: 0px;
+				top: 0px;
+				background: #000;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,0,0,0.5)
+			}
+			.tankuang{
+				position: relative;
+				background: #fff;
+				width: 50%;
+				height: 80%;
+				border-radius: 5px;
+				margin: 5% auto;
+			}
+			#header{
+				height: 40px;
+			}
+			#header-right{
+				position: absolute;
+				width: 25px;
+				height: 25px;
+				border-radius: 5px;
+				background: red;
+				color: #fff;
+				right: 5px;
+				top: 5px;
+				text-align: center;
+			}
+

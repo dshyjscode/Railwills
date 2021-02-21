@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="css/yxt.css"/>
+    <style>
+        body,header,section,div,svg,button,input {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<header >
+    <nav class="nav  nav-pills Nav">
+        <ul>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">交接班<span class="caret"></span></a></li>
+            <li id="fun" class="navLi dropdown" role="presentation">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                功能<span class="caret"></span></a>
+                <ul class="dropdown-menu" id="LoadT">
+                    <li><a href="#">日班计划图</a></li>
+                    <li id="basic" class=" dropdown"><a href="#" id="basicA" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >基本图</a>
+                        <ul class="dropdown-menu" id="basicUl" style="top: 0;left: 100%;min-width: 220px">
+                            <li><a href="#" id="basicLi">打开基本图</a>
+                            </li>
+                            <li>
+                                <a href="#" id="inpTim">手动输入时间</a>
+                                <div style="line-height: 27px ;display: none" id="basicDiv"><input style="height: 30px;padding: 2px 3px" id="basicIP" type="text" placeholder="请输入起止时间点以“-”隔离"/>
+                                <button class="btn-primary" style="height: 30px" id="basicBtn">确定</button></div>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                   <!-- <li id="basic" class="ban dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >基本图</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">打开基本图6~7</a></li>
+                      
+
+                    </ul>
+                    </li>-->
+                    <li><a href="#">施工计划</a></li>
+                    <li><a href="#">历史图</a></li>
+                </ul>
+            </li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                邻台计划<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a>发邻台</a></li>
+                    <li><a>收邻台</a></li>
+                </ul>
+            </li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">查询<span class="caret"></span></a></li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                编辑<span class="caret"></span></a></li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                绘图<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li id="jihua"><a href="#">计划线</a></li>
+                    <li id="Draw"><a href="#">绘图</a></li>
+                    <li id="closedSection" dat="G0" class="AnoCli"><a href="#">区间封锁</a></li>
+                    <li id="SectionSlow" dat="L1" class="AnoCli"><a href="#">区间慢行</a></li>
+                    <li id="fix" dat="R2" class="AnoCli"><a href="#">电网检修</a></li>
+                    <li id="block" dat="G3" class="AnoCli"><a href="#">区间变更闭塞方式</a></li>
+                    <li id="skyLight" dat="R4" class="AnoCli"><a href="#">区间综合天窗修</a></li>
+                </ul>
+            </li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">阶段计划<span class="caret"></span></a></li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">施工计划<span class="caret"></span></a></li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">选项<span class="caret"></span></a></li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">窗口<span class="caret"></span></a></li>
+            <li class="navLi dropdown" role="presentation">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">系统<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li id="save"><a href="#">保存</a></li>
+                </ul>
+            </li>
+            <li class="navLi dropdown" role="presentation"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">帮助<span class="caret"></span></a></li>
+        </ul>
+    </nav>
+</header>
+<section>
+    <div>
+
+    </div>
+    <div class="secD" id="Sec">
+        <div class="secLeft " id="SL">
+            <div id="lefTime">
+                <p id="leftTimP"></p>
+                <h3 id="leftTimH"></h3>
+            </div>
+            <div class="svgFP" id="svgFP">
+            </div>
+        </div>
+        <div></div>
+        <div class="svgYxt">
+            <div id="timSvg">
+                <svg id="Tim" style="width: 18040px;height: 20px; "xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid meet" >
+                </svg>
+            </div>
+
+            <div class="svgF">
+                <svg id="YXT" style="width: 18040px;height: 3100px; "xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid meet" >
+                    <g id="YXTg" fill="red" stroke="red"></g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="footF">
+        <div class="btn-group footBDiv" role="group">
+            <button  type="button"  class="btn btn-default footBtn" id="bUp">放大</button>
+            <button  type=""  class="btn btn-default footBtn" id="shrink">缩小</button>
+            <div class="footBtn footdiv"> <input  type="radio" name="go" class="middle"   value="上行" /> <span class="middle">上行</span></div>
+            <div class="footBtn footdiv"> <input  type="radio" name="go"  class="middle"  value="下行"/> <span class="middle">下行</span></div>
+            <div class="footBtn footdiv"> <input  type="radio" name="go"  class="middle" value="上下行" checked /> <span class="middle">上下行</span></div>
+            <div class="footBtn footdiv"> <input  type="checkbox" class="middle"  /> <span class="middle">鼠标收点</span></div>
+            <button  type="button"  class="btn btn-default footBtn">转实际</button>
+            <button  type="button"  class="btn btn-default footBtn">下计划</button>
+            <button  type="button"  class="btn btn-default footBtn">接收计划</button>
+            <button  type="button"  class="btn btn-default footBtn">备忘提醒</button>
+            <button  type="button"  class="btn btn-default footBtn">邻台计划</button>
+            <button  type="button"  class="btn btn-default footBtn">开始画线</button>
+            <button  type="button"  class="btn btn-default footBtn">结束画线</button>
+            <button  type="button"  class="btn btn-default footBtn">日班计划</button>
+            <button  type="button"  class="btn btn-default footBtn">图标注释</button>
+            <button  type="button"  class= "btn btn-default footBtn">事故概况</button>
+            <button  type="button"  class="btn btn-default footBtn">列车作业</button>
+            <button  type="button"  class="btn btn-default footBtn">调度命令</button>
+            <button  type="button"  class="btn btn-default footBtn"></button>
+            <button  type="button"  class="btn btn-default footBtn"></button>
+        </div>
+    </div>
+
+
+</footer>
+
+
+<!--加载图-->
+
+
+<!--各种弹出选择框-->
+
+
+<div class="alrt_div" id="lineAlert_div">
+    <ul class="alrt_ul">
+        <!-- <li class="li_go">车股号</li>-->
+        <li class="li_go" id="cNum" ><a href="#">变更车次</a></li>
+        <li class="li_go" id="cDel" ><a href="#">删除列车</a></li>
+        <li class="li_go" id="cCopy"><a href="#">复制列车</a></li>
+        <li class="li_go" id="cEdi"><a href="#">编辑列车</a></li>
+        <!-- <li class="li_go">剪切线</li>
+         <li class="li_go">粘贴线</li>-->
+    </ul>
+</div>
+
+<!--车股号-->
+<div class="alrt_div" id="RectAlert_div">
+    <ul class="alrt_ul">
+        <li class="li_go" id="GDnum">车股号
+            <ul id="ul">
+                <li class="li_go Gnum" >1</li>
+                <li class="li_go Gnum" >2</li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+
+<!--画线结束取消-->
+<div class="alrt_div" id="DraOver">
+    <ul class="alrt_ul">
+        <li class="li_go" id="Over"><a href="#">结束</a></li>
+        <li class="li_go" id="None"><a href="#">取消</a></li>
+    </ul>
+</div>
+
+
+<!--计划线-->
+
+<div class="modal fade bs-example-modal-sm" id="lineModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="'modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="lineModalLabel">计划线</h4>
+            </div>
+            <div class="modal-body modalB">
+                <label>车次号</label>
+                <input type="number" min="1" id="carNum" step="1"/>
+                <br/>
+                <input class="CarWhere" type="radio" name="going" style="margin: 5px 0 0 10px" value="up" checked/>上行
+                <input class="CarWhere" type="radio" name="going" style="margin: 5px 0 0 10px" value="down"/>下行
+            </div>
+            <div class="modal-footer modalF">
+                <button type="button" class="btn btn-primary" id="DrawTrue">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改车次号-->
+<div class="modal fade bs-example-modal-sm" id="changeNum" tabindex="'-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改车次</h4>
+            </div>
+            <div class="modal-body modalB">
+                <div>
+                    <div id="oldCarNum">
+                        <lable>旧车次号:</lable>
+                        <input type="text" value=""/>
+                    </div>
+                    <div id="newCarNum">
+                        <lable>新车次号:</lable>
+                        <input type="text" value=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modalF">
+                <button type="button" class="btn btn-primary" id="changeCarNumT">确定</button>
+                <button type="button" class="btn btn-default" id="changeCarNumF"  data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--删除列车-->
+<div class="modal fade bs-example-modal-sm" id="CarDle" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">警告</h4>
+            </div>
+            <div class="modal-body modalB" id="DelBody">
+                <h6>确认删除车次<span></span>吗</h6>
+            </div>
+            <div class="modal-footer modalF">
+                <button type="button" class="btn btn-primary" id="delCarT">确定</button>
+                <button type="button" class="btn btn-default"  data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--复制车次-->
+<div class="modal fade bs-example-sm" id="CarCop" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">复制线</h4>
+            </div>
+            <div class="modal-body modalB">
+                <div id="copyCarNum">
+                    <lable>复制车新次号:</lable>
+                    <input type="text" value=""/>
+                </div>
+            </div>
+            <div class="modal-footer modalF">
+                <button class="btn btn-primary" id="copyCarT">确定</button>
+                <button class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--提示保存-->
+<div class="modal fade bs-example-sm" id="saveSvg" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content modalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body modalB">
+                <div id="saveSvgDiv">
+                   您的修改尚未保存，是否保存？
+                </div>
+            </div>
+            <div class="modal-footer modalF">
+                <button class="btn btn-primary" id="saveSvgT">保存</button>
+                <button class="btn btn-default" data-dismiss="modal" id="saveSvgF">不保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--窗口属性栏-->
+
+<!--<div id="attr" class="attrAlert">
+    <div><h3>
+        <button type="button" class="close" data-dismiss="attrAlert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </h3></div>
+    <div class="attrBody">
+        <div class="attrDivBody">
+            <div class="attrDivBtn">
+                <button class="btn btn-default attrBtn">区段汇总</button>
+                <button class="btn btn-default attrBtn">车次标记</button>
+                <button class="btn btn-default attrBtn">详细参数</button>
+                <button class="btn btn-default attrBtn">列车编组</button>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div>
+                    <a href="#InfoNow" class="" role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="allCar">本班实际信息</a>
+                    <div id="InfoNow" class="in">
+                        <table class="table table-bordered " style="width: 800px">
+                            <tr>
+                                <td>区段号</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>区段名称</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班别</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>本班起始时间</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>本班结束时间</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>旅客列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>货物列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>施工符号总数</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <a href="#InfoTu" class="" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="CarInfo">本班图定信息</a>
+                    <div id="InfoTu">
+                        <table>
+                            <tr>
+                                <td>图定客车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>图定货车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>图定列车总数</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <a href="#InfoW" class="" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="InfoW">本班班计划信息</a>
+                    <div id="InfoW">
+                        <table>
+                            <tr>
+                                <td>班计划客车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班计划货车数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班计划列车总数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>班计划施工总数</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div></div>
+</div>-->
+
+</body>
+<script src="js/YXTNex.js"></script>
+<script src="js/YXTAnotherNex.js"></script>
+<script src="js/TimeNex.js"></script>
+<!--<script src="do.js"></script>-->
+<script src="js/tdadj.js" charset="gb2312"></script>
+<script src="js/ChangeTable.js" charset="gb2312"></script>
+</html>

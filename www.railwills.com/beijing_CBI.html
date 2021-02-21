@@ -1,0 +1,3849 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/cbi.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <script src="js/cbi.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    
+
+    <title>16北京南站联锁</title>
+  
+
+    <script type="text/javascript">
+	    var JinluTimer;
+		var CalcelTimer;
+		var RecurrentTimer;
+		function getCookie_recurrent(){
+			getCookie_MapAndCar()
+			RecurrentTimer = setTimeout(getCookie_recurrent,500);
+    
+}
+	     //模式查询
+        function Pattern_query(){
+        setTimeout("Pattern_query();",1000);
+        //自律模式
+        if(getCookie("模式转换")=="1"){
+			lianjiezhuangtaibiaojikong(620,145)
+            lianjiezhuangtaibiaojikong(750,145)
+		    lianjiezhuangtaibiaojilv(880,145)  
+			  
+			clearTimeout(JinluTimer);
+			clearTimeout(CalcelTimer);
+			getCookie_recurrent()
+			return;
+  
+        }
+		//非常站控模式
+        else if(getCookie("模式转换")=="0"){
+          lianjiezhuangtaibiaojired(620,145)
+          lianjiezhuangtaibiaojiyellow(750,145)
+          lianjiezhuangtaibiaojikong(880,145) 
+		  clearTimeout(RecurrentTimer)
+		  JinLu();
+          CancelJinLu();
+		  return;   
+        }
+    }
+		//申请自律模式
+	   function SelfdisciplineMode(){
+		    setCookie("模式转换","1")
+			lianjiezhuangtaibiaojikong(620,145)
+            lianjiezhuangtaibiaojikong(750,145)
+		    lianjiezhuangtaibiaojilv(880,145) 
+			
+		}
+	   function QuitSelfdisciplineMode(){
+		    setCookie("模式转换","0")
+			lianjiezhuangtaibiaojired(620,145)
+            lianjiezhuangtaibiaojiyellow(750,145)
+            lianjiezhuangtaibiaojikong(880,145)  
+		}
+	
+        
+		var flag=0;  //道岔转换标志
+		var DanSuo=1;//未锁
+		var DanJie =0;//未解
+		var ChaFeng =2;//0：岔封，1：岔解，2：第三种状态
+		var ZongSuo=1;
+		//道岔初始化为1，表示可以操纵
+		var daocha1 = 1;var daocha3 = 1;var daocha5 = 1;
+		var daocha7 = 1;var daocha2_4 = 1;var daocha6 = 1;
+		var daocha8 = 1;var daocha10 = 1;var daocha12 = 1;
+		//道岔单锁
+		function dansuo(){
+			 DanSuo = 0;//按下为0，释放为1
+			 //alert(DanSuo);
+		}
+		//道岔单解
+		function danjie(){
+			 DanJie = 1;//按下1是解开状态
+			 //alert(DanSuo);
+		}
+		//道岔岔封
+		function chafeng(){
+			 ChaFeng = 0;//按下为0,表示岔封
+		}
+		//道岔岔解
+		function chajie(){
+			 ChaFeng = 1;//岔解 
+		}
+		//道岔总锁
+		function zongsuo(){
+			 ZongSuo = 0;
+		}
+		//道岔总解
+		function zongjie(){
+			 ZongSuo = 1;
+		}
+		//道岔定位按钮为绿色，道岔反位按钮为黄色
+		function colorchange(id){
+			if (flag==1){
+				document.getElementById(id).style.backgroundColor="Chartreuse ";}
+			else if(flag==2){
+				document.getElementById(id).style.backgroundColor="yellow";
+			}
+		}
+		//1号道岔控制
+		function control1(){
+			//道岔单锁，不可操作		
+			if(DanSuo == 0){
+				daocha1 = 0;  //不可操作
+				huazhengfangxing(1050,195,'red');
+				huazhengfangxings(235,338,'red');
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="1"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1050,205);  
+				
+			}
+			//道岔单解，可以操作
+			else if(DanJie ==1){
+				daocha1=1;   //可以操作
+				huazhengfangxing(1050,195,'black')
+				huazhengfangxings(235,338,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="1"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1050,205); 
+				}
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1050,195,'DarkViolet')
+				huazhengfangxings(235,338,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="1"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1050,205); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng == 1){
+				huazhengfangxing(1050,195,'black')
+				huazhengfangxings(235,338,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="1"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1050,205); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			DanSuo =1;
+			DanJie =0;
+			if(daocha1 ==1 ){
+				dancaoX(163,353,326,353,202,347,55,-55,"1");
+				}
+			else{
+				flag=0;
+			}
+				
+		}
+		//3号道岔控制
+		function control3(){
+			if(DanSuo == 0){
+				daocha3 =0;
+				huazhengfangxing(1150,195,'red')
+				huazhengfangxings(235,425,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="3"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1150,205);  
+			}
+			else if(DanJie == 1){
+				daocha3 = 1;
+				huazhengfangxing(1150,195,'black')
+				huazhengfangxings(235,425,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="3"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1150,205); }
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1150,195,'DarkViolet')
+				huazhengfangxings(235,425,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="3"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1150,205);
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态  
+				}
+			//道岔处于岔解状态
+			else if(ChaFeng ==1){
+				huazhengfangxing(1150,195,'black')
+				huazhengfangxings(235,425,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="3"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1150,205); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态 
+				}
+			
+			//恢复
+			DanSuo =1;
+			DanJie =0;
+			if(daocha3 ==1){
+				dancaoX(163,413,326,413,202,418,55,55,"3");
+			}
+			else{
+				flag=0;
+			}	
+		}
+		//5号道岔控制
+		function control5(){
+			if(DanSuo == 0){
+				daocha5 = 0;  //不可操作 
+				huazhengfangxing(1250,195,'red')
+				huazhengfangxings(370,280,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="5"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1250,205);   
+			}
+			else if(DanJie ==1){
+				daocha5=1;   //可以操作
+				huazhengfangxing(1250,195,'black')
+				huazhengfangxings(370,280,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="5"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1250,205); 
+				}
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1250,195,'DarkViolet')
+				huazhengfangxings(370,280,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="5"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1250,205);
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng ==1){
+				huazhengfangxing(1250,195,'black')
+				huazhengfangxings(370,280,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="5"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1250,205);
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			
+			DanSuo =1;
+			DanJie =0;
+			if(daocha5==1){
+				dancaoX(326,293,406,293,352,287,55,-55,"5");            }
+			else {
+				flag=0;
+			}	
+		}
+		//7号道岔控制
+		function control7(){
+			if(DanSuo == 0){
+				daocha7 = 0;  //不可操作 
+				huazhengfangxing(1350,195,'red')
+				huazhengfangxings(370,480,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="7"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1350,205);  
+			}
+			else if(DanJie ==1){
+				daocha7=1;   //可以操作
+				huazhengfangxing(1350,195,'black')
+				huazhengfangxings(370,480,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="7"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1350,205); 
+				}
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1350,195,'DarkViolet')
+				huazhengfangxings(370,480,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="7"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1350,205); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng ==1){
+				huazhengfangxing(1350,195,'black')
+				huazhengfangxings(370,480,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="7"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1350,205); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			
+			DanSuo =1;
+			DanJie =0;
+			if(daocha7 == 1){
+				dancaoX(326,473,406,473,352,478,55,55,"7");           }
+			else{
+				flag=0;
+			}	
+		}
+		//2/4号道岔控制
+		function control2_4(){
+			if(DanSuo == 0){
+				daocha2_4 = 0;  //不可操作 
+				huazhengfangxing(1000,270,'red')
+				huazhengfangxings(985,398,'red')
+				huazhengfangxings(962,361,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="2/4"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,993,280);   
+			}
+			else if(DanJie ==1){
+				daocha2_4=1;   //可以操作
+				huazhengfangxing(1000,270,'black')
+				huazhengfangxings(985,398,'black')
+				huazhengfangxings(962,361,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="2/4"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,993,280); 
+				}
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1000,270,'DarkViolet')
+				huazhengfangxings(985,398,'DarkViolet')
+				huazhengfangxings(962,361,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="2/4"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,993,280);  
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng ==1){
+				huazhengfangxing(1000,270,'black')
+				huazhengfangxings(985,398,'black')
+				huazhengfangxings(962,361,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="2/4"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,993,280);  
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			
+			DanSuo =1;
+			DanJie =0;
+			if(daocha2_4==1){
+				shuangdongdaocha(905,1050,353,905,1050,413,930,1025,"24"); 
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");  
+				context.strokeStyle = '#FFF';
+				context.beginPath();
+				context.lineWidth = 2;
+				context.moveTo( 980,378);
+				context.lineTo( 975, 387 );
+				context.stroke();
+			        }
+			else{
+				flag=0;
+			}	
+		}
+		//6号道岔控制
+		function control6(){
+			if(DanSuo == 0){
+				daocha6 = 0;  //不可操作
+				huazhengfangxing(1100,270,'red')
+				huazhengfangxings(833,338,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="6"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1100,280);   
+			}
+			else if(DanJie ==1){
+				daocha6=1;   //可以操作
+				huazhengfangxing(1100,270,'black')
+				huazhengfangxings(833,338,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="6"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1100,280); 
+				}
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1100,270,'DarkViolet')
+				huazhengfangxings(833,338,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="6"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1100,280); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng ==1){
+				huazhengfangxing(1100,270,'black')
+				huazhengfangxings(833,338,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="6"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1100,280); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			DanSuo =1;
+			DanJie =0;
+			if(daocha6==1){
+				dancaoS(753,353,905,353,807,292,55,55,"6");           }
+			else{
+				flag=0;
+			}	
+		}
+		//8号道岔控制
+		function control8(){
+			if(DanSuo == 0){
+				daocha8 = 0;  //不可操作 
+				huazhengfangxing(1200,270,'red')
+				huazhengfangxings(833,423,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="8"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1200,280);   
+			}
+			else if(DanJie ==1){
+				daocha8=1;   //可以操作
+				huazhengfangxing(1200,270,'black')
+				huazhengfangxings(833,423,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="8"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1200,280); 
+				}
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1200,270,'DarkViolet')
+				huazhengfangxings(833,423,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="8"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1200,280); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng ==1){
+				huazhengfangxing(1200,270,'black')
+				huazhengfangxings(833,423,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="8"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1200,280); 
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			DanSuo =1;
+			DanJie =0;
+			if(daocha8==1){
+				dancaoS(753,413,905,413,807,473,55,-55,"8");            }
+			else{
+				flag=0;
+			}	
+		}
+		//10号道岔控制
+		function control10(){
+			if(DanSuo == 0){
+				daocha10 = 0;  //不可操作  
+				huazhengfangxing(1300,270,'red')
+				huazhengfangxings(725,278,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="10"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1295,280);   
+			}
+			else if(DanJie ==1){
+				daocha10=1;   //可以操作
+				huazhengfangxing(1300,270,'black')
+				huazhengfangxings(725,278,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="10"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1295,280);
+				}
+			//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1300,270,'DarkViolet')
+				huazhengfangxings(725,278,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="10"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1295,280);
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng ==1){
+				huazhengfangxing(1300,270,'black')
+				huazhengfangxings(725,278,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="10"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1295,280);
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			DanSuo =1;
+			DanJie =0;
+			if(daocha10==1){
+				dancaoS(653,293,753,293,650,232,55,55,"10");            }
+			else{
+				flag=0;
+			}	
+		}
+		//12号道岔控制
+		function control12(){
+			if(DanSuo == 0){
+				daocha12 = 0;  //不可操作
+				huazhengfangxing(1400,270,'red')
+				huazhengfangxings(725,483,'red')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="12"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1395,280);     
+			}
+			else if(DanJie ==1){
+				daocha12=1;   //可以操作
+				huazhengfangxing(1400,270,'black')
+				huazhengfangxings(725,483,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="12"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1395,280); 
+				}
+				//道岔处于岔封状态
+			else if(ChaFeng ==0){
+				huazhengfangxing(1400,270,'DarkViolet')
+				huazhengfangxings(725,483,'DarkViolet')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="12"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1395,280);  
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			else if(ChaFeng ==1){
+				huazhengfangxing(1400,270,'black')
+				huazhengfangxings(725,483,'black')
+				var canvas = document.getElementById("canvas");
+                var context = canvas.getContext("2d");
+				text="12"
+			    context.fillStyle = "#FFF";
+			    context.font="15px bold 宋体";
+                context.fillText(text,1395,280);  
+				ChaFeng = 2;//既不处于岔封也不处于岔解状态
+				}
+			DanSuo =1;
+			DanJie =0;
+			if(daocha12==1){
+				dancaoS(653,473,753,473,651,534,55,-55,"12");            }
+			else{
+				flag=0;
+			}	
+		}
+		function zongding(){
+			flag=1;
+			
+		}
+		function zongfan(){
+			flag=2;
+		}
+		//下行咽喉道岔单操
+		function dancaoX(x1,y1,x2,y2,x3,y3,kx,ky,id)
+		{
+			colorchange(id)
+			//input:x1,y1,x2,y2闭塞分区两端坐标;x3,y3道岔坐标；
+			//kx,ky 侧轨道沿着x,y轴方向偏
+			//flag=1 转定位操作；flag=2 转反位操作；flag=0 无操作
+			if(flag==1){
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = '#848284';		
+				context.moveTo( x1, y1 ); 
+				context.lineTo( x2, y2);
+				context.stroke();
+				flag=0;
+			}
+			else if(flag==2){
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				//删除前线
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = 'black';
+				//k=50;
+				context.moveTo( x3, y3 ); 
+				context.lineTo( x3+kx, y3+ky);
+				context.moveTo( x1, y1 ); 
+				context.lineTo( x2, y2);
+				context.stroke();
+				//重画反位状态线
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = '#848284';		
+				context.moveTo( x1, y1); 
+				context.lineTo( x3, y1);
+				context.moveTo( x3+20, y2 ); 
+				context.lineTo( x2, y2);
+				context.moveTo( x3, y3 ); 
+				context.lineTo( x3+kx, y3+ky);
+				context.stroke();
+				flag=0;
+			}
+			
+			
+		}
+		//上行咽喉道岔单操
+		function dancaoS(x1,y1,x2,y2,x3,y3,kx,ky,id)
+		{
+			colorchange(id)
+			//input:x1,y1,x2,y2闭塞分区两端坐标;x3,y3道岔坐标；
+			//kx,ky x,y轴方向偏移
+			//flag=1 转定位操作；flag=2 转反位操作；flag=0 无操作
+			if(flag==1){
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = '#848284';		
+				context.moveTo( x1, y1 ); 
+				context.lineTo( x2, y2);
+				context.stroke();
+				flag=0;
+			}
+			else if(flag==2){
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				//删除前线
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = 'black';
+				//k=50;
+				context.moveTo( x3, y3 ); 
+				context.lineTo( x3+kx, y3+ky);
+				context.moveTo( x1, y1 ); 
+				context.lineTo( x2, y2);
+				context.stroke();
+				//重画反位状态线
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = '#848284';		
+				context.moveTo( x1, y1 ); 
+				context.lineTo( x3+kx-20, y1);
+				context.moveTo( x3+kx, y2 ); 
+				context.lineTo( x2, y2);
+				context.moveTo( x3, y3 ); 
+				context.lineTo( x3+kx, y3+ky);
+				context.stroke();
+				flag=0;
+			}	
+		}
+		//双动道岔
+		function shuangdongdaocha(x1,x2,y1,x3,x4,y2,x5,x6,id){
+			colorchange(id)
+			//flag=1 转定位操作；flag=2 转反位操作；flag=0 无操作
+			//input:x1,x2,y1;x3,x4,y2 闭塞分区坐标；x5,x6 双动道岔横坐标
+			if(flag==1){
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = '#848284';		
+				context.moveTo( x1, y1); 
+				context.lineTo( x2, y1);
+				context.moveTo( x3, y2); 
+				context.lineTo( x4, y2);
+				context.stroke();
+				flag=0;
+			}
+			else if(flag==2){
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				//删除前线
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = 'black';
+				context.moveTo( x1, y1); 
+				context.lineTo( x2, y1);
+				context.moveTo( x3, y2); 
+				context.lineTo( x4, y2);
+				context.stroke();
+				//重画反位状态线
+				context.beginPath();
+				context.lineWidth = 5;
+				context.strokeStyle = '#848284';		
+				context.moveTo( x1, y1 ); 
+				context.lineTo( x5, y1);
+				context.moveTo( x5+30, y1 ); 
+				context.lineTo( x2, y1);
+				context.moveTo( x3, y2 ); 
+				context.lineTo( x6-30, y2);
+				context.moveTo( x6, y2 ); 
+				context.lineTo( x4, y2);
+				context.moveTo( x5, y1+7 );//360 
+				context.lineTo( x6, y2-9);//404
+				context.stroke();
+				flag=0;
+			}	
+		}
+
+		
+	//排列进路，获取进路始端、终端位置
+	var d=100;
+	var JinLuPos=new Array([],[]);//存始端坐标、终端坐标
+	var CancelPos = new Array();//存放取消进路的始端按钮
+	//var p =new Array();//存始端坐标、终端坐标
+	var CancelX=1;//下行取消进路标志,0:取消进路；1：保持进路
+	var CancelS=1;//上行取消进路标志
+	function cancel(obj){
+		if(obj == document.getElementById('cancelx')){
+			CancelX=0;
+		
+			}
+		else if (obj == document.getElementById('cancels')){
+			CancelS=0;
+			
+			}
+	}
+	
+	var row=0;
+	var col=0;
+	var count =0;
+	function getposition(obj) {
+
+		if(CancelX==0)
+		{
+			CancelPos[count++]=obj;
+			CancelX=1;
+			
+			alert("取消进路");
+		}
+		else if(CancelS==0)
+		{
+			CancelPos[count++]=obj;
+			CancelS=1;
+			alert("取消进路");
+		}
+		else{
+			for(var i=0;i<JinLuPos[0].length;i++){
+				if (JinLuPos[0][i]==obj)
+				{
+					alert("不能排列进路！");//抵触进路不能排列
+				    return false;}
+			}
+			for(var j=0;j<JinLuPos[0].length;j++){
+				if (JinLuPos[1][j]==obj)
+				{
+					alert("不能排列进路！");//抵触进路不能排列
+					JinLuPos[--row][col]=null;//不能排列进路，清空此列数据，下一条数据依然在此列存放，否则导致此列始端按钮有值，而终端按钮为空，包含这个始端按钮的进路不能排列
+					//row=0;                //排列进路列表转到下一列记录数据，否则容易崩溃
+				    //col++;
+				    return false;}
+			}
+			if(row<2){
+				JinLuPos[row][col]=obj;
+				//alert("点击一个按钮");
+				row++;
+			}
+			else{
+				row=0;
+				col++;
+				JinLuPos[row][col]=obj;
+				row++;
+				//alert("换了一列");
+				//alert(JinLuPos[0].length);
+			}
+			//alert(JinLu.size[0]);
+		}
+	     
+        return true;
+    }
+function getpositionofDiaoChe(obj) {
+
+		if(CancelX==0)
+		{
+			CancelPos[count++]=obj;
+			CancelX=1;
+			
+			alert("取消调车进路");
+		}
+		else if(CancelS==0)
+		{
+			CancelPos[count++]=obj;
+			CancelS=1;
+			alert("取消调车进路");
+		}
+		else{
+			//for(var i=0;i<JinLuPos[0].length;i++){
+			//	if (JinLuPos[0][i]==obj)
+			//	{
+			//		alert("不能排列进路！");//抵触进路不能排列
+			//	    return false;}
+			//}
+			//for(var j=0;j<JinLuPos[0].length;j++){
+			//	if (JinLuPos[1][j]==obj)
+			//	{
+			//		alert("不能排列进路！");//抵触进路不能排列
+			//		JinLuPos[--row][col]=null;//不能排列进路，清空此列数据，下一条数据依然在此列存放，否则导致此列始端按钮有值，而终端按钮为空，包含这个始端按钮的进路不能排列
+					//row=0;                //排列进路列表转到下一列记录数据，否则容易崩溃
+				    //col++;
+			//	    return false;}
+			//}
+			if(row<2){
+				JinLuPos[row][col]=obj;
+				//alert("点击一个按钮");
+				row++;
+			}
+			else{
+				row=0;
+				col++;
+				JinLuPos[row][col]=obj;
+				row++;
+				//alert("换了一列");
+				//alert(JinLuPos[0].length);
+			}
+			//alert(JinLu.size[0]);
+		}
+	     
+        return true;
+    }
+    //定期刷新，检测是否取消进路标志为0，若为零，获取进路始端按钮，存入CancelPos[]中
+	//在取消进路列表中搜索始端按钮，若找到，则将以这个按钮为始端的所有进路都取消
+	function CancelJinLu(){
+		var x,y,k;
+		for(var i=0;i<CancelPos.length;i++)
+		{
+			if(CancelPos[i]==document.getElementById('Xa')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('Xa')){
+							if(JinLuPos[1][p] == document.getElementById('SIa')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								x=195;
+								y=245+d;
+								k=50;		
+								context.moveTo( 163,352); 
+								context.lineTo( 753, 352);
+								//道岔上部分
+								context.moveTo( x+10+k-50, y-1-k+50); 
+								context.lineTo( x+10+k-2, y-1-k+2);
+								context.moveTo( x+10+k-2, 292); 
+								context.lineTo( 326, 292);
+								context.stroke();
+								//CancelX=1;//还原
+								//X信号机红灯
+								x=210;y=250+d
+								xiaxingxinhaoji(x,y)
+								}
+							else if(JinLuPos[1][p] == document.getElementById('S3a')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								//恢复
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 163,352); 
+								context.lineTo( 205, 352); 
+								//1
+								x=195;
+								y=245+d;
+								k=55;
+								context.moveTo( x+7, y+2 ); 
+								context.lineTo( x+7+k, y+2-k);
+								
+								context.moveTo( x+7+k,292);
+								context.lineTo( 653, 292);
+								
+								context.moveTo( x+7+20,352);
+								context.lineTo( 326, 352);
+								//5
+								x=315;
+								y=187+d;
+								k=55;
+								context.moveTo( x+40+6, y-3-6 ); 
+								context.lineTo( x+40+k-2, y-3-k+2);
+								context.moveTo( x+40+k,233); 
+								context.lineTo( 436, 233);
+								context.stroke();
+								//CancelX=1;//还原
+								//X信号机红灯
+								x=210;y=250+d
+								xiaxingxinhaojiUUdengD(x,y)
+								xiaxingxinhaoji(x,y)
+								}
+							else if(JinLuPos[1][p] == document.getElementById('S5a')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 163,352); 
+								context.lineTo( 205, 352); 
+								//1
+								x=195;
+								y=245+d;
+								k=55;
+								context.moveTo( x+7, y+2 ); 
+								context.lineTo( x+7+k, y+2-k);
+								context.moveTo( x+7+k,292);
+								context.lineTo( 352, 292);
+								context.moveTo( 372,292);
+								context.lineTo( 406, 292);
+								
+								context.moveTo( x+7+20,352);
+								context.lineTo( 326, 352);
+								//5
+								x=315;
+								y=187+d;
+								k=55;	
+								context.moveTo( x+37, y ); 
+								context.lineTo( x+37+k, y-k);
+								context.moveTo( x+37+k,233); 
+								context.lineTo( 613, 233); 
+						
+								context.stroke();
+								//CancelX=1;//还原
+								//X信号机红灯
+								x=210;y=250+d
+								xiaxingxinhaojiUUdengD(x,y)
+								xiaxingxinhaoji(x,y)
+								}
+						}
+					}		
+			}
+			else if(CancelPos[i]==document.getElementById('Sa'))
+			{
+				for(var q=0;q<JinLuPos[0].length;q++){
+						if(JinLuPos[0][q]==document.getElementById('Sa')){
+							if(JinLuPos[1][q] == document.getElementById('XIIa')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								x=810;
+								y=371+d;
+								k=50;		
+								context.moveTo( 1050,413); 
+								context.lineTo( 326, 413);
+								//道岔反位部分
+								context.moveTo(x+k-5, y-1-k+5); 
+								context.lineTo( x, y-1);
+								context.moveTo( x,473); 
+								context.lineTo( 753, 473);
+								context.stroke();
+								//CancelS=1;//还原
+								//S信号机红灯
+								x=1063;y=340+d
+								shangxingxinhaoji(x,y)
+								}
+							else if(JinLuPos[1][q] == document.getElementById('X4a')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								//8
+								x=810;
+								y=371+d;
+								k=50;
+								context.moveTo( 1050,413); 
+								context.lineTo( x+k, 413);
+								context.moveTo( x, y-1 ); 
+								context.lineTo( x+k, y-1-k);	 
+								
+								context.moveTo(x,473);
+								context.lineTo( 406, 473);
+								
+								context.moveTo( 753, 413); 
+								context.lineTo( x+k-20, 413);
+								
+								//12
+								x=654;
+								y=434+d;
+								k=50;
+								context.moveTo( x, y-3 ); 
+								context.lineTo( x+k-5, y-3-k+5);
+								context.moveTo( x, 533 ); 
+								context.lineTo( 613,533);
+								context.stroke();
+								
+								//S信号机红灯
+								x=1063;y=340+d
+								shangxingxinhaojiUUdengD(x,y)
+								shangxingxinhaoji(x,y)
+								}
+							else if(JinLuPos[1][q] == document.getElementById('X6a')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								//8
+								x=810;
+								y=371+d;
+								k=50;
+								context.moveTo( 1050,413); 
+								context.lineTo( x+k, 413);
+								context.moveTo( x, y-1 ); 
+								context.lineTo( x+k, y-1-k);	 
+								
+								context.moveTo(x,473);
+								context.lineTo( 704, 473);
+								context.moveTo(684,473);
+								context.lineTo( 653, 473);
+								
+								context.moveTo( 753, 413); 
+								context.lineTo( x+k-20, 413);
+								//12
+								x=654;
+								y=434+d;
+								k=50;
+								context.moveTo( x, y-3 ); 
+								context.lineTo( x+k, y-3-k);
+								context.moveTo( x, 533 ); 
+								context.lineTo( 436,533);
+								context.stroke();
+								//CancelS=1;//还原
+								//S信号机红灯
+								x=1063;y=340+d
+								shangxingxinhaojiUUdengD(x,y)
+								shangxingxinhaoji(x,y)
+								}
+						}
+					}
+				}
+			else if(CancelPos[i]==document.getElementById('SIIa')){
+				        var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = '#848284';
+						x=195;
+						y=320+d;
+						k=50;		
+						context.moveTo( 326,413); 
+						context.lineTo( 163, 413);
+						
+						context.moveTo( x+8+5, y-1+5); 
+						context.lineTo( x+10+k, y+1+k);
+						context.moveTo( x+10+k, 473 ); 
+						context.lineTo( 326, 473);
+						context.stroke();
+						
+						//S信号机红灯
+						x=340;y=340+d
+						shangxingxinhaoji(x,y)
+				}
+			else if(CancelPos[i]==document.getElementById('S4a')){
+				       var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = '#848284';		
+						//3号道岔
+						x=195;
+						y=320+d;
+						k=52;		
+						context.moveTo( 406,473); 
+						context.lineTo( x+8+k, 473);
+						context.moveTo( x+8, y-1 ); 
+						context.lineTo( x+8+k, y-1+k);
+						context.moveTo(  x+8,413); 
+						context.lineTo( 163, 413);
+						
+						context.moveTo(  223, 413); 
+						context.lineTo( 326, 413);
+						//7号道岔
+						x=315;
+						y=378+d;
+						k=50;
+						context.moveTo( x+37+10, y+10 ); 
+						context.lineTo( x+40+k, y+3+k);
+						context.moveTo( x+40+k, 533 ); 
+						context.lineTo( 436, 533);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 203, 413); 
+						context.lineTo( 223, 413);
+						context.stroke();
+						//CancelS=1;//还原
+						//S信号机红灯
+						x=420;y=400+d
+						shangxingxinhaoji(x,y)
+				}
+			else if(CancelPos[i]==document.getElementById('S6a')){
+				       var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = '#848284';		
+						//3号道岔
+						x=195;
+						y=320+d;
+						k=52;		
+						context.moveTo(  x+8,413); 
+						context.lineTo( 163, 413);
+						context.moveTo(  223, 413); 
+						context.lineTo( 326, 413);
+						context.moveTo( x+8, y-1 ); 
+						context.lineTo( x+8+k, y-1+k);
+						context.moveTo( x+8+k,473); 
+						context.lineTo( 352, 473);
+						context.moveTo( 406,473); 
+						context.lineTo(372, 473);
+						
+				        //7号道岔
+						x=315;
+						y=378+d;
+						k=55;
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+k, y+k);	
+						context.moveTo( x+37+k, 533 ); 
+						context.lineTo( 436, 533);
+						context.stroke();
+						
+						//S信号机红灯
+						x=450;y=460+d
+						shangxingxinhaoji(x,y)
+			}
+			else if(CancelPos[i]==document.getElementById('XIa')){
+				       var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = '#848284';
+						//6
+						x=810;
+						y=189+d;
+						k=55;		
+						context.moveTo( 753,353); 
+						context.lineTo( 1050,353);
+						//6号道岔
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k-10, y+6+k-10);
+						context.moveTo( 753,293); 
+						context.lineTo( x, 293);
+						context.stroke();
+						//CancelX=1;//还原
+						//X信号机红灯
+						x=800;y=250+d
+						xiaxingxinhaoji(x,y)
+				}
+			else if(CancelPos[i]==document.getElementById('X3a')){
+				       var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = '#848284';		
+						context.moveTo( 653,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( x+k,353); 
+						context.lineTo( 1050, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo(x+k-10, y+6+k-10);
+						context.moveTo( 613,233);
+						context.lineTo( x, 233);
+						context.stroke();
+						
+						//X信号机红灯
+						x=700;y=190+d
+						xiaxingxinhaoji(x,y)
+		}
+		  else if(CancelPos[i]==document.getElementById('X5a')){
+			            var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = '#848284';		
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( 613,233);
+						context.lineTo( x, 233);
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( 653,293); 
+						context.lineTo( x+k-20, 293);
+						context.moveTo( x+k,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						context.moveTo( x+k,353); 
+						context.lineTo( 1050, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						context.stroke();
+						
+						//X信号机红灯
+						x=660;y=130+d
+						xiaxingxinhaoji(x,y)
+			  }
+			 //取消调车进路
+			 //D1
+			else if(CancelPos[i]==document.getElementById('D1')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('D1')){
+							if(JinLuPos[1][p] == document.getElementById('S5b')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								//5
+								x=315;
+								y=187+d;
+								k=55;		
+								context.moveTo( 326,292);
+								context.lineTo(  352, 292);
+									
+								context.moveTo( x+37, y ); 
+								context.lineTo( x+37+k, y-k);
+								context.moveTo( x+37+k,233); 
+								context.lineTo( 613, 233); 
+								 
+								context.moveTo( 372,292);
+								context.lineTo( 406, 292);
+								context.stroke();
+								//D1白灯
+								x=373;y=290
+								xiaxingdiaochexinhaoji(x,y);
+
+							}
+							else if(JinLuPos[1][p] == document.getElementById('S3b')){
+								
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//画进路
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 326,292); 
+								context.lineTo( 653, 292); 
+								//5
+								x=315;
+								y=187+d;
+								k=55;
+								context.moveTo( x+37+10, y-10); 
+								context.lineTo( x+37+k, y-k);
+								context.moveTo( x+37+k,233); 
+								context.lineTo(  436, 233);
+								context.stroke()
+								//D1白灯
+								x=373;y=290
+								xiaxingdiaochexinhaoji(x,y);
+								
+								}
+						}
+				}
+			}
+			//D3
+			else if(CancelPos[i]==document.getElementById('D3')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('D3')){
+							if(JinLuPos[1][p] == document.getElementById('S4b')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								//7号道岔
+								x=315;
+								y=378+d;
+								k=50;	
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 326,473); 
+								context.lineTo( 653, 473);
+								
+								context.moveTo(  x+37+10, y+10 ); 
+								context.lineTo( x+40+k, y+3+k);
+								context.moveTo( x+40+k, 533 ); 
+								context.lineTo( 436, 533);
+								context.stroke();
+								//D3白灯
+								x=373;y=470
+								xiaxingdiaochexinhaoji(x,y);
+								
+							}
+							else if(JinLuPos[1][p] == document.getElementById('S6b')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';	
+								//7号道岔
+								x=315;
+								y=378+d;
+								k=55;
+								context.moveTo( x+37, y ); 
+								context.lineTo( x+37+k, y+k);	
+								context.moveTo( x+37+k, 533 ); 
+								context.lineTo( 613, 533);	
+								
+								context.moveTo( 352,473);
+								context.lineTo( 326, 473);
+								context.moveTo( 406,473); 
+								context.lineTo(372, 473);
+								context.stroke();
+								//D3白灯
+								x=373;y=470
+								xiaxingdiaochexinhaoji(x,y);
+								}
+						}
+				}
+			}
+			//D2
+			else if(CancelPos[i]==document.getElementById('D2')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('D2')){
+							if(JinLuPos[1][p] == document.getElementById('X5b')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								//10
+								x=652;
+								y=128+d;
+								k=55;
+								context.moveTo( 436,233);
+								context.lineTo( x, 233);
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k, y+6+k);
+								
+								context.moveTo( 653,293); 
+								context.lineTo( x+k-20, 293);
+								context.moveTo( x+k,293); 
+								context.lineTo( 811, 293);
+								//6
+								x=810;
+								y=189+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k, y+6+k);
+								context.moveTo( x+k,353); 
+								context.lineTo( 905, 353);
+								context.moveTo( 753,353); 
+								context.lineTo( 845, 353);
+								context.stroke();
+								//D2白灯
+								x=919;y=380
+								shangxingdiaochexinhaoji(x,y);
+									
+							}
+							else if(JinLuPos[1][p] == document.getElementById('X3b')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 406,293); 
+								context.lineTo( 811, 293);
+								//6
+								x=810;
+								y=189+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k, y+6+k);
+								
+								context.moveTo( x+k,353); 
+								context.lineTo( 905, 353);
+								context.moveTo( 753,353); 
+								context.lineTo( 845, 353);
+								//10
+								x=652;
+								y=128+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo(x+k-10, y+6+k-10);
+								context.moveTo( 613,233);
+								context.lineTo( x, 233);
+								context.stroke();
+								//D2白灯
+								x=919;y=380
+								shangxingdiaochexinhaoji(x,y);
+								
+								}
+							else if(JinLuPos[1][p] == document.getElementById('XIb')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 326,353); 
+								context.lineTo( 905,353);
+								//6号道岔
+								x=810;
+								y=189+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k-10, y+6+k-10);
+								context.moveTo( 753,293); 
+								context.lineTo( x, 293);
+								context.stroke();
+								//D2白灯
+								x=919;y=380
+								shangxingdiaochexinhaoji(x,y);
+										
+								}
+						}
+				}
+			}
+			//D4
+			else if(CancelPos[i]==document.getElementById('D4')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('D4')){
+							if(JinLuPos[1][p] == document.getElementById('XIIb')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 905,413); 
+								context.lineTo( 326, 413);
+								//道岔反位部分
+								x=810;
+								y=371+d;
+								k=50;
+								context.moveTo(x+k-5, y-1-k+5); 
+								context.lineTo( x, y-1);
+								context.moveTo( x,473); 
+								context.lineTo( 753, 473);
+								context.stroke();
+								//D4白灯
+								x=919;y=440
+								shangxingdiaochexinhaoji(x,y);
+								
+							}
+							else if(JinLuPos[1][p] == document.getElementById('X4b')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								//8
+								x=810;
+								y=371+d;
+								k=50;
+								context.moveTo( 905,413); 
+								context.lineTo( x+k, 413);
+								context.moveTo( x, y-1 ); 
+								context.lineTo( x+k, y-1-k);	 
+								
+								context.moveTo(x,473);
+								context.lineTo( 406, 473);
+								
+								context.moveTo( 753, 413); 
+								context.lineTo( x+k-20, 413);
+								//12
+								x=654;
+								y=434+d;
+								k=50;
+								context.moveTo( x, y-3 ); 
+								context.lineTo( x+k-5, y-3-k+5);
+								context.moveTo( x, 533 ); 
+								context.lineTo( 613,533);
+								context.stroke();
+								//D4白灯
+								x=919;y=440
+								shangxingdiaochexinhaoji(x,y);
+									
+								}
+							else if(JinLuPos[1][p] == document.getElementById('X6b')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								//8
+								x=810;
+								y=371+d;
+								k=50;
+								context.moveTo( 905,413); 
+								context.lineTo( x+k, 413);
+								context.moveTo( x, y-1 ); 
+								context.lineTo( x+k, y-1-k);	 
+								
+								context.moveTo(x,473);
+								context.lineTo( 704, 473);
+								context.moveTo(684,473);
+								context.lineTo( 653, 473);
+								
+								context.moveTo( 753, 413); 
+								context.lineTo( x+k-20, 413);
+								//12
+								x=654;
+								y=434+d;
+								k=50;
+								context.moveTo( x, y-3 ); 
+								context.lineTo( x+k, y-3-k);
+								context.moveTo( x, 533 ); 
+								context.lineTo( 436,533);
+								
+								context.stroke();
+								//D4白灯
+								x=919;y=440
+								shangxingdiaochexinhaoji(x,y);
+								}
+						}
+				}
+			}
+			//S5b
+			else if(CancelPos[i]==document.getElementById('S5b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('S5b')){
+							if(JinLuPos[1][p] == document.getElementById('D1')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								//5
+								x=315;
+								y=187+d;
+								k=55;		
+								context.moveTo( 255,292);
+								context.lineTo( 355, 292);
+								context.moveTo( x+37, y ); 
+								context.lineTo( x+37+k, y-k);
+								context.moveTo( 407,233); 
+								context.lineTo( 436, 233); 
+								
+								context.moveTo( 372,292);
+								context.lineTo( 406, 292);
+								context.stroke(); 
+								
+								//S5信号机兼做调车信号
+								x=450;y=260
+								shangxingxinhaoji(x,y);
+							}
+						}
+				}
+			}
+			
+			//S3b
+			else if(CancelPos[i]==document.getElementById('S3b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('S3b')){
+							if(JinLuPos[1][p] == document.getElementById('D1')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//画进路
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 255,292); 
+								context.lineTo( 406, 292); 
+								//5
+								x=315;
+								y=187+d;
+								k=55;
+								context.moveTo( x+37+10, y-10); 
+								context.lineTo( x+37+k, y-k);
+								context.moveTo( x+37+k,233); 
+								context.lineTo(  436, 233);
+								context.stroke()
+								//S3信号机兼做调车信号
+								x=420;y=320
+								shangxingxinhaoji(x,y);
+								
+							}
+						}
+				}
+			}
+			
+			//S4b
+			else if(CancelPos[i]==document.getElementById('S4b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('S4b')){
+							if(JinLuPos[1][p] == document.getElementById('D3')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+									
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								//7号道岔
+								x=315;
+								y=378+d;
+								k=50;		
+								context.moveTo( 406,473); 
+								context.lineTo( 255, 473);
+								context.moveTo(  x+37+10, y+10 ); 
+								context.lineTo( x+40+k, y+3+k);
+								context.moveTo( x+40+k, 533 ); 
+								context.lineTo( 436, 533);
+								context.stroke();
+								//S4信号机兼做调车信号
+								x=420;y=500
+								shangxingxinhaoji(x,y);
+								
+							}
+						}
+				}
+			}
+			//S6b
+			else if(CancelPos[i]==document.getElementById('S6b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('S6b')){
+							if(JinLuPos[1][p] == document.getElementById('D3')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';	
+								//7号道岔
+								x=315;
+								y=378+d;
+								k=55;
+								context.moveTo( x+37, y ); 
+								context.lineTo( x+37+k, y+k);	
+								context.moveTo( x+37+k, 533 ); 
+								context.lineTo( 436, 533);	
+									 
+								context.moveTo( 355,473);
+								context.lineTo(255, 473);
+								
+								context.moveTo( 406,473); 
+								context.lineTo(372, 473);
+								context.stroke();
+								//S6信号机兼做调车信号
+								x=450;y=560
+								shangxingxinhaoji(x,y);
+								
+							}
+						}
+				}
+			}
+			
+			//X5b
+			else if(CancelPos[i]==document.getElementById('X5b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('X5b')){
+							if(JinLuPos[1][p] == document.getElementById('D2')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								//10
+								x=652;
+								y=128+d;
+								k=55;
+								context.moveTo( 613,233);
+								context.lineTo( x, 233);
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k, y+6+k);
+								
+								context.moveTo( 653,293); 
+								context.lineTo( x+k-20, 293);
+								context.moveTo( x+k,293); 
+								context.lineTo( 811, 293);
+								//6
+								x=810;
+								y=189+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k, y+6+k);
+								context.moveTo( x+k,353); 
+								context.lineTo( 905, 353);
+								context.moveTo( 753,353); 
+								context.lineTo( 845, 353);
+								context.stroke();
+								//X3信号机兼做调车信号
+								x=660;y=230
+								xiaxingxinhaoji(x,y);
+									
+							}
+						}
+				}
+			}
+		
+			//X3b
+			else if(CancelPos[i]==document.getElementById('X3b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('X3b')){
+							if(JinLuPos[1][p] == document.getElementById('D2')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 653,293); 
+								context.lineTo( 811, 293);
+								//6
+								x=810;
+								y=189+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k, y+6+k);
+								
+								context.moveTo( x+k,353); 
+								context.lineTo( 905, 353);
+								context.moveTo( 753,353); 
+								context.lineTo( 845, 353);
+								//10
+								x=652;
+								y=128+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo(x+k-10, y+6+k-10);
+								context.moveTo( 613,233);
+								context.lineTo( x, 233);
+								context.stroke();
+								//X3信号机兼做调车信号
+								x=700;y=290
+								xiaxingxinhaoji(x,y);
+								
+								
+							}
+						}
+				}
+			}
+		    //XIb
+			else if(CancelPos[i]==document.getElementById('XIb')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('XIb')){
+							if(JinLuPos[1][p] == document.getElementById('D2')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 753,353); 
+								context.lineTo( 1050,353);
+								//6号道岔
+								x=810;
+								y=189+d;
+								k=55;
+								context.moveTo( x, y+6 ); 
+								context.lineTo( x+k-10, y+6+k-10);
+								context.moveTo( 753,293); 
+								context.lineTo( x, 293);
+								context.stroke();
+							
+								//XI信号机兼做调车信号
+								x=800;y=350
+								xiaxingxinhaoji(x,y);
+							}
+						}
+				}
+			}
+		    //XIIb
+			else if(CancelPos[i]==document.getElementById('XIIb')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('XIIb')){
+							if(JinLuPos[1][p] == document.getElementById('D4')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								context.moveTo( 1050,413); 
+								context.lineTo( 753, 413);
+								x=810;
+								y=371+d;
+								k=50;
+								//道岔反位部分
+								context.moveTo(x+k-5, y-1-k+5); 
+								context.lineTo( x, y-1);
+								context.moveTo( x,473); 
+								context.lineTo( 753, 473);
+								context.stroke();
+								//XII信号机兼做调车信号
+								x=800;y=410
+								xiaxingxinhaoji(x,y);
+								
+							}
+						}
+				}
+			}
+		
+			 //X4b
+			else if(CancelPos[i]==document.getElementById('X4b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('X4b')){
+							if(JinLuPos[1][p] == document.getElementById('D4')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								
+								//进路绘制
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';
+								x=810;
+								y=371+d;
+								k=50;
+								context.moveTo( 1050,413); 
+								context.lineTo( x+k, 413);
+								context.moveTo( x, y-1 ); 
+								context.lineTo( x+k, y-1-k);	 
+								
+								context.moveTo(x,473);
+								context.lineTo( 653, 473);
+								
+								context.moveTo( 753, 413); 
+								context.lineTo( x+k-20, 413);
+								//12
+								x=654;
+								y=434+d;
+								k=50;
+								context.moveTo( x, y-3 ); 
+								context.lineTo( x+k-5, y-3-k+5);
+								context.moveTo( x, 533 ); 
+								context.lineTo( 613,533);
+								context.stroke();
+								//X4信号机兼做调车信号
+								x=700;y=470
+								xiaxingxinhaoji(x,y);
+								
+							}
+						}
+				}
+			}
+		
+		    //X6b
+			else if(CancelPos[i]==document.getElementById('X6b')){
+				for(var p=0;p<JinLuPos[0].length;p++){
+						if(JinLuPos[0][p]==document.getElementById('X6b')){
+							if(JinLuPos[1][p] == document.getElementById('D4')){
+								var canvas = document.getElementById("canvas");
+								var context = canvas.getContext("2d");
+								context.beginPath();
+								context.lineWidth = 5;
+								context.strokeStyle = '#848284';		
+								//8
+								x=810;
+								y=371+d;
+								k=50;
+								context.moveTo( 1050,413); 
+								context.lineTo( x+k, 413);
+								context.moveTo( x, y-1 ); 
+								context.lineTo( x+k, y-1-k);	 
+								
+								context.moveTo(x,473);
+								context.lineTo( 704, 473);
+								context.moveTo(684,473);
+								context.lineTo( 653, 473);
+								
+								context.moveTo( 753, 413); 
+								context.lineTo( x+k-20, 413);
+								//12
+								x=654;
+								y=434+d;
+								k=50;
+								context.moveTo( x, y-3 ); 
+								context.lineTo( x+k, y-3-k);
+								context.moveTo( x, 533 ); 
+								context.lineTo( 613,533);
+								
+								context.stroke();
+								//X6信号机兼做调车信号
+								x=660;y=530
+								xiaxingxinhaoji(x,y);
+								
+							}
+						}
+				}
+			}
+		
+		
+		}
+		//清除进路后，要在排列进路列表中清除此条进路的信息，对比取消进路表和排列进路表第一行，若有相同则删除对应的进路
+		for(var m=0;m<JinLuPos[0].length;m++ ){
+			for(var n=0;n<CancelPos.length;n++ ){
+				if(JinLuPos[0][m]!=null&&JinLuPos[0][m]==CancelPos[n]){
+					CancelPos[n]=null;
+					JinLuPos[0][m]=null;
+					JinLuPos[1][m]=null;
+					
+					
+					//alert("在排列进路列表中清除此条进路");
+					}
+				}
+		
+		}
+		CalcelTimer = setTimeout("CancelJinLu();",1000);      //每隔1秒刷新一次
+	}
+	//排列进路，重画轨道
+	function JinLu(){
+		var x,y,k;
+		
+		if(JinLuPos[0].length>0){
+			for(var i=0;i<JinLuPos[0].length;i++){
+				
+				if(JinLuPos[0][i]==document.getElementById('Xa')){
+					if(JinLuPos[1][i]==document.getElementById('SIa')){
+						var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						x=195;
+						y=245+d;
+						k=55;
+						context.moveTo( x+7, y+2); 
+						context.lineTo( x+10+k-50, y-1-k+50);
+						context.stroke();
+					    //画进路，1
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 163,352); 
+						context.lineTo( 753, 352);
+					    //道岔上部分
+						context.moveTo( x+10+k-50, y-1-k+50); 
+						context.lineTo( x+10+k-2, y-1-k+2);
+						context.moveTo( x+10+k-2, 292); 
+						context.lineTo( 326, 292);
+						context.stroke();
+						
+						//X信号机单黄灯
+						x=210;y=250+d
+						xiaxingxinhaojihuangdeng(x,y)
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("1")
+						}
+					else if(JinLuPos[1][i]==document.getElementById('S3a')){
+						var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						x=315;
+						y=187+d;
+						k=55;
+						context.moveTo( x+37, y); 
+						context.lineTo( x+40+6, y-3-6);
+						context.stroke();
+						//画进路
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 163,352); 
+						context.lineTo( 205, 352); 
+						//1
+						x=195;
+						y=245+d;
+						k=55;
+						context.moveTo( x+7, y+2 ); 
+						context.lineTo( x+7+k, y+2-k);
+						
+						context.moveTo( x+7+k,292);
+						context.lineTo( 653, 292);
+						
+						context.moveTo( x+7+20,352);
+						context.lineTo( 326, 352);
+						//5
+						x=315;
+						y=187+d;
+						k=55;
+						context.moveTo( x+40+6, y-3-6 ); 
+						context.lineTo( x+40+k-2, y-3-k+2);
+						context.moveTo( x+40+k,233); 
+						context.lineTo( 436, 233);
+						context.stroke()
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 202, 352); 
+						context.lineTo( 222, 352);
+						context.stroke();
+						//X信号机双黄灯
+						x=210;y=250+d
+						xiaxingxinhaojiUUdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("1")
+						flag=1
+						colorchange("5")
+						
+						}
+					else if(JinLuPos[1][i]==document.getElementById('S5a')){
+						var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';	
+						context.moveTo( 163,352); 
+						context.lineTo( 205, 352); 
+						//1
+						x=195;
+						y=245+d;
+						k=55;
+						context.moveTo( x+7, y+2 ); 
+						context.lineTo( x+7+k, y+2-k);
+						context.moveTo( x+7+k,292);
+						context.lineTo( 352, 292);
+						context.moveTo( 372,292);
+						context.lineTo( 406, 292);
+						
+						context.moveTo( x+7+20,352);
+						context.lineTo( 326, 352);
+						//5
+						x=315;
+						y=187+d;
+						k=55;	
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+k, y-k);
+						context.moveTo( x+37+k,233); 
+						context.lineTo( 613, 233); 
+						
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 202, 352); 
+						context.lineTo( 222, 352);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 352, 292); 
+						context.lineTo( 372, 292);
+						context.stroke();
+						
+						//X信号机双黄灯
+						x=210;y=250+d
+						xiaxingxinhaojiUUdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("1")
+						flag=2
+						colorchange("5")
+						}
+					}
+				else if(JinLuPos[0][i]==document.getElementById('Sa')){
+					if(JinLuPos[1][i]==document.getElementById('XIIa')){
+						var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo(x+k, y-1-k ); 
+						context.lineTo( x+k-5, y-1-k+5);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 1050,413); 
+						context.lineTo( 326, 413);
+						//道岔反位部分
+						context.moveTo(x+k-5, y-1-k+5); 
+						context.lineTo( x, y-1);
+						context.moveTo( x,473); 
+						context.lineTo( 753, 473);
+						context.stroke();
+						//S信号机黄灯
+						x=1063;y=340+d
+            			shangxingxinhaojihuangdeng(x,y)
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("8")
+						}
+					else if(JinLuPos[1][i]==document.getElementById('X4a')){
+						var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo(x+k, y-3-k );
+						context.lineTo( x+k-5, y-3-k+5);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//8
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo( 1050,413); 
+						context.lineTo( x+k, 413);
+						context.moveTo( x, y-1 ); 
+						context.lineTo( x+k, y-1-k);	 
+						
+						context.moveTo(x,473);
+						context.lineTo( 406, 473);
+						
+						context.moveTo( 753, 413); 
+						context.lineTo( x+k-20, 413);
+						
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo( x, y-3 ); 
+						context.lineTo( x+k-5, y-3-k+5);
+						context.moveTo( x, 533 ); 
+						context.lineTo( 613,533);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 860, 413); 
+						context.lineTo( 840, 413);
+						context.stroke();
+						//S信号机双黄灯
+						x=1063;y=340+d
+						shangxingxinhaojiUUdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("8")
+						flag=1
+						colorchange("12")
+						}
+					else if(JinLuPos[1][i]==document.getElementById('X6a')){
+						var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//8
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo( 1050,413); 
+						context.lineTo( x+k, 413);
+						context.moveTo( x, y-1 ); 
+						context.lineTo( x+k, y-1-k);	 
+						
+						context.moveTo(x,473);
+						context.lineTo( 704, 473);
+						context.moveTo(684,473);
+						context.lineTo( 653, 473);
+						
+						context.moveTo( 753, 413); 
+						context.lineTo( x+k-20, 413);
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo( x, y-3 ); 
+						context.lineTo( x+k, y-3-k);
+						context.moveTo( x, 533 ); 
+						context.lineTo( 436,533);
+						
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 860, 413); 
+						context.lineTo( 840, 413);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 684, 473); 
+						context.lineTo( 704, 473);
+						context.stroke();
+						//S信号机双黄灯
+						x=1063;y=340+d
+						shangxingxinhaojiUUdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("8")
+						flag=2
+						colorchange("12")
+						}
+					}
+				else if(JinLuPos[0][i]==document.getElementById('SIIa')){
+					if(JinLuPos[1][i]==document.getElementById('XFa')){
+						var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						x=195;
+						y=320+d;
+						k=50;
+						context.moveTo(x+8, y-1 ); 
+						context.lineTo( x+8+5, y-1+5);
+						
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 326,413); 
+						context.lineTo( 163, 413);
+						
+						context.moveTo( x+8+5, y-1+5); 
+						context.lineTo( x+10+k, y+1+k);
+						context.moveTo( x+10+k, 473 ); 
+						context.lineTo( 326, 473);
+						context.stroke();
+						
+						//S信号机绿灯
+						x=340;y=340+d
+						shangxingxinhaojilvdeng(x,y)
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("3")
+						}
+					}
+				else if(JinLuPos[0][i]==document.getElementById('S4a')){
+					if(JinLuPos[1][i]==document.getElementById('XFa')){
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//7
+						x=315;
+						y=378+d;
+						k=50;
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+10, y+10);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//3号道岔
+						x=195;
+						y=320+d;
+						k=52;		
+						context.moveTo( 406,473); 
+						context.lineTo( x+8+k, 473);
+						context.moveTo( x+8, y-1 ); 
+						context.lineTo( x+8+k, y-1+k);
+						context.moveTo(  x+8,413); 
+						context.lineTo( 163, 413);
+						
+						context.moveTo(  223, 413); 
+						context.lineTo( 326, 413);
+						//7号道岔
+						x=315;
+						y=378+d;
+						k=50;
+						context.moveTo( x+37+10, y+10); 
+						context.lineTo( x+40+k, y+3+k);
+						context.moveTo( x+40+k, 533 ); 
+						context.lineTo( 436, 533);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 203, 413); 
+						context.lineTo( 223, 413);
+						context.stroke();
+						//S4信号机绿灯
+						x=420;y=400+d
+						shangxingxinhaojilvdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("3")
+						flag=1
+						colorchange("7")
+					}
+				}
+				else if(JinLuPos[0][i]==document.getElementById('S6a')){
+					if(JinLuPos[1][i]==document.getElementById('XFa')){
+					   var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';	
+						//3号道岔
+						x=195;
+						y=320+d;
+						k=52;		
+						context.moveTo(  x+8,413); 
+						context.lineTo( 163, 413);
+						context.moveTo(  223, 413); 
+						context.lineTo( 326, 413);
+						context.moveTo( x+8, y-1 ); 
+						context.lineTo( x+8+k, y-1+k);
+						context.moveTo( x+8+k,473); 
+						context.lineTo( 352, 473);
+						context.moveTo( 406,473); 
+						context.lineTo(372, 473);
+						
+				        //7号道岔
+						x=315;
+						y=378+d;
+						k=55;
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+k, y+k);	
+						context.moveTo( x+37+k, 533 ); 
+						context.lineTo( 436, 533);
+					
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 203, 413); 
+						context.lineTo( 223, 413);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 352, 473); 
+						context.lineTo( 372, 473);
+						context.stroke();
+						//S6信号机绿灯
+						x=450;y=460+d
+						shangxingxinhaojilvdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("3")
+						flag=2
+						colorchange("7")
+					}
+				}
+				else if(JinLuPos[0][i]==document.getElementById('XIa')){
+					if(JinLuPos[1][i]==document.getElementById('SFa')){
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x+k-10, y+6+k-10 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 753,353); 
+						context.lineTo( 1050,353);
+						//6号道岔
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k-10, y+6+k-10);
+						context.moveTo( 753,293); 
+						context.lineTo( x, 293);
+						context.stroke();
+						//XI信号机绿灯
+						x=800;y=250+d
+						xiaxingxinhaojilvdeng(x,y)
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("6")
+					    }  
+					}
+				else if(JinLuPos[0][i]==document.getElementById('X3a')){
+					if(JinLuPos[1][i]==document.getElementById('SFa')){
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//10号道岔
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( x+k-10, y+6+k-10 ); 
+						context.lineTo( x+k, y+6+k);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 653,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( x+k,353); 
+						context.lineTo( 1050, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo(x+k-10, y+6+k-10);
+						context.moveTo( 613,233);
+						context.lineTo( x, 233);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 845, 353); 
+						context.lineTo( 865, 353);
+						context.stroke();
+						
+						//X3信号机绿灯
+						x=700;y=190+d
+						xiaxingxinhaojilvdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("6")
+						flag=1
+						colorchange("10")
+						}
+					}
+				else if(JinLuPos[0][i]==document.getElementById('X5a')){
+					if(JinLuPos[1][i]==document.getElementById('SFa')){
+					   var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';	
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( 613,233);
+						context.lineTo( x, 233);
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( 653,293); 
+						context.lineTo( x+k-20, 293);
+						context.moveTo( x+k,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						context.moveTo( x+k,353); 
+						context.lineTo( 1050, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 845, 353); 
+						context.lineTo( 865, 353);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 707, 293); 
+						context.lineTo( 687, 293);
+						context.stroke();
+						//X5信号机绿灯
+						x=660;y=130+d
+						xiaxingxinhaojilvdeng(x,y)
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("6")
+						flag=2
+						colorchange("10")
+						}
+					}
+				//排列调车进路
+				else if(JinLuPos[0][i]==document.getElementById('D1')&&JinLuPos[1][i]==document.getElementById('S5b')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//5
+						x=315;
+						y=187+d;
+						k=55;		
+						context.moveTo( 326,292);
+						context.lineTo(  352, 292);
+							
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+k, y-k);
+						context.moveTo( x+37+k,233); 
+						context.lineTo( 613, 233); 
+						 
+						context.moveTo( 372,292);
+						context.lineTo( 406, 292);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo(  352, 292); 
+						context.lineTo( 372, 292);
+						
+						context.stroke();
+						
+						//D1白灯
+						x=373;y=190+d
+						xiaxingdiaochexinhaojiBai(x,y);
+						
+
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("5")	
+				}
+				else if(JinLuPos[0][i]==document.getElementById('S5b')&&JinLuPos[1][i]==document.getElementById('D1')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//5
+						x=315;
+						y=187+d;
+						k=55;		
+						context.moveTo( 255,292);
+						context.lineTo( 355, 292);
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+k, y-k);
+						context.moveTo( 407,233); 
+						context.lineTo( 436, 233); 
+						
+						context.moveTo( 372,292);
+						context.lineTo( 406, 292);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 355, 292); 
+						context.lineTo( 375, 292);
+						context.stroke();
+						
+						//S5信号机兼做调车信号
+						x=450;y=160+d
+						shangxingxinhaojiBai(x,y);	
+
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("5")	
+				}
+				else if(JinLuPos[0][i]==document.getElementById('D1')&&JinLuPos[1][i]==document.getElementById('S3b')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+			
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//5
+						x=315;
+						y=187+d;
+						k=55;
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+10, y-10);
+						
+						context.stroke();
+						//画进路
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 326,292); 
+						context.lineTo( 653, 292); 
+						
+						context.moveTo( x+37+10, y-10); 
+						context.lineTo( x+37+k, y-k);
+						context.moveTo( x+37+k,233); 
+						context.lineTo(  436, 233);
+						context.stroke()
+						
+						//D1白灯
+						x=373;y=190+d
+						xiaxingdiaochexinhaojiBai(x,y);
+							
+
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("5")	
+				}
+				else if(
+				        JinLuPos[0][i]==document.getElementById('S3b')&&JinLuPos[1][i]==document.getElementById('D1')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+			
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//5
+						x=315;
+						y=187+d;
+						k=55;
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+10, y-10);
+						context.stroke();
+						//画进路
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 255,292); 
+						context.lineTo( 406, 292); 
+						
+						context.moveTo( x+37+10, y-10); 
+						context.lineTo( x+37+k, y-k);
+						context.moveTo( x+37+k,233); 
+						context.lineTo(  436, 233);
+						context.stroke()
+						
+						//S3信号机兼做调车信号
+						
+						x=420;y=320
+						shangxingxinhaojiBai(x,y);
+								
+
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("5")	
+				}
+				//D3
+				 else if(JinLuPos[0][i]==document.getElementById('D3')&&JinLuPos[1][i]==document.getElementById('S4b')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//7号道岔
+						x=315;
+						y=378+d;
+						k=50;		
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+10, y+10);
+						 
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 326,473); 
+						context.lineTo( 653, 473);
+						
+						context.moveTo(  x+37+10, y+10 ); 
+						context.lineTo( x+40+k, y+3+k);
+						context.moveTo( x+40+k, 533 ); 
+						context.lineTo( 436, 533);
+						
+						context.stroke();
+						
+						//D3白灯
+						//x=373;y=370+d
+						x=373;y=470
+						xiaxingdiaochexinhaojiBai(x,y);
+						
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("7")	
+				}
+				 else if(
+				        JinLuPos[0][i]==document.getElementById('S4b')&&JinLuPos[1][i]==document.getElementById('D3')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//7号道岔
+						x=315;
+						y=378+d;
+						k=50;			
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+10, y+10);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 406,473); 
+						context.lineTo( 255, 473);
+						context.moveTo(  x+37+10, y+10 ); 
+						context.lineTo( x+40+k, y+3+k);
+						context.moveTo( x+40+k, 533 ); 
+						context.lineTo( 436, 533);
+						context.stroke();
+						
+						//S4信号机兼做调车信号
+						x=420;y=500
+						//x=420;y=400+d
+						shangxingxinhaojiBai(x,y);
+								
+						
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("7")	
+				}
+				else if(JinLuPos[0][i]==document.getElementById('D3')&&JinLuPos[1][i]==document.getElementById('S6b')
+				        ){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//7号道岔
+						x=315;
+						y=378+d;
+						k=55;
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+k, y+k);	
+						context.moveTo( x+37+k, 533 ); 
+						context.lineTo( 613, 533);	
+						
+						context.moveTo( 352,473);
+						context.lineTo( 326, 473);
+						context.moveTo( 406,473); 
+						context.lineTo(372, 473);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 352, 473); 
+						context.lineTo( 372, 473);
+						context.stroke();
+						
+						//D3白灯
+						x=373;y=470
+						xiaxingdiaochexinhaojiBai(x,y);
+						
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("7")	
+				}
+				else if(
+				        JinLuPos[0][i]==document.getElementById('S6b')&&JinLuPos[1][i]==document.getElementById('D3')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//7号道岔
+						x=315;
+						y=378+d;
+						k=55;
+						context.moveTo( x+37, y ); 
+						context.lineTo( x+37+k, y+k);	
+						context.moveTo( x+37+k, 533 ); 
+						context.lineTo( 436, 533);	
+							
+						//context.moveTo( 436,533);
+//						context.lineTo( 412, 533);
+//						context.moveTo( 413,533); 
+//						context.lineTo( 355, 471); 
+						context.moveTo( 355,473);
+						context.lineTo(255, 473);
+						
+						context.moveTo( 406,473); 
+						context.lineTo(372, 473);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 352, 473); 
+						context.lineTo( 372, 473);
+						context.stroke();
+						
+						
+						//S6信号机兼做调车信号
+						x=450;y=560
+						//x=450;y=460+d
+						shangxingxinhaojiBai(x,y);
+								
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("7")	
+				}
+				//D2
+				else if((JinLuPos[0][i]==document.getElementById('D2')&&JinLuPos[1][i]==document.getElementById('XIb'))
+				)
+						{
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x+k-10, y+6+k-10 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 326,353); 
+						context.lineTo( 905,353);
+						//6号道岔
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k-10, y+6+k-10);
+						context.moveTo( 753,293); 
+						context.lineTo( x, 293);
+						context.stroke();
+						
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("6")
+						
+						//D2白灯
+						x=919;y=380
+						shangxingdiaochexinhaojiBai(x,y);
+						
+				}
+				else if( 
+				(JinLuPos[0][i]==document.getElementById('XIb')&&JinLuPos[1][i]==document.getElementById('D2')))
+						{
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x+k-10, y+6+k-10 ); 
+						context.lineTo( x+k, y+6+k);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 753,353); 
+						context.lineTo( 1050,353);
+						//6号道岔
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k-10, y+6+k-10);
+						context.moveTo( 753,293); 
+						context.lineTo( x, 293);
+						context.stroke();
+						
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("6")
+						
+						//XI白灯
+						x=800;y=350
+						xiaxingxinhaojiBai(x,y);
+						
+				}
+					else if(JinLuPos[0][i]==document.getElementById('D2')&&JinLuPos[1][i]==document.getElementById('X3b')
+				       ){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//10号道岔
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( x+k-10, y+6+k-10 ); 
+						context.lineTo( x+k, y+6+k);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 406,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( x+k,353); 
+						context.lineTo( 905, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo(x+k-10, y+6+k-10);
+						context.moveTo( 613,233);
+						context.lineTo( x, 233);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 845, 353); 
+						context.lineTo( 865, 353);
+						context.stroke();
+
+						//D2白灯
+						x=919;y=380
+						shangxingdiaochexinhaojiBai(x,y);
+						
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("6")	
+						flag=1
+						colorchange("10")
+				}
+				else if(
+				        JinLuPos[0][i]==document.getElementById('X3b')&&JinLuPos[1][i]==document.getElementById('D2')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//10号道岔
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( x+k-10, y+6+k-10 ); 
+						context.lineTo( x+k, y+6+k);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 653,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( x+k,353); 
+						context.lineTo( 905, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo(x+k-10, y+6+k-10);
+						context.moveTo( 613,233);
+						context.lineTo( x, 233);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 845, 353); 
+						context.lineTo( 865, 353);
+						context.stroke();
+						
+						//X3信号机兼做调车信号
+						x=700;y=290
+						xiaxingxinhaojiBai(x,y);
+								
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("6")	
+						flag=1
+						colorchange("10")
+				}
+				
+					else if(JinLuPos[0][i]==document.getElementById('D2')&&JinLuPos[1][i]==document.getElementById('X5b')
+				        ){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( 436,233);
+						context.lineTo( x, 233);
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( 653,293); 
+						context.lineTo( x+k-20, 293);
+						context.moveTo( x+k,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						context.moveTo( x+k,353); 
+						context.lineTo( 905, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 845, 353); 
+						context.lineTo( 865, 353);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 707, 293); 
+						context.lineTo( 687, 293);
+						context.stroke();
+						
+						//D2白灯
+						x=919;y=380
+						shangxingdiaochexinhaojiBai(x,y);
+						
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("6")	
+						flag=2
+						colorchange("10")
+				}	
+				else if(
+				        JinLuPos[0][i]==document.getElementById('X5b')&&JinLuPos[1][i]==document.getElementById('D2')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						//10
+						x=652;
+						y=128+d;
+						k=55;
+						context.moveTo( 613,233);
+						context.lineTo( x, 233);
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						
+						context.moveTo( 653,293); 
+						context.lineTo( x+k-20, 293);
+						context.moveTo( x+k,293); 
+						context.lineTo( 811, 293);
+						//6
+						x=810;
+						y=189+d;
+						k=55;
+						context.moveTo( x, y+6 ); 
+						context.lineTo( x+k, y+6+k);
+						context.moveTo( x+k,353); 
+						context.lineTo( 905, 353);
+						context.moveTo( 753,353); 
+						context.lineTo( 845, 353);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 845, 353); 
+						context.lineTo( 865, 353);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 707, 293); 
+						context.lineTo( 687, 293);
+						context.stroke();
+						
+						
+						//X5信号机兼做调车信号
+						x=660;y=230
+						xiaxingxinhaojiBai(x,y);
+								
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("6")	
+						flag=2
+						colorchange("10")
+				}	
+				//D4
+				else if((JinLuPos[0][i]==document.getElementById('D4')&&JinLuPos[1][i]==document.getElementById('XIIb')) 
+				)
+						{
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo(x+k, y-1-k ); 
+						context.lineTo( x+k-5, y-1-k+5);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 905,413); 
+						context.lineTo( 326, 413);
+						//道岔反位部分
+						context.moveTo(x+k-5, y-1-k+5); 
+						context.lineTo( x, y-1);
+						context.moveTo( x,473); 
+						context.lineTo( 753, 473);
+						context.stroke();
+						
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("8")
+						
+						//D4白灯
+						x=919;y=440
+						shangxingdiaochexinhaojiBai(x,y);
+						
+				}
+				else if( 
+				(JinLuPos[0][i]==document.getElementById('XIIb')&&JinLuPos[1][i]==document.getElementById('D4')))
+						{
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo(x+k, y-1-k ); 
+						context.lineTo( x+k-5, y-1-k+5);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						context.moveTo( 1050,413); 
+						context.lineTo( 753, 413);
+						//道岔反位部分
+						context.moveTo(x+k-5, y-1-k+5); 
+						context.lineTo( x, y-1);
+						context.moveTo( x,473); 
+						context.lineTo( 753, 473);
+						context.stroke();
+						
+						//道岔按钮指示颜色
+						flag=1
+						colorchange("8")
+						
+						//XII白灯
+						x=800;y=410
+						xiaxingxinhaojiBai(x,y);
+						
+				}
+					else if(JinLuPos[0][i]==document.getElementById('D4')&&JinLuPos[1][i]==document.getElementById('X4b')
+				       ){
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo(x+k, y-3-k );
+						context.lineTo( x+k-5, y-3-k+5);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//8
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo( 905,413); 
+						context.lineTo( x+k, 413);
+						context.moveTo( x, y-1 ); 
+						context.lineTo( x+k, y-1-k);	 
+						
+						context.moveTo(x,473);
+						context.lineTo( 406, 473);
+						
+						context.moveTo( 753, 413); 
+						context.lineTo( x+k-20, 413);
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo( x, y-3 ); 
+						context.lineTo( x+k-5, y-3-k+5);
+						context.moveTo( x, 533 ); 
+						context.lineTo( 613,533);
+						context.stroke();
+						
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 860, 413); 
+						context.lineTo( 840, 413);
+						context.stroke();
+						
+						
+						//D4白灯
+						x=919;y=440
+						shangxingdiaochexinhaojiBai(x,y);
+						
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("8")	
+						flag=1
+						colorchange("12")
+				}
+				else if(
+				        JinLuPos[0][i]==document.getElementById('X4b')&&JinLuPos[1][i]==document.getElementById('D4')){
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo(x+k, y-3-k );
+						context.lineTo( x+k-5, y-3-k+5);
+						context.stroke();
+						//进路绘制
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';
+						//8
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo( 1050,413); 
+						context.lineTo( x+k, 413);
+						context.moveTo( x, y-1 ); 
+						context.lineTo( x+k, y-1-k);	 
+						
+						context.moveTo(x,473);
+						context.lineTo( 653, 473);
+						
+						context.moveTo( 753, 413); 
+						context.lineTo( x+k-20, 413);
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo( x, y-3 ); 
+						context.lineTo( x+k-5, y-3-k+5);
+						context.moveTo( x, 533 ); 
+						context.lineTo( 613,533);
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 860, 413); 
+						context.lineTo( 840, 413);
+						context.stroke();
+						
+						
+						//X4信号机兼做调车信号
+						x=700;y=470
+						xiaxingxinhaojiBai(x,y);
+								
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("8")	
+						flag=1
+						colorchange("12")
+				}
+					else if(JinLuPos[0][i]==document.getElementById('D4')&&JinLuPos[1][i]==document.getElementById('X6b')
+				        ){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						//8
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo( 905,413); 
+						context.lineTo( x+k, 413);
+						context.moveTo( x, y-1 ); 
+						context.lineTo( x+k, y-1-k);	 
+						
+						context.moveTo(x,473);
+						context.lineTo( 704, 473);
+						context.moveTo(684,473);
+						context.lineTo( 653, 473);
+						
+						context.moveTo( 753, 413); 
+						context.lineTo( x+k-20, 413);
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo( x, y-3 ); 
+						context.lineTo( x+k, y-3-k);
+						context.moveTo( x, 533 ); 
+						context.lineTo( 436,533);
+						
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 860, 413); 
+						context.lineTo( 840, 413);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 684, 473); 
+						context.lineTo( 704, 473);
+						context.stroke();
+						
+						//D4白灯
+						x=919;y=440
+						shangxingdiaochexinhaojiBai(x,y);
+						
+						
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("8")	
+						flag=2
+						colorchange("12")
+				}	
+				else if(
+				        JinLuPos[0][i]==document.getElementById('X6b')&&JinLuPos[1][i]==document.getElementById('D4')){
+					
+					    var canvas = document.getElementById("canvas");
+						var context = canvas.getContext("2d");
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'white';		
+						//8
+						x=810;
+						y=371+d;
+						k=50;
+						context.moveTo( 1050,413); 
+						context.lineTo( x+k, 413);
+						context.moveTo( x, y-1 ); 
+						context.lineTo( x+k, y-1-k);	 
+						
+						context.moveTo(x,473);
+						context.lineTo( 704, 473);
+						context.moveTo(684,473);
+						context.lineTo( 653, 473);
+						
+						context.moveTo( 753, 413); 
+						context.lineTo( x+k-20, 413);
+						//12
+						x=654;
+						y=434+d;
+						k=50;
+						context.moveTo( x, y-3 ); 
+						context.lineTo( x+k, y-3-k);
+						context.moveTo( x, 533 ); 
+						context.lineTo( 613,533);
+						
+						context.stroke();
+						
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 860, 413); 
+						context.lineTo( 840, 413);
+						context.stroke();
+						//道岔处应该有缝隙
+						context.beginPath();
+						context.lineWidth = 5;
+						context.strokeStyle = 'black';
+						context.moveTo( 684, 473); 
+						context.lineTo( 704, 473);
+						context.stroke();
+						
+						//X6信号机兼做调车信号
+						x=660;y=530
+						xiaxingxinhaojiBai(x,y);
+							
+								
+						//道岔按钮指示颜色
+						flag=2
+						colorchange("8")	
+						flag=2
+						colorchange("12")
+				}	
+			}
+			
+		}
+	
+	      //重画闭塞分区标志
+			//闭塞分区标志
+			bisaifenqu(163,348,357)
+			bisaifenqu(163,408,417)
+			bisaifenqu(905,348,357)
+			bisaifenqu(905,408,417)
+			bisaifenqu(1050,348,357)
+			bisaifenqu(1050,408,417)
+			bisaifenqu(1230,348,357)
+			bisaifenqu(1230,408,417)
+			bisaifenqu(1410,348,357)
+			bisaifenqu(1410,408,417)
+			
+			
+			bisaifenqu(1590,348,357)
+			bisaifenqu(1590,408,417)
+			//bisaifenqu(1770,348,357)
+//			bisaifenqu(1770,408,417)
+//			bisaifenqu(1950,348,357)
+//			bisaifenqu(1950,408,417)
+
+            bisaifenqu(326,288,297)
+			bisaifenqu(326,348,357)
+			bisaifenqu(326,408,417)
+			bisaifenqu(326,468,477)
+			
+			bisaifenqu(406,288,297)
+			bisaifenqu(406,468,477)
+			
+		    bisaifenqu(436,228,237)
+			bisaifenqu(436,528,537)
+			
+		    bisaifenqu(613,228,237)
+			bisaifenqu(613,528,537)
+			
+			bisaifenqu(653,288,297)
+			bisaifenqu(653,468,477)
+			
+			bisaifenqu(753,348,357)
+			bisaifenqu(753,408,417)
+			
+			bisaifenqu(753,288,297)
+			bisaifenqu(753,468,477)
+			
+		JinluTimer = setTimeout("JinLu();",50);      //每隔1秒刷新一
+	}
+	function statement(){
+		
+		alert('此功能本实验并未涉及，请按照指导书要求进行实验!');
+		}
+	
+
+		
+    </script>
+    
+</head>
+<body>
+<button class="xzongding" onClick="zongding()" >X总定</button>
+<button class="xzongfan" onClick="zongfan()" >X总反</button>
+<button class="xdansuo" onClick="dansuo()" >X单锁</button>
+<button class="xdanjie" onClick="danjie()">X单解</button>
+<button class="xchafeng" onClick="chafeng()" >X岔封</button>
+<button class="xchajie" onClick="chajie()" >X岔解</button>
+<button class="xniufeng" onClick="statement()" >X钮封</button>
+<button class="xniujie" onClick="statement()" >X钮解</button>
+<button class="xquxiao" id="cancelx" onClick="cancel(this)" >X取消</button>
+<button class="xqujie" onClick="statement()" >X区解</button>
+<button class="xzongsuo" onClick="statement()" >X总锁</button>
+<button class="xrenjie" onClick="statement()" >X人解</button>
+<button class="qingbaojing" onClick="statement()">清报警</button>
+<button class="xinhaoming" onClick="statement()" >信号名</button>
+<button class="daochaming" onClick="statement()" >道岔名</button>
+<button class="guidaoming" onClick="statement()" >轨道名</button>
+<!--<button class="huizhi" onClick="Huizhi()">联锁回执</button>-->
+
+<button class="sjiefeng" onClick="chajie()" >S岔解</button>
+<button class="sdanfeng" onClick="chafeng()">S岔封</button>
+<button class="sdanjie" onClick="danjie()" >S单解</button>
+<button class="sdansuo" onClick="dansuo()" >S单锁</button>
+<button class="szongfan" onClick="zongfan()" >S总反</button>
+<button class="szongding" onClick="zongding()" >S总定</button>
+
+<button class="srenjie" onClick="statement()" >S人解</button>
+<button class="szongsuo" onClick="statement()" >S总锁</button>
+<button class="squjie" onClick="statement()" >S区解</button>
+<button class="squxiao" id="cancels" onClick="cancel(this)" >S取消</button>
+<button class="sniujie" onClick="statement()" >S钮解</button>
+<button class="sniufeng" onClick="statement()" >S钮封</button>
+
+<button class="shangdianjiesuo" onClick="statement()" >上电解锁</button>
+<button class="podaojiesuo" onClick="statement()">坡道解锁</button>
+<button class="yuyin" onClick="statement()">语音</button>
+<button class="yindao" onClick="statement()">引导</button>
+<button class="fuzhu" onClick="statement()">辅助</button>
+<!--道岔单操按钮,从左向右排列-->
+<button id="1" class="dancao" style="margin-left:1045px; margin-top:210px; background-color:#0F0" onClick="control1()"></button>
+<button id="3" class="dancao" style="margin-left:1145px; margin-top:210px; background-color:#0F0" onClick="control3()" ></button>
+<button id="5" class="dancao" style="margin-left:1245px; margin-top:210px; background-color:#0F0" onClick="control5()"></button>
+<button id="7" class="dancao" style="margin-left:1345px; margin-top:210px; background-color:#0F0" onClick="control7()"></button>
+
+<button id="24" class="dancao" style="margin-left:995px; margin-top:285px; background-color:#0F0" onClick="control2_4()"></button>
+<button id="6" class="dancao" style="margin-left:1095px; margin-top:285px; background-color:#0F0" onClick="control6()"></button>
+<button id="8" class="dancao" style="margin-left:1195px; margin-top:285px; background-color:#0F0" onClick="control8()"></button>
+<button id="10" class="dancao" style="margin-left:1295px; margin-top:285px; background-color:#0F0" onClick="control10()"></button>
+<button id="12" class="dancao" style="margin-left:1395px; margin-top:285px; background-color:#0F0" onClick="control12()"></button>
+<!--排列进路按钮-->
+<button id="Xa" class="jinluanniu" style="margin-left:140px; margin-top:367px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="Xb" class="jinluanniu" style="margin-left:118px; margin-top:367px; background-color:#0F0" onClick="statement()"></button>
+<button id="XFa" class="jinluanniu" style="margin-left:140px; margin-top:457px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="XFb" class="jinluanniu" style="margin-left:118px; margin-top:457px; background-color:#0F0" onClick="statement()"></button>
+
+<button id="S5a" class="jinluanniu" style="margin-left:440px; margin-top:277px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="S5b" class="jinluanniu" style="margin-left:462px; margin-top:277px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="S3a" class="jinluanniu" style="margin-left:410px; margin-top:337px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="S3b" class="jinluanniu" style="margin-left:432px; margin-top:337px; background-color:#FFF" onClick="getposition(this)"></button>
+
+<button id="SIa" class="jinluanniu" style="margin-left:330px; margin-top:397px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="SIb" class="jinluanniu" style="margin-left:352px; margin-top:397px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="SIIa" class="jinluanniu" style="margin-left:330px; margin-top:457px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="SIIb" class="jinluanniu" style="margin-left:352px; margin-top:457px; background-color:#FFF" onClick="getposition(this)"></button>
+
+<button id="S6a" class="jinluanniu" style="margin-left:440px; margin-top:577px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="S6b" class="jinluanniu" style="margin-left:462px; margin-top:577px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="S4a" class="jinluanniu" style="margin-left:410px; margin-top:517px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="S4b" class="jinluanniu" style="margin-left:432px; margin-top:517px; background-color:#FFF" onClick="getposition(this)"></button>
+
+<button id="X5a" class="jinluanniu" style="margin-left:590px; margin-top:247px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="X5b" class="jinluanniu" style="margin-left:568px; margin-top:247px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="X3a" class="jinluanniu" style="margin-left:630px; margin-top:309px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="X3b" class="jinluanniu" style="margin-left:608px; margin-top:309px; background-color:#FFF" onClick="getposition(this)"></button>
+
+<button id="XIa" class="jinluanniu" style="margin-left:730px; margin-top:367px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="XIb" class="jinluanniu" style="margin-left:708px; margin-top:367px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="XIIa" class="jinluanniu" style="margin-left:730px; margin-top:427px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="XIIb" class="jinluanniu" style="margin-left:708px; margin-top:427px; background-color:#FFF" onClick="getposition(this)"></button>
+
+<button id="X4a" class="jinluanniu" style="margin-left:629px; margin-top:489px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="X4b" class="jinluanniu" style="margin-left:607px; margin-top:489px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="X6a" class="jinluanniu" style="margin-left:590px; margin-top:547px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="X6b" class="jinluanniu" style="margin-left:568px; margin-top:547px; background-color:#FFF" onClick="getposition(this)"></button>
+
+<button id="SFa" class="jinluanniu" style="margin-left:1053px; margin-top:367px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="SFb" class="jinluanniu" style="margin-left:1075px; margin-top:367px; background-color:#0F0" onClick="statement()"></button>
+<button id="Sa" class="jinluanniu" style="margin-left:1053px; margin-top:457px; background-color:#0F0" onClick="getposition(this)"></button>
+<button id="Sb" class="jinluanniu" style="margin-left:1075px; margin-top:457px; background-color:#0F0" onClick="statement()"></button>
+<button id="Sc" class="jinluanniu" style="margin-left:1097px; margin-top:457px; background-color:#00F" onClick="statement()"></button>
+
+<!--排列调车进路按钮-->
+<button id="D1" class="diaocheanniu" style="margin-left:305px; margin-top:309px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="D3" class="diaocheanniu" style="margin-left:305px; margin-top:489px; background-color:#FFF" onClick="getposition(this)"></button>
+<button id="D2" class="diaocheanniu" style="margin-left:909px; margin-top:399px; background-color:#FFF" onClick="getposition(this)" ></button>
+<button id="D4" class="diaocheanniu" style="margin-left:909px; margin-top:459px; background-color:#FFF" onClick="getposition(this)"></button>
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+   
+    <div class='nav'>
+  <ul>
+    <li ><a>自律模式</a>
+    <ul>
+      <li onClick="SelfdisciplineMode()"><a>申请自律模式</a></li>
+      <li onClick="QuitSelfdisciplineMode()"><a>退出自律模式</a></li>
+     </ul>
+    </li>
+    <li><a>网络连接</a>
+    <ul>
+      <li id="ctclianjie"><a>CTC系统连接</a></li>
+      <li><a>CBI服务器连接</a></li>
+      <li id="rbclianjie"><a>RBC系统连接</a></li>
+    </ul>
+    </li>
+    
+
+  </ul>
+</div>
+    
+    <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+    </canvas>
+
+
+
+</body>
+    <script src="js/map-beijing_CBI.js"></script>
+    <script src="js/map-function_CBI.js"></script>
+    <script src="js/cbi_cookies.js"></script>
+    <script src="js/beijing_cbi_comm.js"></script>
+    <script src="js/bjcbi-mapRecurrent.js"></script>
+   
+    
+</html>
+ <script type="text/javascript">
+  if(getCookie("网络连接")== undefined){
+		setCookie("网络连接","000000000000000000000000000"); 
+	}
+  bjcbi_getcookies(); 
+  //联锁getcookies
+ function bjcbi_getcookies(){ 
+	
+     setTimeout("bjcbi_getcookies();",1000);
+	 
+	 if(getCookie("网络连接").substr(2,1)=="1")
+  	{
+		
+		var str= rePlaceStr(getCookie("网络连接"),3,"2")
+		setCookie("网络连接", str);
+		lianjiezhuangtaibiaojilv(270,205);
+		lianjiezhuangtaibiaojiyellow(750,145)
+		alert("北京南站自律机连接状态更新")
+		
+	 }
+	else if(getCookie("网络连接").substr(2,1)=="2"){
+		lianjiezhuangtaibiaojilv(270,205);
+		
+		} 
+  }
+  if( $.cookie('刷新界面')==undefined){
+        $.cookie("刷新界面", "000000000000000000000000", { path: '/' })
+    }
+    Refresh();
+    function Refresh(){
+        setTimeout("Refresh();",1000);
+        if($.cookie("刷新界面").substr(15,1)==1){
+        
+           window.location.reload()
+           var str=rePlaceStr($.cookie("刷新界面"),16,"2")
+           $.cookie("刷新界面", str, { path: '/' })
+        }
+    } 
+  
+
+
+//JinLu();
+//CancelJinLu();
+ showTime();
+// getCookieof_TSRS()
+//getCookie_one();
+function showTime(){ 
+ var week=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ var date = now.getDate();
+ var day = now.getDay();
+ var hour = now.getHours();
+ var minutes = now.getMinutes();
+ var second = now.getSeconds(); 
+  month=month+1;
+     month<10?month='0'+month:month; 
+     
+     hour<10?hour='0'+hour:hour; 
+     minutes<10?minutes='0'+minutes:minutes; 
+     second<10?second='0'+second:second;
+     var now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' '; 
+     document.getElementById('timetext').value=now_time; 
+     setTimeout("showTime();",1000);      //每隔1秒刷新一次
+ } 
+$('#ctclianjie').click(function () 
+  {  
+      var str = rePlaceStr(getCookie("网络连接"),3,"1");
+	  setCookie("网络连接",str);
+	  alert("连接北京南站自律机成功");
+	  lianjiezhuangtaibiaojiyellow(750,145)
+	  lianjiezhuangtaibiaojilv(270,205)
+
+  });
+	
+  $('#rbclianjie').click(function () 
+  {  
+      var str = rePlaceStr(getCookie("网络连接"),22,"1");
+	  setCookie("网络连接",str);
+      alert("连RBC成功");
+	 lianjiezhuangtaibiaojilv(270,235)
+	  	  
+  });
+
+    </script>

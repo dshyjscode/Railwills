@@ -1,0 +1,178 @@
+.nav{
+  top:0px;
+  height:40px;
+  width:2000px;
+  background:#f3f3f3;
+  position:relative;
+}
+.nav>ul{
+  position:relative;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.nav>ul>li>ul{
+  position:absolute;
+  left:0;
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+.nav>ul>li:hover>ul li a{
+  opacity:1;
+  height:30px;
+   transition:all .3s linear;
+  -o-transition:all .3s linear;
+  -moz-transition:all .3s linear;
+  -webkit-transition:all .3s linear;
+}
+.nav>ul>li>ul a{
+  display:block;
+  color:#222;
+  width:150px;
+  line-height:30px !important;
+  font:400 15px 'PT Sans', sans-serif;
+  background:#eee;
+  border-bottom:1px  #ddd;
+  text-align:center;
+  padding:0 5px;
+   height:0;
+  overflow:hidden;
+  opacity:0;
+    transition:all .3s linear .2s;
+  -o-transition:all .3s linear .2s;
+  -moz-transition:all .3s linear .2s;
+  -webkit-transition:all .3s linear .2s;
+}
+.nav>ul>li{
+  float:left;
+  position:relative;
+}
+.nav>ul>li>a{
+  padding:0 20px;
+  color:#000;
+  display:block;
+  line-height:40px !important;
+  font:400 15px 'PT Sans', sans-serif;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+
+.zaixianshiyan
+{
+    margin: 7px auto;
+	top:30px;
+	left:30%;
+	width:600px;
+	font-size:45px;
+	color:#000;
+	position: absolute;
+
+	z-index:1
+
+}
+.tupian
+{
+    margin: 7px auto;
+	top:250px;
+	left:30%;
+	width:650px;
+
+    
+	position: absolute;
+
+	z-index:1
+
+}
+.jinrushiyan
+{
+    margin: 7px auto;
+	top:700px;
+	left:75%;
+	width:150px;
+	 
+	font-size:32px;
+	color:#000;
+	position: absolute;
+	z-index:1
+
+}
+.timetext
+{
+
+
+	top:200px;
+	left:1100px;
+	
+	
+	font-size:18px;
+	color:#F00;
+	background-color:#000;
+	
+	
+	border:#000;
+	position: absolute;
+
+}
+
+.shiyanmiaoshu
+{
+    margin: 7px auto;
+	top:160px;
+	left:5%;
+	width:400px;
+	font-size:16px;
+	color:#000;
+	position: absolute;
+
+	z-index:1
+
+}
+.shiyanmiaoshu2
+{
+    margin: 7px auto;
+	top:160px;
+	left:73%;
+	width:350px;
+	font-size:16px;
+	color:#000;
+	position: absolute;
+
+	z-index:1
+
+}
+
+.shiyanmiaoshu3
+{
+    margin: 7px auto;
+	top:450px;
+	left:5%;
+	width:350px;
+	font-size:16px;
+	color:#000;
+	position: absolute;
+
+	z-index:1
+
+}
+.shiyanmiaoshu4
+{
+    margin: 7px auto;
+	top:450px;
+	left:73%;
+	width:350px;
+	font-size:16px;
+	color:#000;
+	position: absolute;
+
+	z-index:1
+
+}
+
+
+.cancss
+{z-index:0
+ position: fixed;
+ margin:0;
+
+}

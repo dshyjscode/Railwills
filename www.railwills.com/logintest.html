@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html >
+<body>
+<head lang="en" >
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <meta charset="GBK">
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <script src="js/cookie.js"></script>
+   
+
+</head>
+<a>用户名</a>
+<input type="text" id="user"   value=""   />
+<a>密码</a>
+<input type="password" id="pwd"   value=""   />
+<button  id="login">登录</button>
+</div>
+
+
+</body>
+
+<script>
+$('#login').click(function () {
+
+
+//alert(document.getElementById('txt1').value);
+//alert(document.getElementById('txt2').value);
+setCookie(document.getElementById('user').value,document.getElementById('pwd').value); 
+    alert("登录成功");
+});
+
+</script>
+</html>        

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bjsacm.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	
+	<script src="js/bjsacm-cookies.js"></script>
+    <title>04北京南站自律机</title>
+</head>
+<body>
+<button  id="lianjiechewuzhongduan" class="lianjiechewuzhongduan" onclick="BJNZCWZD()">车务终端断开</button>
+<button  id="lianjieliansuo" class="lianjieliansuo" onclick="BJNZLS()">联锁断开</button>
+<button  id="lianjieyingyongfuwuqi" class="lianjieyingyongfuwuqi" onclick="BJNZYYFWQ()">应用服务器断开</button>
+    
+    
+    
+    
+    
+    
+    
+    
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+<!--<button  id="banlijinlu" class="banlijinlu" >办理进路</button>-->	
+	
+    <div class='nav'>
+  <ul>
+    <li><a>文件</a>
+    <ul>
+      <li><a onClick="tuichu()">退出</a></li>
+
+      </ul>
+    </li>
+    <li><a>查看</a></li>
+    <li><a>信息窗口</a>
+    <ul>
+      <li><a onclick="shujuxinxi()">数据信息窗口</a></li>
+      </ul>
+    </li>
+    <li><a>桌面管理</a></li>
+    <li><a>帮助</a></li>
+    
+    <li><a>通信</a>
+      <ul>
+      <li><a>启动服务器</a></li>
+      <li><a>连接到通用前置服务器</a></li>
+      </ul>
+    </li>
+
+  </ul>
+        <!--临时测试->
+      <button   type="button"  onClick="addCookie_ceshi()">发送cookies</button>
+     <!--临时测试->    
+	 <!--临时测试->
+      <button   type="button"  onClick="getCookie_ceshi()">获取cookies</button>
+     <!--临时测试->  
+	<!--临时测试->
+      <button  type="button"  onClick="startTest()">开始测试</button>
+     <!--临时测试--> 
+</div>
+    
+    <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+    </canvas>
+	<style type="text/css">
+
+</style>
+	
+<table width="100%" align="center">
+<tr>
+<td><table id = "recCarTab" width="100%" class="gridtable">
+<tr>
+	<th colspan="7">列车进路序列:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>接发车</th><th>股道</th><th>计划开行时间</th><th>进路</th>
+</tr>
+			<tr>
+				<td>*</td><td id = "RecOrderNum"></td><td id = "RecCar" ></td><td id = "Rec"></td><td id = "RecTrack">
+                 <select name="beijing_stationtrack_RX" id="beijing_stationtrack_RX"><!--接车表股道下拉菜单-->
+					<option value="5G">5G</option>
+					<option value="3G">3G</option>
+					<option value="IG">ⅠG</option>
+					<option value="IIG">ⅡG</option>
+					<option value="4G">4G</option>
+					<option value="6G">6G</option>
+					</select>
+                    </td><td id = "RecTime"></td><td id = "RecRoute">
+			</tr>
+</table></td>
+<td><table width="100%" class="gridtable">
+<tr>
+	<th colspan="6">调度命令序列:</th>
+</tr>
+<tr>
+    <th></th><th>命令序号</th><th>发令单位</th><th>受令单位</th><th>命令编号</th><th>发令时间</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></td>
+</tr>
+</table>
+
+	
+</div>
+
+		<div class="zhezhao" id='zhezhao'>
+			<div class="tankuang">
+				<div id="header">
+					<span style="position:absolute; color: black; left:10px; top:5px; font-size:20px">数据信息窗口</span>
+					<div id="header-right" onclick="hidder()">x</div>
+
+													
+<table width="95%" class="gridtable" style="position:absolute; top:60px; left:23px">
+<tr>
+	<th colspan="6">办理进路-接车:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>计划到开时间</th><th>发车车站</th><th>到达车站</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></center>
+
+<table width="95%" class="gridtable" style="position:absolute; top:260px; left:23px">
+<tr>
+	<th colspan="6">办理进路-发车:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>计划到开时间</th><th>发车车站</th><th>到达车站</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table>
+		
+<table width="95%" class="gridtable" style="position:absolute; top:460px; left:23px">
+<tr>
+	<th colspan="6">创建服务</th>
+</tr>
+<tr>
+    <th></th><th>时间</th><th>创建对象</th><th>连接对象</th><th>地址</th><th>端口</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table>
+
+				</div>
+			</div>
+		</div>
+</body>
+<script src="js/bjsacm.js"></script>
+<script src="js/bjsacm-map.js"></script>
+<script src="js/bjsmt-mapRecurrent.js"></script>
+</html>
+<script type="text/javascript">
+
+	var fenjiedian=new Array()
+    fenjiedian[0]=0
+    fenjiedian[1]=163
+	fenjiedian[2]=326
+	fenjiedian[3]=753
+    fenjiedian[4]=905
+	fenjiedian[5]=1050
+	fenjiedian[6]=1230
+	fenjiedian[7]=1410
+	fenjiedian[8]=1590
+	fenjiedian[9]=1770
+	fenjiedian[10]=1950
+	fenjiedian[11]=2130
+	fenjiedian[12]=2274
+    fenjiedian[13]=2377
+    fenjiedian[14]=2923
+	fenjiedian[15]=3025
+	fenjiedian[16]=3180
+	fenjiedian[17]=3360
+	fenjiedian[18]=3540
+	fenjiedian[19]=3720
+	fenjiedian[20]=3900
+	fenjiedian[21]=4080
+	fenjiedian[22]=4235
+	fenjiedian[23]=4338
+    fenjiedian[24]=4884
+	fenjiedian[25]=4986
+	fenjiedian[26]=5131
+	fenjiedian[27]=5311
+	fenjiedian[28]=5491
+	fenjiedian[29]=5671
+	fenjiedian[30]=5851
+	fenjiedian[31]=6031
+	fenjiedian[32]=6176
+	fenjiedian[33]=6279
+	fenjiedian[34]=6825
+	fenjiedian[35]=6927
+    fenjiedian[36]=7072
+    fenjiedian[37]=7252
+	fenjiedian[38]=7432
+	fenjiedian[39]=7612
+	fenjiedian[40]=7792
+	fenjiedian[41]=7972
+	fenjiedian[42]=8117
+	fenjiedian[43]=8220
+	fenjiedian[44]=8766
+	fenjiedian[45]=8868
+	fenjiedian[46]=9013
+    fenjiedian[47]=9193
+	fenjiedian[48]=9373
+	fenjiedian[49]=9553
+	fenjiedian[50]=9733
+	fenjiedian[51]=9913
+	fenjiedian[52]=10058
+	fenjiedian[53]=10190
+	fenjiedian[54]=10697
+	fenjiedian[55]=10798
+	
+	var zhongjianzhan_cexiantingche=new Array()
+    zhongjianzhan_cexiantingche[0]=0
+    zhongjianzhan_cexiantingche[1]=163
+	zhongjianzhan_cexiantingche[2]=326
+	zhongjianzhan_cexiantingche[3]=753
+    zhongjianzhan_cexiantingche[4]=905
+	zhongjianzhan_cexiantingche[5]=1050
+	zhongjianzhan_cexiantingche[6]=1230
+	zhongjianzhan_cexiantingche[7]=1410
+	zhongjianzhan_cexiantingche[8]=1590
+	zhongjianzhan_cexiantingche[9]=1770
+	zhongjianzhan_cexiantingche[10]=1950
+	zhongjianzhan_cexiantingche[11]=2130
+	zhongjianzhan_cexiantingche[12]=2274
+    zhongjianzhan_cexiantingche[13]=2417
+    zhongjianzhan_cexiantingche[14]=2883
+	zhongjianzhan_cexiantingche[15]=3025
+	zhongjianzhan_cexiantingche[16]=3180
+	zhongjianzhan_cexiantingche[17]=3360
+	zhongjianzhan_cexiantingche[18]=3540
+	zhongjianzhan_cexiantingche[19]=3720
+	zhongjianzhan_cexiantingche[20]=3900
+	zhongjianzhan_cexiantingche[21]=4080
+	zhongjianzhan_cexiantingche[22]=4235
+	zhongjianzhan_cexiantingche[23]=4338
+    zhongjianzhan_cexiantingche[24]=4884
+	zhongjianzhan_cexiantingche[25]=4986
+	zhongjianzhan_cexiantingche[26]=5131
+	zhongjianzhan_cexiantingche[27]=5311
+	zhongjianzhan_cexiantingche[28]=5491
+	zhongjianzhan_cexiantingche[29]=5671
+	zhongjianzhan_cexiantingche[30]=5851
+	zhongjianzhan_cexiantingche[31]=6031
+	zhongjianzhan_cexiantingche[32]=6176
+	zhongjianzhan_cexiantingche[33]=6279
+	zhongjianzhan_cexiantingche[34]=6825
+	zhongjianzhan_cexiantingche[35]=6927
+    zhongjianzhan_cexiantingche[36]=7072
+    zhongjianzhan_cexiantingche[37]=7252
+	zhongjianzhan_cexiantingche[38]=7432
+	zhongjianzhan_cexiantingche[39]=7612
+	zhongjianzhan_cexiantingche[40]=7792
+	zhongjianzhan_cexiantingche[41]=7972
+	zhongjianzhan_cexiantingche[42]=8117
+	zhongjianzhan_cexiantingche[43]=8220
+	zhongjianzhan_cexiantingche[44]=8766
+	zhongjianzhan_cexiantingche[45]=8868
+	zhongjianzhan_cexiantingche[46]=9013
+    zhongjianzhan_cexiantingche[47]=9193
+	zhongjianzhan_cexiantingche[48]=9373
+	zhongjianzhan_cexiantingche[49]=9553
+	zhongjianzhan_cexiantingche[50]=9733
+	zhongjianzhan_cexiantingche[51]=9913
+	zhongjianzhan_cexiantingche[52]=10058
+	zhongjianzhan_cexiantingche[53]=10190
+	zhongjianzhan_cexiantingche[54]=10697
+	zhongjianzhan_cexiantingche[55]=10798
+	
+	var zhongdianzhan_cexiantingche=new Array()
+    zhongdianzhan_cexiantingche[0]=0
+    zhongdianzhan_cexiantingche[1]=163
+	zhongdianzhan_cexiantingche[2]=326
+	zhongdianzhan_cexiantingche[3]=753
+    zhongdianzhan_cexiantingche[4]=905
+	zhongdianzhan_cexiantingche[5]=1050
+	zhongdianzhan_cexiantingche[6]=1230
+	zhongdianzhan_cexiantingche[7]=1410
+	zhongdianzhan_cexiantingche[8]=1590
+	zhongdianzhan_cexiantingche[9]=1770
+	zhongdianzhan_cexiantingche[10]=1950
+	zhongdianzhan_cexiantingche[11]=2130
+	zhongdianzhan_cexiantingche[12]=2274
+    zhongdianzhan_cexiantingche[13]=2377  
+    zhongdianzhan_cexiantingche[14]=2923  
+	zhongdianzhan_cexiantingche[15]=3025
+	zhongdianzhan_cexiantingche[16]=3180
+	zhongdianzhan_cexiantingche[17]=3360
+	zhongdianzhan_cexiantingche[18]=3540
+	zhongdianzhan_cexiantingche[19]=3720
+	zhongdianzhan_cexiantingche[20]=3900
+	zhongdianzhan_cexiantingche[21]=4080
+	zhongdianzhan_cexiantingche[22]=4235
+	zhongdianzhan_cexiantingche[23]=4338
+    zhongdianzhan_cexiantingche[24]=4884
+	zhongdianzhan_cexiantingche[25]=4986
+	zhongdianzhan_cexiantingche[26]=5131
+	zhongdianzhan_cexiantingche[27]=5311
+	zhongdianzhan_cexiantingche[28]=5491
+	zhongdianzhan_cexiantingche[29]=5671
+	zhongdianzhan_cexiantingche[30]=5851
+	zhongdianzhan_cexiantingche[31]=6031
+	zhongdianzhan_cexiantingche[32]=6176
+	zhongdianzhan_cexiantingche[33]=6279
+	zhongdianzhan_cexiantingche[34]=6825
+	zhongdianzhan_cexiantingche[35]=6927
+    zhongdianzhan_cexiantingche[36]=7072
+    zhongdianzhan_cexiantingche[37]=7252
+	zhongdianzhan_cexiantingche[38]=7432
+	zhongdianzhan_cexiantingche[39]=7612
+	zhongdianzhan_cexiantingche[40]=7792
+	zhongdianzhan_cexiantingche[41]=7972
+	zhongdianzhan_cexiantingche[42]=8117
+	zhongdianzhan_cexiantingche[43]=8220
+	zhongdianzhan_cexiantingche[44]=8766
+	zhongdianzhan_cexiantingche[45]=8868
+
+	zhongdianzhan_cexiantingche[46]=9013
+    zhongdianzhan_cexiantingche[47]=9193
+	zhongdianzhan_cexiantingche[48]=9373
+	zhongdianzhan_cexiantingche[49]=9553
+	zhongdianzhan_cexiantingche[50]=9733
+	zhongdianzhan_cexiantingche[51]=9913
+	zhongdianzhan_cexiantingche[52]=10058
+	zhongdianzhan_cexiantingche[53]=10190
+	zhongdianzhan_cexiantingche[54]=10300   //进行了修改
+	zhongdianzhan_cexiantingche[55]=10556   //进行了修改
+
+ 	showTime(); 
+	setCookie();
+	getCookie();
+    delCookie();
+	liansuocookie();
+	get_ddmlhz();
+	document.getElementById('zhezhao').style.display="none";
+	function shujuxinxi(){
+	document.getElementById('zhezhao').style.display="";
+	}
+	function hidder(){
+	document.getElementById('zhezhao').style.display="none";
+	}
+
+</script>

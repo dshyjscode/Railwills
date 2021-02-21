@@ -1,0 +1,237 @@
+﻿
+/*����*/
+
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+/*head*/
+.Nav{
+    width: 100%;
+    background: #5bc0de;
+    height: 59px;
+    line-height: 55px;
+
+}
+.navLi{
+    float: left;
+    padding: 2px 4px;
+}
+
+/*section*/
+section{
+    clear: both;
+}
+.secD{
+    box-sizing: border-box;
+    border: ridge 1px #020202;
+    position: relative;
+    background: #f9f9f9;
+    overflow-y: scroll;
+    margin-left: 20px;
+}
+.secLeft{
+    position: absolute;
+    height: 3200px;
+    left: 0;
+    top: 0;
+    width: 179px;
+    float: left;
+    background: #f9f9f9;
+    z-index: 99;
+    text-align: center;
+}
+
+#lefTime>p,#lefTime>h3 {
+    margin: 0!important;
+    padding: 0!important;
+    color: red;
+}
+
+.secLeftFloat{
+    float: left;
+}
+
+/*��ɫ�л�*/
+.colGreen{
+    color: green;
+}
+.colRed{
+    color: red;
+}
+
+
+
+/*foot*/
+footer{
+    position: fixed;
+    width: 100%;
+}
+.footF{
+    padding-left: 20px;
+    position: relative;
+}
+.footBDiv{
+    width: 100%;
+    box-sizing: border-box;
+    border: double 5px #CCCCCC;
+    padding: 5px 0;
+}
+.footBtn {
+    width: 5%;
+    height: 40px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 40px;!important;
+    float:left;
+}
+.footdiv{
+    /*box-sizing: border-box;
+    border: 1px solid #ccc;*/
+
+}
+.middle{
+    vertical-align: middle !important;
+
+}
+
+/*svg����*/
+.svgYxt{
+    height: 800px;
+    margin-left: 179px;
+    position: absolute;
+}
+.svgF{
+    margin-top: 30px;
+}
+.svgFP{
+    margin-top: 26px;
+}
+.secP {
+
+    font-size: 16px;
+    margin-bottom: 78px;
+}
+#timSvg{
+    box-sizing: border-box;
+    padding: 5px 0;
+    position: absolute;
+    height: 30px;
+    z-index: 96;
+    background: #f9f9f9;
+}
+#Tim{
+
+}
+
+/*����*/
+.shiRect,.shiMovRect{
+    display: none;
+}
+.shiRect:hover,.shiMovRect:hover{
+    cursor: w-resize;
+}
+
+.shiXian:hover{
+    cursor: pointer;
+}
+
+/*��������*/
+.alrt_div{
+    position: absolute;
+    display: none;
+}.modalContent{
+     background: #40a7cc;width: 450px;
+ }
+ .modalH{
+     padding: 5px 15px;
+ }
+.modalB{
+    background:#f0efee;
+    text-align: center;
+    height: 100px;
+    padding: 30px 15px 10px;
+}
+.modalF{
+    background:#f0efee;
+    padding: 10px 15px;
+}
+/*
+.alertCent{
+    background-color: #40a7cc!important;
+    width: 450px !important;
+
+}
+
+.alertBody{
+    background:#f0efee!important;
+    text-align: center!important;
+    height: 100px!important;
+    padding: 30px 15px 10px!important;
+}
+*/
+
+
+
+/*�������Կ�*/
+.alrt_div{
+    background: #5bc0de;
+    padding: 14px 0;
+}
+.alrt_ul{
+    background: #f5f5f5;
+    width: 120px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.li_go{
+    padding: 3px 0;
+    border: 1px solid #CCCCCC;
+}
+.li_go:hover{
+    background: #51dbde;
+}
+.attrAlert{
+    background: #5bc0de;
+    width: 100px;
+    height: 800px;
+    position: absolute;
+    top: 90px;
+    right: 20px;
+    overflow: hidden;
+
+}
+.attrBody{
+    width: 100%;
+    background: #f8f8f8;
+}
+.attrDivBody{
+    overflow-x:scroll ;
+    width: 100%;
+}
+.attrDivBtn{
+    width: 400px;
+}
+.attrBtn{
+    float: left;
+}
+
+.ban>a{
+    color: #CCCCCC !important;
+}
+.ban>a:hover{
+    cursor: not-allowed;
+}
+
+.NoBan>a{
+    color: #333;
+}
+.NoBan>a:hover{
+    cursor: pointer;
+}

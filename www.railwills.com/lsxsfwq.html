@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html >
+<body>
+<head lang="en" >
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <meta charset="GBK">
+    
+    <link rel="stylesheet" href="css/linshixiansufuwuqi.css"/>
+
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+
+</head>
+
+<div class="lsxsfwqdiva">
+<div class="lsxsfwqhy" >活跃命令</div >
+<textarea name="a" class="lsxsfwqhyinput">当前活跃命令:</textarea>
+<div class="lsxsfwqsx" >失效命令</div >
+<textarea name="a" class="lsxsfwqsxinput">当前失效命令:</textarea>
+<div class="lsxsfwqgzjd" >工作进度</div >
+<textarea name="a" class="lsxsfwqgzjdinput">当前工作进度:</textarea>
+<div class="lsxsfwqmlxq" >命令详细信息:</div >
+
+<div class="lsxsfwqmlh" >命令号：</div >
+<input type="text" class="lsxsfwqmlhinput"  />
+<div class="lsxsfwqmlzt" >命令状态：</div >
+<input type="text" class="lsxsfwqmlztinput"  />
+<div class="lsxsfwqslcz" >受令车站：</div >
+<input type="text" class="lsxsfwqslczinput"  />
+<div class="lsxsfwqxsyy" >限速原因：</div >
+<input type="text" class="lsxsfwqxsyyinput"  />
+<div class="lsxsfwqxsz" >限速值：</div >
+<input type="text" class="lsxsfwqxszinput"  />
+
+<div class="lsxsfwqbegintime" >开始时间：</div >
+<input type="text" class="lsxsfwqbegintimeinput"  />
+<div class="lsxsfwqendtime" >结束时间：</div >
+<input type="text" class="lsxsfwqendtimeinput"  />
+<div class="lsxsfwqxlh" >线路号：</div >
+<input type="text" class="lsxsfwqxlhinput"  />
+<div class="lsxsfwqxsqqd" >限速区起点：</div >
+<input type="text" class="lsxsfwqxsqqdinput"  />
+<div class="lsxsfwqxsqzd" >限速区终点：</div >
+<input type="text" class="lsxsfwqxsqzdinput"  />
+<button class="lsxsfwqfasongabutton"  id="fasong">发送</button>
+<button class="lsxsfwqchexiaoabutton" id="chexiao">撤销</button>
+<div class="lsxsfwqtxzt" >通信状态：</div >
+<div class="lsxsfwqctc" >CTC连接状态：</div >
+<input type="text" class="lsxsfwqctcinput"  value="网络未连接" />
+<div class="lsxsfwqrbc" >RBC连接状态：</div >
+<input type="text" class="lsxsfwqrbcinput"  value="网络未连接" />
+<button class="lsxsfwqfasongctcbutton" id="lianjiectc" >连接CTC</button>
+<button class="lsxsfwqfasongrbcbutton" id="lianjierbc" >连接RBC</button>
+
+</div>
+
+</html>        
+<script>
+/*showTime();
+function showTime(){ 
+ var week=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ var date = now.getDate();
+ var day = now.getDay();
+ var hour = now.getHours();
+ var minutes = now.getMinutes();
+ var second = now.getSeconds(); 
+  month=month+1;
+     month<10?month='0'+month:month; 
+     
+     hour<10?hour='0'+hour:hour; 
+     minutes<10?minutes='0'+minutes:minutes; 
+     second<10?second='0'+second:second;
+     var now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' ' + week[day - 1]; 
+     document.getElementById('yyfwqtimetext').value=now_time; 
+     setTimeout("showTime();",1000);      //每隔1秒刷新一次
+ } */
+ $('#fasong').click(function () {
+
+    alert("临时限速命令下达失败，服务器未连接");
+});
+$('#chexiao').click(function () {
+
+    alert("临时限速命令撤销失败，服务器未连接");
+});
+$('#lianjiectc').click(function () {
+
+    alert("CTC连接失败");
+});
+$('#lianjierbc').click(function () {
+
+    alert("RBC连接失败");
+});
+ </script>

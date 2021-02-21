@@ -1,0 +1,432 @@
+.diva{
+width: 1920px;
+
+height: 1080px;
+position: relative;
+z-index: 0;
+background: #FFF;
+}
+.yyfwqtext
+{
+    margin: 17px auto;
+	top:0px;
+	left:768px;/*20201007*/
+	
+	font-size:78px;
+	color:#000;
+	position: absolute;
+    
+}
+
+.yyfwqtimetext
+{
+
+
+	top:140px;
+	left:825px;
+	
+	
+	font-size:18px;
+	color:#000;
+	
+	border:#FFF;
+	position: absolute;
+
+}
+
+/*列调*/
+.yyfwqlidiao
+{
+    height: 94px;
+	width:106px;
+	top:235px;/*20201007 26*/
+	left:480px;/*20201007 25*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqlidiaotext
+{
+	top:195px;/*20201007 22*/
+	left:522px;/*20201007 27.2*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqlidiaoline
+{
+    height: 93px;
+	width:4px;
+	top:330px;/*20201007 36.5*/
+	left:528px;/*20201007 27.5*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+/*助调*/
+.yyfwqzhudiao
+{
+    height: 94px;
+	width:106px;
+	top:235px;
+	left:710px;/*20201007 37*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqzhudiaotext
+{
+	top:195px;
+	left:752px;/*20201007 39.2*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqzhudiaoline
+{
+    height: 93px;
+	width:4px;
+	top:330px;
+	left:762px;/*20201007 39.7*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+/*数据库*/
+.yyfwqshujuku
+{
+    height: 100px;
+	width:100px;
+	top:235px;
+	left:941px;/*20201007 49*/
+	position: absolute;
+	z-index: 1;
+
+}
+.yyfwqshujukutext
+{
+	top:195px;
+	left:937px;/*20201007 48.8*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqshujukuline
+{
+    height: 93px;
+	width:4px;
+	top:330px;
+	left:993px;/*20201007 51.7*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+/*临时限速*/
+.yyfwqlinshixiansu
+{
+    height: 93px;
+	width:102px;
+	top:235px;
+	left:1171px;/*20201007 61*/
+	position: absolute;
+	z-index: 1;
+
+}
+.yyfwqlinshixiansutext
+{
+	top:195px;
+	left:1154px;/*20201007 60.1*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqlinshixiansuline
+{
+    height: 93px;
+	width:4px;
+	top:330px;
+	left:1221px;/*20201007 63.6*/
+	position: absolute;
+	z-index: 0;
+}
+
+/*RBC*/
+.yyfwqrbc
+{
+    height: 94px;
+	width:106px;
+	top:235px;
+	left:1402px;/*20201007 73*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqrbctext
+{
+	top:195px;
+	left:1442px;/*20201007 75.1*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqrbcline
+{
+    height: 93px;
+	width:4px;
+	top:330px;
+	left:1450px;/*20201007 75.5*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+/*分割线*/
+.fengexian1
+{
+    height: 10px;
+	width:1300px;
+	top:420px;/*20201007 46.5*/
+	left:509px;/*20201007 26.5*/
+	z-index: 1;
+	position: absolute;
+
+}
+.fengexian2
+{
+    height: 10px;
+	width:1300px;
+	top:500px;/*20201007 55*/
+	left:509px;
+	z-index: 1;
+	position: absolute;
+
+}
+
+/*北京南站自律机*/
+.yyfwqbjnzzlj
+{
+    height: 94px;
+	width:106px;
+	top:595px;
+	left:465px;
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqbjnzzljtext
+{
+	top:705px;
+	left:451px;/*20201007 23.5%*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqbjnzzljline
+{
+    height: 93px;
+	width:4px;
+	top:500px;/*20201007 55.5%*/
+	left:518px;/*20201007 27%*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+/*天津南站自律机*/
+.yyfwqtjnzzlj
+{
+    height: 94px;
+	width:106px;
+	top:595px;
+	left:651px;/*20201007 33.9%*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqtjnzzljtext
+{
+	top:705px;
+	left:637px;/*20201007 33.2%*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqtjnzzljline
+{
+    height: 93px;
+	width:4px;
+	top:500px;
+	left:705px;/*20201007 36.7%*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+/*济南西站自律机*/
+.yyfwqjnxzzlj
+{
+    height: 94px;
+	width:106px;
+	top:595px;
+	left:837px;/*20201007 43.6%*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqjnxzzljtext
+{
+	top:705px;
+	left:824px;/*20201007 42.9%*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqjnxzzljline
+{
+    height: 93px;
+	width:4px;
+	top:500px;
+	left:891px;/*20201007 46.4%*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+
+/*南京南站自律机*/
+.yyfwqnjnzzlj
+{
+    height: 94px;
+	width:106px;
+	top:595px;
+	left:1023px;/*20201007 53.3%*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqnjnzzljtext
+{
+	top:705px;
+	left:1006px;/*20201007 52.4%*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqnjnzzljline
+{
+    height: 93px;
+	width:4px;
+	top:500px;
+	left:1077px;/*20201007 56.1%*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+/*苏州北站自律机*/
+.yyfwqszbzzlj
+{
+    height: 94px;
+	width:106px;
+	top:595px;
+	left:1210px;/*20201007 63%*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqszbzzljtext
+{
+	top:705px;
+	left:1196px;/*20201007 62.3%*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqszbzzljline
+{
+    height: 93px;
+	width:4px;
+	top:500px;
+	left:1263px;/*20201007 65.8%*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+
+/*上海虹桥站自律机*/
+.yyfwqshhqzzlj
+{
+    height: 94px;
+	width:106px;
+	top:595px;
+	left:1396px;/*20201007 72.7%*/
+	z-index: 1;
+	position: absolute;
+
+}
+.yyfwqshhqzzljtext
+{
+	top:705px;
+	left:1382px;/*20201007 72%*/
+	
+	font-size:18px;
+	color:#000;
+	position: absolute;
+
+}
+.yyfwqshhqzzljline
+{
+    height: 93px;
+	width:4px;
+	top:500px;
+	left:1450px;/*20201007 75.5%*/
+	z-index: 0;
+	position: absolute;
+
+}
+
+
+.yyfwqinput1
+{
+    height: 40px;
+	width:1090px;
+
+	top:770px;/*20201007 85%*/
+	left:442px;/*20201007 23%*/
+	position: absolute;
+
+}
+.yyfwqinput2
+{
+    height: 40px;
+	width:1090px;
+
+	top:810px;/*20201007 85%*/
+	left:442px;/*20201007 23%*/
+	position: absolute;
+
+}
