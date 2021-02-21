@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/home_page.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <title>行车调度指挥自动化在线实验</title>
+    <script type="text/javascript">
+ 		window.onload = function(){
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#000";
+            context.fillRect(0, 0, 2000, 700);
+			var x,y,x1,x2,y1,y2,w,h,text;
+			text="北京南站"
+			context.fillStyle = "#ffff00";
+			context.font="16px bold 宋体";
+            context.fillText(text,185,142);
+			
+			context.beginPath();
+			context.lineWidth = 3;
+			context.strokeStyle = '#FFF';
+			x1=165;
+			y1=145;
+			x2=255;
+			y2=175;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			text="天津南站"
+			context.fillStyle = "#ffff00";
+			context.font="16px bold 宋体";
+            context.fillText(text,275,270);
+			
+			context.beginPath();
+			context.lineWidth = 3;
+			context.strokeStyle = '#FFF';
+			x1=255;
+			y1=175;
+			x2=270;
+			y2=273;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			text="济南南站"
+			context.fillStyle = "#ffff00";
+			context.font="16px bold 宋体";
+            context.fillText(text,390,310);
+			
+			context.beginPath();
+			context.lineWidth = 3;
+			context.strokeStyle = '#FFF';
+			x1=275;
+			y1=285;
+			x2=370;
+			y2=313;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			text="南京南站"
+			context.fillStyle = "#ffff00";
+			context.font="16px bold 宋体";
+            context.fillText(text,440,430);
+			
+			context.beginPath();
+			context.lineWidth = 3;
+			context.strokeStyle = '#FFF';
+			x1=375;
+			y1=330;
+			x2=420;
+			y2=433;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			text="苏州北站"
+			context.fillStyle = "#ffff00";
+			context.font="16px bold 宋体";
+            context.fillText(text,540,460);
+			
+			context.beginPath();
+			context.lineWidth = 3;
+			context.strokeStyle = '#FFF';
+			x1=425;
+			y1=435;
+			x2=520;
+			y2=463;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			text="上海虹桥站"
+			context.fillStyle = "#ffff00";
+			context.font="16px bold 宋体";
+            context.fillText(text,635,622);
+			
+			context.beginPath();
+			context.lineWidth = 3;
+			context.strokeStyle = '#FFF';
+			x1=525;
+			y1=465;
+			x2=555;
+			y2=555;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+
+			context.beginPath();
+			context.lineWidth = 3;
+			context.strokeStyle = '#FFF';
+			x1=555;
+			y1=555;
+			x2=615;
+			y2=625;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();	
+        }
+	</script>
+</head>
+<body>
+<button  id="jinrushiyan" class="jinrushiyan" >点此进入实验</button>
+<form class="studentsID" name="input"  method="get">
+	<div class="name">
+		<label>姓名:&nbsp</label>
+		<input  type="text" name="name">
+	</div>
+    <div class="id">
+		<label>学号:&nbsp</label>
+		<input  type="text" name="ID">
+	</div>
+    <div class="submitButton">
+		<input  type="submit" value="登录" onClick="al()">
+	</div>
+</form>
+
+    
+    
+    <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+    </canvas>
+<div class="zaixianshiyan" >行车调度指挥自动化在线实验</div>
+<div class="shiyanmiaoshu" >&nbsp&nbsp &nbsp&nbsp 分散自律调度集中系统是铁路现代化的重要技术装备，是现代铁路综合信息化建设的重要内容，也是现代铁路的新型运输组织形式。必须与我国铁路路情紧密结合，做到以TDCS为平台，以调度集中为核心，以行车指挥自动化为目标，实现铁路运输指挥的现代化。分散自律调度集中系统采用计算机分布式网络控制技术、信息化处理技术，将列车运行调整计划下传到各个车站自律机中自主自动执行；在列车运行调整计划的基础上，解决列车作业与调车作业在时间与空间上的冲突，实现列车和调车作业的统一控制。分散自律调度集中系统在信号设备控制与行车指挥方式上仅设有分散自律控制与非常站控两种模式。系统分散自律控制时，只有控制指令不同来源，没有中心与车站控制权的转换；非常站控为车站人工控制方式，中心不具备直接控制权, 系统完好时应具备TDCS功能。分散自律调度集中系统适用不同牵引动力、运行速度、运量、线路类型的区段与枢纽地区，可实现不办理客货运业务、调车作业量较小、列车和调车进路由调度中心远程控制的车站行车岗位无人化。
+列车调度员负责指挥一个区段内与列车运行有关的生产活动，对列车运行进行调整。为了实现这一任务，列车调度员必须熟悉与列车有关的生产人员（车站值班员、运转车长、机车司机等）和技术设备（如线路平、纵断面，车站到发线数量及其固定使用办法，机车质量，机务整备设备以及信号、联锁、闭塞设备等），熟悉列车运行图、列车编组计划、车站行车工作细则等技术文件和有关的规章制度，掌握气候变化对列车运行影响的一般规律，善于针对不同的条件和列车运行情况，灵活运用各种列车运行调整方法，充分调动有关员工的积极性，组织他们按照列车运行图的要求进行工作。</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+ setInterval("zhujiemiankongzhi()","500");
+ kongzhiflag=1;
+	
+function al(){
+	alert("登录成功")
+}	
+ function zhujiemiankongzhi()
+{	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	if(kongzhiflag==1)
+	{
+			x=200;y=150;
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			x=300;y=300;
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			x=400;y=330;
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			x=450;y=450;
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			x=550;y=480;
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			x=650;y=630;
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			kongzhiflag=0;
+			
+	}
+	else
+	{
+		    x=200;y=150;
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			
+			
+			x=300;y=300;
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			
+			x=400;y=330;
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			
+			x=450;y=450;
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			kongzhiflag=1;
+			
+			x=550;y=480;
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			
+			x=650;y=630;
+			context.beginPath();
+			context.strokeStyle = 'black';
+            context.arc(x-30,y-13,12,0,2*Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            context.stroke();
+			kongzhiflag=1;
+	}
+
+}
+$('#jinrushiyan').click(function () {
+	window.location.href="hub_page-EI.html";
+	
+	});
+</script>

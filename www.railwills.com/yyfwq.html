@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html >
+<body topmargin="0" leftmargin="0">
+<center>
+<head lang="en" >
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <meta charset="GBK">
+    
+    <!--<link rel="stylesheet" href="css/yyfuwuqq.css"/>-->
+
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <script language=JavaScript> 
+	
+    if(screen.width >= 1024){
+		<!--alert()-->
+       document.write('<link rel="stylesheet" type="text/css" href="css/forms-'+ screen.width +'.css">');
+
+}
+    else{
+       document.write('<link rel="stylesheet" href="css/yyfuwuqq.css"/>');
+}
+</script>
+
+</head>
+
+<div class="yyfwqdiva">
+
+<div class="yyfwqtext" >应用服务器</div >
+
+<input type="text" id="yyfwqtimetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="yyfwqtimetext"  style="width:600px;"  />
+<div class="yyfwqlidiao" style="background:url(images/liediao.jpg) no-repeat" ></div >
+<div class="yyfwqlidiaotext" >列调</div >
+<div class="yyfwqlidiaoline" style="background:url(images/hongline.png) no-repeat" ></div >
+<div class="yyfwqzhudiao" style="background:url(images/liediao.jpg) no-repeat" ></div >
+<div class="yyfwqzhudiaotext" >助调</div >
+<div class="yyfwqzhudiaoline" style="background:url(images/hongline.png) no-repeat" ></div >
+<div class="yyfwqshujuku" style="background:url(images/shujuku.jpg) no-repeat" ></div >
+<div class="yyfwqshujukutext" >数据库服务器</div >
+<div class="yyfwqshujukuline" style="background:url(images/hongline.png) no-repeat" ></div >
+<div class="yyfwqlinshixiansu" style="background:url(images/linshixiansu.png) no-repeat" ></div >
+<div class="yyfwqlinshixiansutext" >临时限速服务器</div >
+<div class="yyfwqlinshixiansuline" style="background:url(images/lvline.png) no-repeat" ></div >
+<div class="yyfwqrbc" style="background:url(images/liediao.jpg) no-repeat" ></div >
+<div class="yyfwqrbctext" >RBC</div >
+<div class="yyfwqrbcline" style="background:url(images/hongline.png) no-repeat" ></div >
+<div class="fengexian1" style="background:url(images/heiline.png) no-repeat"></div >
+<div class="fengexian2" style="background:url(images/heiline.png) no-repeat"></div >
+</div>
+<div class="yyfwqbjnzzlj" style="background:url(images/liediao.jpg) no-repeat" ></div >
+<div class="yyfwqbjnzzljtext" >北京南站自律机</div >
+<div class="yyfwqbjnzzljline" style="background:url(images/hongline.png) no-repeat" ></div >
+<div class="yyfwqnjnzzlj" style="background:url(images/liediao.jpg) no-repeat" ></div >
+<div class="yyfwqnjnzzljtext" >南京南站自律机</div >
+<div class="yyfwqnjnzzljline" style="background:url(images/hongline.png) no-repeat" ></div >
+<div class="yyfwqshhqzzlj" style="background:url(images/liediao.jpg) no-repeat" ></div >
+<div class="yyfwqshhqzzljtext" >上海虹桥站自律机</div >
+<div class="yyfwqshhqzzljline" style="background:url(images/hongline.png) no-repeat" ></div >
+<textarea name="a" class="yyfwqinput">网络状态：
+
+通信状态：</textarea>
+</center>
+</body>
+
+</html>        
+<script>
+showTime();
+function showTime(){ 
+ var week=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ var date = now.getDate();
+ var day = now.getDay();
+ var hour = now.getHours();
+ var minutes = now.getMinutes();
+ var second = now.getSeconds(); 
+  month=month+1;
+     month<10?month='0'+month:month; 
+     
+     hour<10?hour='0'+hour:hour; 
+     minutes<10?minutes='0'+minutes:minutes; 
+     second<10?second='0'+second:second;
+     var now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' ' + week[day - 1]; 
+     document.getElementById('yyfwqtimetext').value=now_time; 
+     setTimeout("showTime();",1000);      //每隔1秒刷新一次
+ } 
+ </script>

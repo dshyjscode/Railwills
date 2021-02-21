@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<!-- 上海虹桥——车务终端界面的代码 -->
+<!-- 作者： 李紫玉   日期：2019/11/ -->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/zhanchangtu.css"/>
+	<link rel="stylesheet" href="css/dropdownMenus.css"/>
+	<link rel="stylesheet" href="css/shanghaihq_cwzd.css"/>
+    <title>上海虹桥——车务终端</title>
+   <script type="text/javascript">
+               window.onload = function () {
+			var x,y,x1,x2,y1,y2,w,h,text;
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.fillStyle = "#000";
+            context.fillRect(0, 0, 2000, 700);
+			//主轨道
+            context.fillStyle = "#848284";
+					
+            //上海虹桥主轨道
+			context.fillRect(1210, 230, 240, 5);
+			
+			context.fillRect(1050, 290, 560, 5);
+
+			context.fillRect(20, 350, 1930, 5);
+			context.fillRect(20, 410, 1930, 5);
+			context.fillRect(1050, 470, 560, 5);
+			context.fillRect(1210, 530, 240, 5);		
+			//画下行小车
+			
+            x=1290;y=335
+            huaxiaxingxiaoche(x,y)
+ 			//上海虹桥站标
+			x=440;y=585;w=190;h=60
+			text="上海虹桥"
+			chezhanbiaozhi(x,y,w,h,text)
+			
+			
+			//车档
+			
+			x1=1955;x2=1950;y1=347;y2=358
+			zuocechedang(x1,x2,y1,y2)
+			
+			x1=1955;x2=1950;y1=407;y2=418
+			zuocechedang(x1,x2,y1,y2)
+            
+			
+			//闭塞分区标志
+			
+			bisaifenqu(20,348,357)
+			bisaifenqu(20,408,417)
+			bisaifenqu(200,348,357)
+			bisaifenqu(200,408,417)
+			bisaifenqu(380,348,357)
+			bisaifenqu(380,408,417)
+			bisaifenqu(560,348,357)
+			bisaifenqu(560,408,417)
+			bisaifenqu(740,348,357)
+			bisaifenqu(740,408,417)
+			bisaifenqu(920,348,357)
+			bisaifenqu(920,408,417)
+
+			bisaifenqu(1554,348,357)
+			bisaifenqu(1554,408,417)//X1/X2			
+			bisaifenqu(1770,348,357)
+			bisaifenqu(1770,408,417)
+			bisaifenqu(1950,348,357)
+			bisaifenqu(1950,408,417)
+
+			
+			bisaifenqu(1126,288,297)
+			bisaifenqu(1126,348,357)
+			bisaifenqu(1126,408,417)
+			bisaifenqu(1126,468,477)//S1/S2
+			
+			bisaifenqu(1206,288,297)
+			bisaifenqu(1206,468,477)//S3/S4
+			
+		    bisaifenqu(1236,228,237)
+			bisaifenqu(1236,528,537)//S5/S6
+			
+		    bisaifenqu(1413,228,237)
+			bisaifenqu(1413,528,537)//X5/X6
+			
+			bisaifenqu(1453,288,297)
+			bisaifenqu(1453,468,477)//X3/X4
+			
+			
+
+            //长侧向轨道
+			changceguidaohuizhi();
+            
+			
+			//上海虹桥侧向轨道
+			beijingnanzhancexiangguidao();
+            
+			
+			//上海虹桥信号机
+			//上海虹桥上行信号机第一
+			
+			
+			x=1250;y=260
+			shangxingxinhaoji(x,y);
+			xieshuzi(1230,270,'S5')
+			
+            //context.strokeRect(150, 450, 100, 100);
+            //上海虹桥上行信号机第二
+			
+			
+			x=1220;y=320
+			shangxingxinhaoji(x,y);
+			xieshuzi(1200,330,'S3')
+			xieshuzi(1005,335,'5')
+			//上海虹桥上行信号机第三
+			
+			x=1140;y=380
+			shangxingxinhaoji(x,y);
+			xieshuzi(1120,390,'SI')
+			xieshuzi(205,440,'1')
+            //上海虹桥上行信号机第四
+			
+			x=1140;y=440
+			shangxingxinhaoji(x,y);
+			xieshuzi(1120,450,'SII')
+			xieshuzi(745,335,'3')
+			
+			//上海虹桥上行信号机第五
+			
+			x=1220;y=500
+			shangxingxinhaoji(x,y);
+			xieshuzi(1200,510,'S4')
+			xieshuzi(1005,440,'7')
+			//上海虹桥上行信号机第六
+			
+			x=1250;y=560
+			shangxingxinhaoji(x,y);
+			xieshuzi(1230,570,'S6')
+			
+			//上海虹桥下行信号机第一
+			
+			x=1460;y=230
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1430,205,'X5')
+			xieshuzi(1520,280,'6')
+			//上海虹桥下行信号机第二
+			
+			x=1500;y=290
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1465,265,'X3')
+			xieshuzi(1145,280,'9')
+			//上海虹桥下行信号机第三
+			
+			x=1600;y=350
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1570,325,'XI')
+			xieshuzi(1675,335,'2')
+			//上海虹桥下行信号机第四
+			
+			x=1600;y=410
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1570,385,'XII')
+			xieshuzi(1675,440,'4')
+			//上海虹桥下行信号机第五
+			
+			x=1500;y=470
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1470,445,'X4')
+			xieshuzi(1145,500,'11')
+			//上海虹桥下行信号机第六
+			
+			x=1460;y=530
+            xiaxingxinhaoji(x,y)
+			xieshuzi(1430,505,'X6')
+			xieshuzi(1520,500,'8')
+			
+			
+			
+
+			
+			
+			//道岔编号
+			
+			xieshuzi(1330,250,'5G')
+			xieshuzi(1330,310,'3G')
+			xieshuzi(1330,370,'IG')
+			xieshuzi(1330,430,'IIG')
+			xieshuzi(1330,490,'4G')
+			xieshuzi(1330,550,'6G')
+		
+			//连接状态
+			
+			
+			lianjiezhuangtaibiaojikong(620,145)
+			lianjiezhuangtaibiaojikong(750,145)
+			lianjiezhuangtaibiaojigreen(880,145)
+			
+			text="上海虹桥车务终端"
+			context.fillStyle = "#20b2aa";
+			context.font="60px bold 宋体";
+            context.fillText(text,500,70);
+			
+			text="非常站控"
+			context.fillStyle = "#FFF";
+			context.font="15px bold 宋体";
+            context.fillText(text,560,170);
+			
+			text="允许转为自律模式"
+			context.fillStyle = "#FFF";
+			context.font="15px bold 宋体";
+            context.fillText(text,660,170);
+			
+			text="自律模式"
+			context.fillStyle = "#FFF";
+			context.font="15px bold 宋体";
+            context.fillText(text,820,170);
+        }
+		function lianjiezhuangtaibiaoji(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,7,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+		}
+		function lianjiezhuangtaibiaojikong(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,7,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = '#000';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#000";
+            context.fill();
+            context.stroke();
+		}
+		function lianjiezhuangtaibiaojigreen(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,7,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'green';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="green";
+            context.fill();
+            context.stroke();
+		}
+		
+		function shangxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+6, y-13 ); // x+7,y-1
+			context.lineTo( x-30+16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30+16, y-8 ); // x+7,y-1
+			context.lineTo( x-30+16, y-18);
+			
+			context.stroke();
+		}
+		function xiaxingxinhaoji(x,y)
+		{ 
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+            context.arc(x-30,y-13,5,0,2*Math.PI);
+            context.fillStyle="#FFF";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.strokeStyle = 'red';
+            context.arc(x-30,y-13,3,0,2*Math.PI);
+            context.fillStyle="red";
+            context.fill();
+            context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 2;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-6, y-13 ); // x+7,y-1
+			context.lineTo( x-30-16, y-13);
+			
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#FFF';
+			context.moveTo( x-30-16, y-8 ); // x+7,y-1
+			context.lineTo( x-30-16, y-18);
+			
+			context.stroke();
+		}
+		
+		function bisaifenqu(x,y1,y2)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			//context.fillStyle = "#FFF";
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+            context.moveTo( x, y1 );
+			context.lineTo( x, y2 );
+			context.stroke();
+		
+		}
+		function zuocechedang(x1,x2,y1,y2)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.strokeStyle = '#FFF';
+			context.lineWidth = 2; 
+            context.moveTo( x1, y1 );
+			context.lineTo( x2, y1 );
+            context.lineTo( x2, y2 );
+			context.lineTo( x1, y2 );
+		    context.stroke();
+		}
+		function chezhanbiaozhi(x,y,w,h,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "#FFF";
+			context.fillRect(x, y, w, h);
+			context.fillStyle = "#000";
+			context.fillRect(x+5, y+5, w-10, h-10);
+			context.fillStyle = "#FDFD00";
+			context.font="30px bold 宋体";
+            context.fillText(text,x+33,y+38);
+		}
+		
+		function xieshuzi(x,y,text)
+		{
+			var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+	
+			context.fillStyle = "#FFF";
+			context.font="12px bold 宋体";
+            context.fillText(text,x-10,y);
+		}
+		function huaxiaxingxiaoche(x,y)
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.fillStyle = "blue";
+            
+		    context.fillRect(1290, 335, 60, 15);
+			context.beginPath();
+			context.lineWidth = 1;
+			context.strokeStyle = 'blue';
+			
+			context.moveTo( x+60, y ); // x+7,y-1
+			context.lineTo( x+60, y+15);
+			context.lineTo( x+90, y+15);
+			context.lineTo( x+60, y);
+			context.fill();
+			context.stroke();
+			
+			context.fillStyle = "red";
+			context.fillRect(1126, 350, 427, 5);
+			
+		}
+		function changceguidaohuizhi()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x1=245;
+			y1=405;
+			x2=695;
+			y2=358;
+			context.moveTo( x1, y1 ); // x+7,y-1
+			context.lineTo( x2, y2);
+			context.stroke();
+			
+			
+			context.strokeStyle = '#FFF';
+			context.beginPath();
+			context.lineWidth = 2;
+            context.moveTo( 465,378);
+			context.lineTo( 470, 387 );
+			context.stroke();
+			
+		}
+		function beijingnanzhancexiangguidao()
+		{
+		    var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			x=990;
+			y=348;
+			k=50;
+			context.moveTo( x+10, y-1 ); // x+7,y-1
+			context.lineTo( x+10+k, y-1-k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+		    x=1115;
+			y=290;
+			k=50;
+			context.moveTo( x+40, y-3 ); // x+7,y-1
+			context.lineTo( x+40+k, y-3-k);
+			//context.moveTo( 157, 185 );
+			//context.lineTo( 205, 138 );
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=1455;
+			y=230;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = 'red';
+			x=1610;
+			y=290;
+			k=50;
+			context.moveTo( x, y+6 ); // x+7,y-1
+			context.lineTo( x+k, y+6+k);
+			context.stroke();
+			
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=990;
+			y=417;
+			k=50;
+			context.moveTo( x+10, y+1 ); // x+7,y-1
+			context.lineTo( x+10+k, y+1+k);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineWidth = 5;
+			context.strokeStyle = '#848284';
+			
+			x=1115;
+			y=475;
+			k=50;
+			context.moveTo( x+40, y+3 ); // x+7,y-1
+			context.lineTo( x+40+k, y+3+k);
+			context.stroke();
+
+			x=1610;
+			y=470;
+			k=50;
+			context.moveTo( x, y-1 ); // x+7,y-1
+			context.lineTo( x+k, y-1-k);
+			context.stroke();
+
+
+			x=1455;
+			y=530;
+			k=50;
+			context.moveTo( x, y-3 ); // x+7,y-1
+			context.lineTo( x+k, y-3-k);
+			context.stroke();
+		}
+		
+    </script>
+</head>
+
+<body>
+
+<div class='nav'>
+<ul>
+		   <div class="dropdown">
+                <li>
+	       		<a href="#" > 站场图 </a>
+			    <div class="dropdown-content">
+					 <ul>
+						<li><a href="#">上海虹桥场图</a> </li>
+						<li><a href="#">南京南站场图 </a></li>
+						<li><a href="#">上海虹桥场图 </a></li>
+						<li><a href="#">多站显示</a></li>
+					</ul>
+			    </div>
+				</li>
+		   </div>
+ 		   <div class="dropdown">
+		        <li> 
+		   		<a href="#">计划图 </a>
+   				<div class="dropdown-content">
+					<ul>
+						<li><a href="#">基本运行图</a> </li>
+						<li><a href="#">调整运行图 </a></li>
+						<li><a href="#">列车实际表 </a></li>
+						<hr>
+						<li><a href="#">显示运行图方向</a></li>
+						<li><a href="#">删除所有运行线</a></li>
+					</ul>
+				</div>
+				</li>
+		   </div>
+           <div class="dropdown">
+				<li>
+		   		<a href="#">行车日志</a>
+				<div class="dropdown-content">
+					<ul>
+						<li><a href="#">上海虹桥行车日志</a> </li>
+						<li><a href="#">南京南站行车日志 </a></li>
+						<li><a href="#">上海虹桥行车日志 </a></li>
+						<hr>
+						<li><a href="#">打印</a></li>
+						<li><a href="#">历史记录查询</a></li>
+					</ul>
+				</div>
+				</li>
+		   </div>
+		   <div class="dropdown">
+				<li>
+		   		<a href="#"> 功能 </a>
+				<div class="dropdown-content">
+					<ul>
+						<li><a href="#">自动走车</a> </li>
+						<li><a href="#">停止自动走车 </a></li>
+						<hr>
+						<li><a href="#">申请中心控制模式 </a></li>
+						<li><a href="#">申请车站控制模式 </a></li>
+						<li><a href="#">申请分散自律模式 </a></li>
+						<hr>
+						<li><a href="#">网络连接</a></li>
+					</ul>
+				</div>
+				</li>
+		  </div>
+		   <div class="dropdown">
+				<li>
+		   		<a href="#"> 系统 </a>
+				<div class="dropdown-content">
+					<ul>
+						<li><a href="#">初始化站场</a> </li>
+						<hr>
+						<li><a href="#">交接班</a></li>
+						<li><a href="#">人工过表</a></li>
+						<li><a href="#">值班人员登陆 </a></li>
+						<li><a href="#">值班人员注销 </a></li>
+						<hr>
+						<li><a href="#">系统维护</a></li>
+						<li><a href="#">报警信息</a></li>
+						<li><a href="#">系统日志</a></li>
+						<li><a href="#">维护工具</a></li>
+						<li><a href="#">全屏显示</a></li>
+						<hr>
+						<li><a href="#">退出系统</a></li>	
+					</ul>
+				</div>
+				</li>
+		  </div>
+</ul>
+</div>
+
+
+
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+<button class="banlijinlu" >办理进路</button>
+
+<button class="buttonStyle" id="jdjh_pos" >阶段计划</button> 
+<button class="buttonStyle" id="mszh_pos" >模式转换</button>
+<button class="buttonStyle" id="ddmm_pos" >调度命令</button>
+<button class="buttonStyle" id="qqmm_pos">请求命令</button>
+
+
+
+<!--站场图的画布-->
+ <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+</canvas>
+
+<div style="width:1800px; height:600px;">
+<div>列车进路-接车:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+列车进路-发车:</div>
+<table border="1" style="float:left; width:600px; ">
+<tr>
+<td></td>
+<td>序号</td>
+<td>车次</td>
+<td>接发车</td>
+<td>股道</td>
+<td>计划开行时间</td>
+<td>进路</td>
+<td>状态</td>
+<td>触发方式</td>
+</tr>
+<tr>
+<td>*</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+<table border="1" style="float:left; width:600px; margin-left:18px";>
+<tr>
+<td></td>
+<td>序号</td>
+<td>车次</td>
+<td>接发车</td>
+<td>股道</td>
+<td>计划开行时间</td>
+<td>进路</td>
+<td>状态</td>
+<td>触发方式</td>
+</tr>
+<tr>
+<td>*</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</div>
+
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>        
+ <script type="text/javascript">
+ showTime();
+function showTime(){ 
+ var week=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ var date = now.getDate();
+ var day = now.getDay();
+ var hour = now.getHours();
+ var minutes = now.getMinutes();
+ var second = now.getSeconds(); 
+  month=month+1;
+     month<10?month='0'+month:month; 
+     
+     hour<10?hour='0'+hour:hour; 
+     minutes<10?minutes='0'+minutes:minutes; 
+     second<10?second='0'+second:second;
+     var now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' '; 
+
+     document.getElementById('timetext').value=now_time; 
+     setTimeout("showTime();",1000);      //每隔1秒刷新一次
+ } 
+ $('#lianjieyingyongfuwuqi').click(function () {
+
+    alert("应用服务器未上线，请先开启应用服务器");
+});
+ 
+</script>

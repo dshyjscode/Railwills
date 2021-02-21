@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>MA</title>
+        <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+</head>
+<body>
+    MA报文发送测试
+    <input type="button" onClick="sendJson()" value="点击">
+</body>
+
+<script>
+    function sendJson() {
+
+        var MAd={
+            zhentou:"BC",
+            leixing:98,
+            checihao:0001,
+			xingchexuke:1213,
+			linshixiansu:000,
+			jinjitingche:0000,
+			zhenwei:"AC"
+        };
+        $.ajax({
+            type : "POST",  //提交方式
+            url : "http://202.112.159.154:8002/dashboard/MATest.php",//注意！这个是跟上面不一样的地方
+			//dataType: 'jsonp',  // 请求方式为jsonp
+            //crossDomain: true,
+            data : {
+                "MAdata" : MAd
+            },//数据，这里使用的是Json格式进行传输
+            success : function(result) {//返回数据根据结果进行相应的处理
+                alert(result);
+            }
+        });
+    }
+</script>
+</html>

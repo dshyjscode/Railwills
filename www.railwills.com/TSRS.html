@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+  	<meta http-equiv = "Content-Type" content = "text/html; charset = gbk"/>
+    <meta charset = "GBK">
+    
+    <link rel = "stylesheet" href = "css/tsrs.css"/>
+   
+
+    <script src = "js/jquery-2.1.1.min.js"></script>
+    <script src = "js/jquery.bubble-slider.js"></script>
+    <script src = "js/jquery.cookie.js"></script>
+    <title>23临时限速服务器</title>
+</head>
+<body>
+<div class = "lsxsfwqdiva">
+	<div class = "lsxsfwqhy">活跃命令</div >
+	<textarea id = "huoyue" name = "a" class = "lsxsfwqhyinput" readonly = "readonly" style="resize:none"></textarea>
+	<div class = "lsxsfwqsx">失效命令</div >
+	<textarea id = "shixiao" name = "a" class = "lsxsfwqsxinput" readonly = "readonly" style="resize:none"></textarea>
+	<div class = "lsxsfwqgzjd">工作进度</div >
+	<textarea id = "gongzuojindu" name = "a" class = "lsxsfwqgzjdinput" readonly = "readonly" style="resize:none">当前工作进度:</textarea>
+	<div class = "lsxsfwqmlxq">命令详细信息:</div >
+
+	<div class = "lsxsfwqmlh">命令号：</div >
+	<input type = "text" id = "orderorder" class = "lsxsfwqmlhinput" placeholder="请输入四位数字 (0000至9999)"/>
+
+<!--<div><label class = "lsxsfwqslcz">受令车站：</label></div>
+<select id="shoulingchezhan" class="lsxsfwqslczinput" οnchange="getContent(this.options[this.options.selectedIndex].value,this.options[this.selectedIndex].text)">
+	<option value="00"></option>
+	<option value="01">北京南站</option>
+    <option value="02">南京南站</option>
+    <option value="03">上海虹桥</option>
+</select>-->
+
+	<div><label class = "lsxsfwqxsyy">限速原因：</label></div>
+	<select id="xiansuyuanyin" class="lsxsfwqxsyyinput" οnchange="getContent(this.options[this.options.selectedIndex].value,this.options[this.selectedIndex].text)">
+	     <option value="00"></option>
+	     <option value="01">施工中</option>
+         <option value="02">风雨雪天气</option>
+	</select>
+
+	<div><label class = "lsxsfwqxsz">限速值：</label></div>
+	<select id="xiansuzhi" class="lsxsfwqxszinput" οnchange="getContent(this.options[this.options.selectedIndex].value,this.options[this.selectedIndex].text)">
+		<option value="00"></option>
+		<option value="01">40km/h</option>
+    	<option value="02">80km/h</option>
+    	<option value="03">120km/h</option>
+    	<option value="04">160km/h</option>
+    	<option value="05">225km/h</option>
+    	<option value="06">380km/h</option>
+    </select>
+
+	<div class = "lsxsfwqbegintime">开始时间：</div >
+	<input id = "kaishitime" type = "text" class = "lsxsfwqbegintimeinput" value="2020年10月11日 17:10:00" readonly = "readonly"/>
+
+	<div class = "lsxsfwqendtime">结束时间：</div >
+	<input id = "jieshutime" type = "text" class = "lsxsfwqendtimeinput" value="2020年10月11日 17:10:00" readonly = "readonly"/>
+
+
+	<div><label class = "lsxsfwqxlh">线路号：</label></div>
+	<select id="xianluhao" class="lsxsfwqxlhinput" οnchange="getContent(this.options[this.options.selectedIndex].value,this.options[this.selectedIndex].text)">
+		<option value="00"></option>
+		<option value="01">京沪线上行</option>
+    	<option value="02">京沪线下行</option>
+	</select>
+
+	<div class = "lsxsfwqxsqqd">限速区起点：</div >
+	<input id = "xiansuqidian" type = "text" class = "lsxsfwqxsqqdinput"/>
+
+
+	<div class = "lsxsfwqxsqzd">限速区终点：</div >
+	<input id = "xiansuzhongdian" type = "text" class = "lsxsfwqxsqzdinput"/>
+
+	<div><label class = "lsxsfwqcch">车次号：</label></div>
+	<select id="checihao" class="lsxsfwqcchchoice">
+   		<option value="1001">1001</option>
+	</select>
+
+<button class = "lsxsfwqfasongabutton" id = "fasong">发送</button>
+<button class = "lsxsfwqchexiaoabutton" id = "chexiao">撤销</button>
+
+<div class = "lsxsfwqtxzt">通信状态：</div >
+
+<div class = "lsxsfwqctc">CTC连接状态：</div >
+<input id = "ctcwangluolianjie" type = "text" class = "lsxsfwqctcinput" value = "网络未连接" readonly = "readonly"/>
+
+<div class = "lsxsfwqrbc">RBC连接状态：</div >
+<input id = "rbcwangluolianjie" type = "text" class = "lsxsfwqrbcinput" value = "网络未连接" readonly = "readonly"/>
+
+<button class = "lsxsfwqfasongctcbutton" id = "lianjiectc">连接CTC</button>
+<button class = "lsxsfwqfasongrbcbutton" id = "lianjierbc">连接RBC</button>
+
+<!-- <button class = "shuaxin" id = "shuaxincch">刷新车次号</button>
+
+<button class = "" id = "testjiacookie">写假cookie</button>
+<button class = "" id = "jiache">加车</button>
+<button class = "" id = "jianche">减车</button> -->
+<img src="images/bianhao.png" alt="临时限速各区段对应编号" width="641" height="260"> 
+</div>	  
+</body>
+</html>        
+<script>
+
+showTimekaishi();
+
+showTimejieshu();
+
+calcuchecihao();
+
+var wangluolianjie = "123";
+var liecheweizhi = "456";
+
+var flagctc = 0;
+var flagrbc = 0;
+var errflag = 0;
+
+var cheliangbianhaoforma = new Array;
+var linshixiansuxinxi = new Array("AB","D0","01","23","22","01","mmmm","mm","mmmmmmmm","mmmmmmmm","mm","mmmmmmmmmmmmmm","mmmmmmmmmmmmmm","mm","AC");
+
+var now = new Date();
+var year = now.getFullYear();
+var month = now.getMonth();
+var date = now.getDate();
+var day = now.getDay();
+var hour = now.getHours();
+var minutes = now.getMinutes();
+var second = now.getSeconds(); 
+var now_time;
+
+var wangluolianjier = "22222222222222222222222222222";
+var liecheweizhier = "AB1000000020000000AC";
+
+function showTimekaishi()
+{
+    now = new Date();
+    year = now.getFullYear();
+    month = now.getMonth();
+    date = now.getDate();
+    day = now.getDay();
+    hour = now.getHours();
+    minutes = now.getMinutes();
+    second = now.getSeconds(); 
+    month = month + 1;
+    month<10?month = '0'+month:month;
+    date<10?date = '0'+date:date; 
+     
+    hour<10?hour = '0'+hour:hour; 
+    minutes<10?minutes = '0'+minutes:minutes; 
+    second<10?second = '0'+second:second;
+    now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' '; 
+    document.getElementById('kaishitime').value = now_time; 
+    setTimeout("showTimekaishi();",1000);      //每隔1秒刷新一次
+}
+
+ function showTimejieshu()
+{
+    var jieshushijian;
+
+    second = (second + 8) % 60;
+    second<10?second = '0'+second:second;
+
+    minutes = (minutes + 33) % 60;
+    minutes<10?minutes = '0'+minutes:minutes;
+
+    hour = (hour + 10) % 24;
+    hour<10?hour = '0'+hour:hour;
+
+    date = date - 1 + 4;
+    date<10?date = '0'+date:date; 
+    month = month + 1;
+
+    now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' '; 
+    jieshushijian = now_time;
+    document.getElementById('jieshutime').value = jieshushijian; 
+    setTimeout("showTimejieshu();",1000);
+}
+
+function selectchecihao()
+{
+    $("#checihao").html("");
+    if(liecheweizhi != null)
+    {
+        for (i = 0; i < cheliangbianhaoforma.length; i++)
+        {
+            checihao.options.add(new Option(cheliangbianhaoforma[i]),i);
+        }
+    }
+}
+
+ $('#fasong').click(function () {
+    if(flagctc == 0 || flagrbc ==0)
+    {
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    var minglinghao = document.getElementById('orderorder').value;
+    var xianlu = document.getElementById('xianluhao').value;
+    var chehao = document.getElementById('checihao').value;
+    var qishibianhao = document.getElementById('xiansuqidian').value;
+    var zhongdianbianhao = document.getElementById('xiansuzhongdian').value;
+    var qidian = "K" + chehao + qishibianhao;
+    var zhongdian = "K" + chehao + zhongdianbianhao;
+    var yuanyin = document.getElementById('xiansuyuanyin').value;
+    var kaishi = document.getElementById('kaishitime').value;
+    var jieshu = document.getElementById('jieshutime').value;
+    var xiansuneirong = document.getElementById('xiansuzhi').value;
+    
+    var reg = /^[0-9]+.?[0-9]*$/;
+    if(!reg.test(minglinghao))
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(minglinghao.length != 4)
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(yuanyin == "00")
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(xiansuneirong == "00")
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(xianlu == "00")
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(!reg.test(chehao))
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(chehao.length != 4)
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(!reg.test(qishibianhao))
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(qishibianhao.length != 3)
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(!reg.test(zhongdianbianhao))
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+    if(zhongdianbianhao.length != 3)
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达失败";
+        return false;
+    }
+
+    var kaishinumarr = new Array;
+    var jieshunumarr = new Array;
+    var shijiannum = 0;
+    var kaishinum = new Array;
+    var jieshunum = new Array;
+    for(i = 0; i < kaishi.length; i++)
+    {
+        if(reg.test(kaishi[i]))
+        {
+            kaishinumarr[shijiannum] = kaishi[i];
+            shijiannum++;
+        }
+    }
+    shijiannum = 0;
+    for(i = 0; i < jieshu.length; i++)
+    {
+        if(reg.test(jieshu[i]))
+        {
+            jieshunumarr[shijiannum] = jieshu[i];
+            shijiannum++;
+        }
+    }
+    kaishinum = kaishinumarr.join("");
+    jieshunum = jieshunumarr.join("");
+
+    linshixiansuxinxi[6] = minglinghao;
+    linshixiansuxinxi[7] = xianlu;
+    linshixiansuxinxi[8] = qidian;
+    linshixiansuxinxi[9] = zhongdian;
+    linshixiansuxinxi[10] = yuanyin;
+    linshixiansuxinxi[11] = kaishinum;
+    linshixiansuxinxi[12] = jieshunum;
+    linshixiansuxinxi[13] = xiansuneirong;
+
+    var linshixiansuxinxistr = linshixiansuxinxi.join("");
+
+    $.cookie.json = true;
+    $.cookie('临时限速服务器', linshixiansuxinxistr, { path: '/' });
+    rbchuoqu = $.cookie('临时限速服务器');
+    if(rbchuoqu == "")
+    {
+        return;
+    }
+    //alert(JSON.stringify(rbchuoqu));
+    gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令下达成功" + "\n" + "命令号: -" + minglinghao;
+    if(huoyue.value != minglinghao && shixiao.value != "")
+    {
+        shixiao.value = shixiao.value + huoyue.value + "\n\n";
+    }
+    huoyue.value = "-" + minglinghao;
+});
+
+$('#chexiao').click(function () {
+    if(flagctc == 0 || flagrbc ==0)
+    {
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令撤销失败";
+        return false;
+    }
+    if(linshixiansuxinxi[7] == "mm")
+    {
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令撤销失败";
+        return false;
+    }
+    linshixiansuxinxi[2] = "02";
+    var linshixiansuxinxistr = linshixiansuxinxi.join("");
+    $.cookie.json = true;
+    $.cookie('临时限速服务器', linshixiansuxinxistr, { path: '/' });
+    rbchuoqu = $.cookie('临时限速服务器');
+    if(rbchuoqu == "")
+    {
+        return;
+    }
+    //alert(JSON.stringify(rbchuoqu));
+    if(huoyue.value == "")
+    {
+        return false;
+    }
+    shixiao.value = shixiao.value + huoyue.value;
+    gongzuojindu.value = gongzuojindu.value + "\n\n-" + "临时限速命令撤销成功" + "\n" + "命令号: " + huoyue.value;
+    huoyue.value = "";
+});
+
+$('#shuaxincch').click(function () {
+    selectchecihao();
+    var reg = /^[0-9]+.?[0-9]*$/;
+    var chehaotest = document.getElementById('checihao').value;
+    if(!reg.test(chehaotest))
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "车次号刷新失败";
+        return false;
+    }
+    if(chehaotest.length != 4)
+    {
+        errflag = 1;
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "车次号刷新失败";
+        return false;
+    }
+    gongzuojindu.value = gongzuojindu.value + "\n\n-" + "车次号已更新"
+});
+
+$('#lianjiectc').click(function () {
+    $.cookie.json = true;
+    getCookieNet();
+    var wangluolianjieinform = new Array;
+    wangluolianjieinform = Array.from(wangluolianjie);
+    if(wangluolianjieinform[18]  ==  "0")
+    {
+        document.getElementById("ctcwangluolianjie").value = "网络未连接";
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "CTC连接失败"
+    }
+    if(wangluolianjieinform[18]  ==  "1")
+    {
+        document.getElementById("ctcwangluolianjie").value = "网络连接中";
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "CTC连接连接中"
+    }
+    if(wangluolianjieinform[18]  ==  "2")
+    {
+        document.getElementById("ctcwangluolianjie").value = "网络已连接";
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "CTC连接成功"
+        flagctc = 1;
+    }
+});
+
+$('#lianjierbc').click(function () {
+    $.cookie.json = true;
+    getCookieNet();
+
+    var wangluolianjieinform = new Array;
+    wangluolianjieinform = Array.from(wangluolianjie);
+    if(wangluolianjieinform[19]  ==  "0")
+    {
+        document.getElementById("rbcwangluolianjie").value = "网络未连接";
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "RBC连接失败"
+    }
+    if(wangluolianjieinform[19]  ==  "1")
+    {
+        document.getElementById("rbcwangluolianjie").value = "网络连接中";
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "RBC连接连接中"
+    }
+    if(wangluolianjieinform[19]  ==  "2")
+    {
+        document.getElementById("rbcwangluolianjie").value = "网络已连接";
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "RBC连接成功"
+        flagrbc = 1;
+    }
+    else
+    {
+        alert("RBC连接失败");
+    }
+});
+
+function addCookie()
+{
+    $.cookie('网络连接', wangluolianjier, { path: '/' });
+    $.cookie('列车位置', liecheweizhier, { path: '/' });
+}
+
+function getCookieNet()
+{
+	wangluolianjie = $.cookie('网络连接');
+    if(wangluolianjie == null)
+    {
+        gongzuojindu.value = gongzuojindu.value + "\n\n-" + "网络连接失败"
+        return false;
+    }
+    //alert(JSON.stringify(wangluolianjie));
+}
+
+function getCookiechecihao()
+{
+	liecheweizhi = $.cookie('列车位置');
+    if(liecheweizhi == "")
+    {
+        return;
+    }
+}
+
+$('#testjiacookie').click(function () {
+    $.cookie.json = true;
+    addCookie();
+});
+
+$('#jiache').click(function () {
+    liecheweizhier = "AB100000002000000030000000AC";
+    addCookie();
+});
+
+$('#jianche').click(function () {
+    liecheweizhier = "AB10000000";
+    addCookie();
+});
+
+function calcuchecihao()
+{
+    var count = 0;
+    $.cookie.json = true;
+    getCookiechecihao();
+    if(liecheweizhi != null)
+    {
+        var liecheweizhixinxi = new Array;     
+        var liechebianhao = new Array;
+        var checixinxi = new Array;
+        var cheliangbianhao = new Array;
+        liecheweizhixinxi = Array.from(liecheweizhi);
+        for(i = 0; i < liecheweizhixinxi.length; i++)
+        {
+            if(liecheweizhixinxi[i] != "A")
+            {
+                if(liecheweizhixinxi[i] != "B")
+                {
+                    if(liecheweizhixinxi[i] != "C")
+                    {
+                        liechebianhao[count] = liecheweizhixinxi[i];
+                        count++;
+                    }
+                }
+            }
+        }
+        count = 0;
+        for(i = 0; i < liechebianhao.length; i++)
+        {
+            checixinxi[count] = liechebianhao[i];
+            count++;
+            if(count % 4 == 0)
+            {
+                i = i + 4;
+            }
+        }
+        var checixinxistr = checixinxi.join("");
+        count = 0;
+        var shu = 0;
+        for(i = 0; i < checixinxistr.length / 4; i++)
+        {
+            cheliangbianhao[count] = checixinxistr.substring(shu,shu + 4);
+            shu = shu + 4;
+            count++;
+        }
+        cheliangbianhaoforma = cheliangbianhao;
+    }
+    setTimeout("calcuchecihao();",100);
+}
+ </script>

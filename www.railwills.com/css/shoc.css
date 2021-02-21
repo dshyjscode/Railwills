@@ -1,0 +1,23 @@
+
+section{
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.cont p{
+
+    font-size: 20px;
+    text-align: left;
+    text-indent: 2rem;
+}
+.cont img{
+
+}
+h3{
+    text-align: center;
+    font-size: 32px;
+}
+h4{
+    font-size: 26px;
+}

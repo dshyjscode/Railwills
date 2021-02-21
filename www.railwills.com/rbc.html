@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html >
+<body>
+<meta http-equiv="refresh" content="">
+<head lang="en" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" href="css/rbc-1024.css"/>    
+    <script language=JavaScript> 
+        //if(screen.width <=1920){
+        document.write('<link rel="stylesheet" type="text/css" href="css/rbc-1024.css">');
+        //}
+        //else{
+        //    document.write('<link rel="stylesheet" href="css/rbc-anothernex.css"/>');
+        //}
+    </script>
+    <!--  <link rel="stylesheet" href="css/anothernex.css"/>-->
+    <link rel="stylesheet" href="css/bubble-slider.css"/>
+    <link rel="stylesheet" href="css/jquery-ui.min.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/calendar.css">-->
+    <link rel="stylesheet" href="css/rbc-wdatepicker.css">
+    <link rel="stylesheet" href="css/rbc-datepicker.css"/>
+    <link rel="stylesheet" href="css/font-awesome.css"/><!--图标-->
+    <link rel="stylesheet" href="css/yxt.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/rbc-cookies.js"></script>
+
+    <!--
+     <script src="js/zh-cn.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+    <script src="js/wdatepicker.js"></script>
+    <script src="js/log_fun.js"></script>-->
+    
+    <!--
+    <style>
+        .goTab td{
+            width: 75px;
+            vertical-align: middle!important;
+        }
+        .eveTab tr >td{
+            width: 20%;
+        }
+        fieldset{padding:.35em .625em .75em;margin:0 2px;border:1px solid silver}
+        legend{padding:0 .5em;border:0;width:auto;margin-bottom: 0;font-size:16px}
+    </style>-->
+    <title>22RBC</title>
+</head>
+
+
+
+
+
+
+
+
+ <!--临时测试
+    <button  type="button"  onClick="addCookie_ceshi()">发送cookies</button>-->
+ <!--临时测试-->    
+ <!--临时测试
+    <button  type="button"  onClick="getCookie_ceshi()">获取cookies</button>-->
+ <!--临时测试-->  
+ <!--临时测试
+    <button  type="button"  onClick="startTest()">开始接收</button>
+    <button  type="button"  onClick="startTest()">所有cookies</button>-->
+
+ <!--临时测试-->  
+	
+<div class="diva" >
+    <div class="divb" > 
+        <!-- <div class="modal-footer mt_f">
+<button type="button" class="btn btn-primary" id="add_rig">确定</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+</div>
+<button class="headRbtn buttonH" >实验记录</button>
+</div>-->
+        <button id="buttonctclianjie" class="buttonmysheji0" onClick="Internet_connection()">网络连接</button>
+        <!--<button  type="button" class="buttonmysheji1" onClick="startTest()">刷新接收</button>-->
+        <button id="xianglinRBC" class="buttonmysheji" >相邻RBC</button>
+        <button id="liekongzhongxinxitong" class="buttonmysheji2" >列控系统</button>
+        <button id="linshixiansu" class="buttonmysheji3" >临时限速</button>
+        <button id="MAfasong" class="buttonmysheji4" >MA</button>
+        <button id="train_stop" class="buttonmysheji5" >停车</button>
+        <button id="xiaxingyuexing" class="buttonmysheji6" >下行越行</button>
+        <div class="rbctext" >无线闭塞中心</div >
+        <!--<div  id="rbctimeset"class="rbctimetext" >2019年6月23日 21:29:22</div >-->
+        <input type="text" id="rbctimetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="rbctimetext"  style="width:600px;"  />
+        <div class="rbcctctext" >调度集中</div >
+        <div class="rbctraintext" >列车</div >
+        <div class="rbcliansuotext" >联锁</div >
+        <div class="rbcliekongtext" >列控</div >
+        <div class="rbctsrstext" >临时限速服务器</div >
+        <div class="rbcminglingatext" >车-北京</div >
+        <div class="rbcminglingbtext" >车-上海</div >
+        <button id="fasong1" class="rbcfasongabutton" >发送</button>
+        <button id="fasong2" class="rbcfasongbbutton" >发送</button>
+        <button id="ruku" class="rbcrukubutton" >入库</button>
+        <input type="text" id="txt2"   value="" class="rbcfasongainput"  />
+        <input type="text" id="txt1"   value="" class="rbcfasongbinput"  />
+        <!--<textarea type="text" id="txt"   value="连接状况：" class="rbcctcainput"  />-->
+        <textarea id="RBC_CTC1" name="a" class="rbcctcainput">连接状况：</textarea>
+        <div class="rbcctcainputtext" >RBC</div >
+        <textarea id="RBC_CTC2" name="a" class="rbcctcbinput">RBC-CTC:</textarea>
+        <div class="rbcctcbinputtext" >CTC</div >
+        <textarea id="RBC_train1" name="a" class="rbctrainainput">连接状况：</textarea>
+        <div class="rbctrainainputtext" >RBC</div >
+        <textarea id="RBC_train2" name="a" class="rbctrainbinput">RBC-列车:</textarea>
+        <div class="rbctrainbinputtext" >列车</div >
+        <textarea id="RBC_lainsuo1" name="a" class="rbcliansuoainput">连接状况：</textarea>
+        <div class="rbcliansuoainputtext" >RBC</div >
+        <textarea id="RBC_lainsuo2" name="a" class="rbcliansuobinput">RBC-联锁:</textarea>
+        <div class="rbcliansuobinputtext" >联锁</div >
+        <div class="rbctongxinimage1" style="background:url(images/tongxin.png) no-repeat;background-size: 100%" ></div >
+        <div class="rbctongxinimage2" style="background:url(images/tongxin.png) no-repeat;background-size: 100%"></div >
+        <div class="rbctongxinimage3" style="background:url(images/tongxin.png) no-repeat;background-size: 100%"></div >
+        <div id="ctctongxin" class="rbcctctextimage" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="traintongxin" class="rbctraintextimage" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="liansuo1" class="rbcliansuotextimage" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="liansuo2" class="rbcliansuotextimage2" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="liansuo3" class="rbcliansuotextimage3" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="liansuo4" class="rbcliansuotextimage4" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="liansuo5" class="rbcliansuotextimage5" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="liansuo6" class="rbcliansuotextimage6" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="liekong" class="rbcliekongtextimage" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <div id="tsrstongxin" class="rbctsrstextimage" style="background:url(images/red.png) no-repeat;background-size: 100%" ></div >
+        <table id="list" class="table2" cellspacing="3" style="font-size: 20px; margin:0; padding:0; position: absolute; background-color:#FFF; text-align:center;"><!--网页底部表格 width:100%;top:41%;格式已移动至css文件中-->
+            <tr style="font-size: 20px;">
+                <th style="font-size: 20px;text-align:center;">列车车次号</th>
+                <th style="font-size: 20px;text-align:center;">上下行</th>
+                <th style="font-size: 20px;text-align:center;">列车速度</th>
+                <th style="font-size: 20px;text-align:center;">列车长度</th>
+                
+                <th style="font-size: 20px;text-align:center;">列车位置</th>
+                <th style="font-size: 20px;text-align:center;">列车运行状态</th>
+                <th style="font-size: 20px;text-align:center;">MA终点</th>
+                <th style="font-size: 20px;text-align:center;">通信状态</th>
+                <th style="font-size: 20px;text-align:center;">触发方式</th>
+            </tr>
+            <!--<tr style="font-size: 20px;">
+<th id = "RecCar" style="font-size: 20px;text-align:center;">G103</th>
+<th id = "CarWhere" style="font-size: 20px;text-align:center;">未知</th>
+<th id = "CarSpeed" style="font-size: 20px;text-align:center;">0km/h</th>
+<th style="font-size: 20px;text-align:center;">暂无信息</th>
+
+<th id = "Carlocation" style="font-size: 20px;text-align:center;">25</th>
+<th style="font-size: 20px;text-align:center;">暂无信息</th>
+<th style="font-size: 20px;text-align:center;">180</th>
+<th style="font-size: 20px;text-align:center;">断联</th>
+<th style="font-size: 20px;text-align:center;">手动</th>
+</tr>-->
+        </table>
+        <!--<textarea type="text" id="txt"   value="RBC-CTC：" class="rbcctcbinput"  />-->
+        <!--<button class="buttonmysheji" >实验记录</button>-->
+        <!--<button class="headRbtn buttonH" >实验记录</button>-->
+        <!--<script src="js/anojupnex.js"></script>
+<script language="JavaScript"  src="js/u16numnex.js"></script>
+<script src="js/read_txtdata.js" ></script>
+<script src="js/anothernex.js"></script>
+<script src="js/send_to_ci.js"></script>
+<script src="js/creatcar.js"></script>
+<script src="js/yxtfunction.js"></script>
+<script src="js/go_table.js"></script>
+<script src="js/tdadj.js"></script>-->
+    </div>
+    </div>
+    </body>
+
+<div class="modal fade bs-example-modal-sm" id="orderxianglingrbc" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content orderTemplateMModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel">  &#32;相邻RBC通信服务界面</h4>
+            </div>
+            <div class="modal-body  orderTemplateMModalB">
+                <div style="display:inline-block;width:653px;">
+                   <div style="	top:2%;left:13%;color:#8080FF;font-size:28px;position: absolute;" >RBC</div >
+                   <div style="	top:43%;left:6%;color:#8080FF;font-size:28px;position: absolute;" >相邻RBC</div >
+                    <div class="rbctongxinimage4" style="width:83px; height:358px; background:url(images/tongxin2.png);"></div>
+                   <textarea name="a" style="display:inline-block;width:350px; height:183px; text-align:center;padding:0px 50px -50px 100px;margin:0px 0px 0px 250px;" >连接状况：&#10;正在请求&hellip;&hellip;请求超时</textarea>
+                   <textarea name="a"  style="display:inline-block;width:350px; height:183px; text-align:center;padding:px 0px 10px 50px;margin:0px 0px 0px 250px;">RBC-相邻RBC:&#10;STOP</textarea>
+                </div>
+                
+                 <div style="display:inline-block;width:100%;text-align:center;padding:20px 0px 10px">
+                   <fieldset >
+                     <button id="xianglingrbckaishijianting" style="width:100px;height:33px;"> 开始监听</button>
+                     <button id="xianglingrbcjiesujianting" style="width:100px;height:33px;"> 结束监听</button>                   
+                  </fieldset>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="ordertcc" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+
+    <div class="modal-dialog " role="document">
+        <div class="modal-content orderTemplateMModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel2">  &#32;列控中心通信服务界面</h4>
+            </div>
+            <div class="modal-body  orderTemplateMModalB">
+                <div style="display:inline-block;width:653px;">
+                   
+                   <div style="	top:2%;left:13%;color:#8080FF;font-size:28px;position: absolute;" >RBC</div >
+                   <div style="	top:43%;left:13%;color:#8080FF;font-size:28px;position: absolute;" >TCC</div >
+                   
+                    <div class="rbctongxinimage4" style="width:83px; height:358px; background:url(images/tongxin2.png);"></div>                   <textarea name="a" style="display:inline-block;width:350px; height:183px; text-align:center;padding:0px 50px -50px 100px;margin:0px 0px 0px 250px;" >连接状况：&#10;该功能暂未开放</textarea>
+                   <textarea name="a"  style="display:inline-block;width:350px; height:183px; text-align:center;padding:px 0px 10px 50px;margin:0px 0px 0px 250px;">RBC-TCC:&#10;该功能暂未开放</textarea>
+                </div>
+                
+                 <div style="display:inline-block;width:100%;text-align:center;padding:20px 0px 10px">
+                   <fieldset >
+                     <button id="tcckaishijianting" style="width:100px;height:33px;"> 开始监听</button>
+                     <button id="tccjiesujianting" style="width:100px;height:33px;"> 结束监听</button>                   
+                  </fieldset>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="ordertsrs" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel">
+
+    <div class="modal-dialog " role="document">
+        <div class="modal-content orderTemplateMModalContent">
+            <div class="modal-header modalH">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="loadModalLabel3">  &#32;临时限速通信服务界面</h4>
+            </div>
+            <div class="modal-body  orderTemplateMModalB">
+                <div style="display:inline-block;width:653px;">
+                   
+                   <div style="	top:2%;left:13%;color:#8080FF;font-size:28px;position: absolute;" >RBC</div >
+                   <div style="	top:43%;left:13%;color:#8080FF;font-size:28px;position: absolute;" >TSRS</div >
+                   
+                    <div class="rbctongxinimage4" style="width:83px; height:358px; background:url(images/tongxin2.png);"></div>                   <textarea id="TSRS_connect" name="a" style="display:inline-block;width:350px; height:183px; text-align:center;padding:0px 50px -50px 100px;margin:0px 0px 0px 250px;" >连接状况：</textarea>
+                   <textarea id="RBC_TSRS" name="a"  style="display:inline-block;width:350px; height:183px; text-align:center;padding:px 0px 10px 50px;margin:0px 0px 0px 250px;">RBC-TSRS:</textarea>
+                </div>
+                
+                 <div style="display:inline-block;width:100%;text-align:center;padding:20px 0px 10px">
+                   <fieldset >
+                     <button id="tsrskaishijianting" style="width:100px;height:33px;"> 开始监听</button>
+                     <button id="tsrsjiesujianting" style="width:100px;height:33px;"> 结束监听</button>                   
+                  </fieldset>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</html>        
+<script>
+ //setCookie("lieche1","0");
+ //setCookie("lieche2","0");
+ //setCookie("lsxsfwq2","0");
+ //
+ //setCookie("beijingnanliansuo","0");
+ //setCookie("nanjingnanliansuo","0");
+ //setCookie("shanghaihongqiaoliansuo","0");
+//写cookies 
+function setCookie(name,value) 
+{ 
+    var Days = 30; 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() + Days*24*60*60*1000); 
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
+} 
+
+//读取cookies 
+function getCookie(name) 
+{ 
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]); 
+    else 
+        return null; 
+} 
+
+//删除cookies 
+function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 1); 
+    var cval=getCookie(name); 
+    if(cval!=null) 
+        document.cookie= name + "="+cval+";expires="+exp.toGMTString(); 
+} 
+/***
+ * @param {string} cookieName Cookie名称
+ * @param {string} cookieValue Cookie值
+ * @param {number} nDays Cookie过期天数
+ */
+
+
+//alert("执行了")
+//e=1;
+//d=1;
+//c=1;
+//document.getElementById('txt1').value="0"+e+":0"+d+":0"+c;
+//document.getElementById('rbctimetext').value="2019年6月25日 21:29:22";
+    
+//setCookie("ctclianjie2","0");
+//setCookie("xinlieche","0"); 
+//setCookie("xinliechebiaoji","0");
+//setCookie("xinliechebiaojiweizhi","3");
+//setCookie("xinliechebiaojiweizhi2","3");
+
+//setCookie("beijingnanliansuotextflag","0");
+
+
+showTime();
+function showTime(){ 
+ var week=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六');
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ var date = now.getDate();
+ var day = now.getDay();
+ var hour = now.getHours();
+ var minutes = now.getMinutes();
+ var second = now.getSeconds(); 
+  month=month+1;
+     month<10?month='0'+month:month; 
+     
+     hour<10?hour='0'+hour:hour; 
+     minutes<10?minutes='0'+minutes:minutes; 
+     second<10?second='0'+second:second;
+     var now_time =  year + '年' + month + '月' + date + '日' + ' ' + hour + ':' + minutes + ':' + '' + second + ' ' + week[day]; 
+     document.getElementById('rbctimetext').value=now_time; 
+	 
+	 
+	 //rbcliansuolianjie
+	 
+	  
+	 if(getCookie("xinlieche")=="1")
+	 {   alert("列车已成功连接")
+		 $(traintongxin).css("background-image","url(images/green.png)")
+		 
+		 
+		 document.getElementById("sudubiaoge").innerText="30km/h";
+		 document.getElementById("yunxingzhuangtai").innerText="牵引";
+		 document.getElementById("lianjiebiaoge").innerText="已连接";
+		 
+		 setCookie("xinlieche","0"); 
+	 }
+	 
+	 if(getCookie("xinliechebiaoji")=="1")
+	 {   
+		 		 
+		 
+		 document.getElementById("weizhibiaoge").innerText=getCookie("xinliechebiaojiweizhi");
+		 document.getElementById("MAzhongdianbiaoge").innerText=getCookie("xinliechebiaojiweizhi2");
+
+	 }
+	 
+	 if(getCookie("lieche1")=="1")
+	 {   alert("列车1已成功连接")
+		 $(traintongxin).css("background-image","url(images/green.png)")
+		 
+		 setCookie("lieche1","0"); 
+	 }
+	 
+	 if(getCookie("lieche2")=="1")
+	 {   alert("列车2已成功连接")
+		 		 
+		 setCookie("lieche2","0"); 
+	 }
+	 
+	   if(getCookie("lsxsfwq2")=="1")
+	 {
+		 $(tsrstongxin).css("background-image","url(images/green.png)")
+		 alert("临时限速服务器已连接")
+		 setCookie("lsxsfwq2","0"); 
+	 }
+	 
+	 if(getCookie("ctclianjie2")=="1")
+	 {
+		 $(ctctongxin).css("background-image","url(images/green.png)")
+		 alert("CTC已连接")
+		 setCookie("ctclianjie2","0"); 
+	 }
+	 
+	 if(getCookie("beijingnanliansuo")=="1")
+	 {
+		 $(liansuo1).css("background-image","url(images/green.png)")
+		 alert("北京南站联锁已连接")
+		 setCookie("beijingnanliansuo","0"); 
+		 document.getElementById("rbcliansuolianjie").innerText="192.168.1.1:"+"\n"+"01010101010101010101010101010101010101010101010101010101010101010101010101010101";
+		
+	 }
+	 
+	 
+	 if(getCookie("nanjingnanliansuo")=="1")
+	 {
+		 $(liansuo2).css("background-image","url(images/green.png)")
+		 alert("南京南站联锁已连接")
+		 setCookie("nanjingnanliansuo","0"); 
+		 
+		 		 document.getElementById("rbcliansuolianjie").innerText="192.168.1.10:"+"\n"+"01010101010101010101010101010101010101010101010101010101010101010101010101010101";
+	 }
+	if(getCookie("shanghaihongqiaoliansuo")=="1")
+	 {
+		 $(liansuo3).css("background-image","url(images/green.png)")
+		 alert("上海虹桥站联锁已连接")
+		 setCookie("shanghaihongqiaoliansuo","0"); 
+		 		 document.getElementById("rbcliansuolianjie").innerText="192.168.1.20:"+"\n"+"01010101010101010101010101010101010101010101010101010101010101010101010101010101";
+	 }
+	 
+	 
+     setTimeout("showTime();",1000);      //每隔1秒刷新一次
+ } 
+//$('#buttonctclianjie').click(function () {
+//    alert(getCookie("网络连接"));
+//    var str=rePlaceStr(getCookie("网络连接"),19,"1");
+//    setCookie(str);
+//    alert("连接应用服务器成功");
+//   // alert("连接失败，后台无响应");
+//});
+//function rePlaceStr(str,i,d){
+//    var string
+//    if(i==1){
+//        string=d+str.substr(1)
+//    }
+//    else if(i==str.length){
+//        string=str.substr(0,i-1)+d
+//    }
+//    else{
+//        string=str.substr(0,i-1)+d+str.substr(i)
+//    }
+//    return strin
+//}
+$('#xiaxingyuexing').click(function () {
+	
+	//setCookie("xiaxingyuexingmingling","1"); 
+    alert("该功能本实验不涉及，后续开放。");
+   // alert("连接失败，后台无响应");
+});
+
+$('#MAfasong').click(function () {
+    $.cookie.json = true;
+    if($.cookie('MA')){
+        alert("MA已发送："+$.cookie('MA'));
+    }else{     
+        alert("MA发送失败，当前线路无列车运行或列车信息不全");
+    }
+});
+    
+$('#train_stop').click(function () {     
+    alert("该功能本实验不涉及，后续开放。");
+});
+
+$('#linshixiansu').click(function (e) {
+	stop(e)
+//window.open ("page.html", "newwindow", "height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no") 
+
+$('#ordertsrs').modal('show')	
+   // alert("连接失败，后台无响应");
+});
+
+$('#liekongzhongxinxitong').click(function (e) {
+	stop(e)
+//window.open ("page.html", "newwindow", "height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no") 
+
+$('#ordertcc').modal('show')	
+   // alert("连接失败，后台无响应");
+});
+
+$('#xianglinRBC').click(function (e) {
+	stop(e)
+//window.open ("page.html", "newwindow", "height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no") 
+
+$('#orderxianglingrbc').modal('show')	
+   // alert("连接失败，后台无响应");
+});
+
+$('#xianglingrbckaishijianting').click(function () {
+
+    alert("该功能本实验不涉及，后续开放。");
+});
+
+$('#xianglingrbcjiesujianting').click(function () {
+
+    alert("该功能本实验不涉及，后续开放。");
+});
+
+$('#tcckaishijianting').click(function () {
+
+    alert("该功能本实验不涉及，后续开放。");
+});
+
+$('#tccjiesujianting').click(function () {
+
+    alert("该功能本实验不涉及，后续开放。");
+});
+
+$('#tsrskaishijianting').click(function () {
+
+    alert("已开始监听");
+});
+
+$('#tsrsjiesujianting').click(function () {
+
+    alert("持续监听中…无需操作");
+});
+    
+$('#fasong1').click(function () {
+
+    alert("该功能本实验不涉及，后续开放。");
+});
+    
+$('#fasong2').click(function () {
+
+    alert("该功能本实验不涉及，后续开放。");
+});
+    
+$('#ruku').click(function () {
+
+    alert("该功能本实验不涉及，后续开放。");
+});
+    
+if( $.cookie('刷新界面')==undefined){
+        $.cookie("刷新界面", "000000000000000000000000", { path: '/' })
+    }
+    Refresh();
+    function Refresh(){
+        setTimeout("Refresh();",1000);
+        if($.cookie("刷新界面").substr(14,1)==1){
+        
+           window.location.reload()
+           var str=rePlaceStr($.cookie("刷新界面"),15,"2")
+           $.cookie("刷新界面", str, { path: '/' })
+        }
+    }
+</script>
+

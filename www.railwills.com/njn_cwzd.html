@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/zhanchangtu.css"/>
+	<link rel="stylesheet" href="css/bjn_cwzd.css"/>
+	<script src="js/njnzcwzd.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/showtime.js"></script>
+    <title>南京南站——车务终端</title>
+</head>
+
+<body>
+
+<div class='nav'>
+<ul>
+                <li><a> 站场图 </a>
+					 <ul>
+						<li><a>北京南站场图</a> </li>
+						<li><a>南京南站场图 </a></li>
+						<li><a>上海虹桥站场图 </a></li>
+						<li><a>多站显示</a></li>
+					</ul>
+				</li>
+		  
+		        <li> 
+		   		<a>计划图 </a>
+					<ul>
+						<li><a>基本运行图</a> </li>
+						<li><a>调整运行图 </a></li>
+						<li><a>列车实际表 </a></li>
+						<li><a>显示运行图方向</a></li>
+						<li><a>删除所有运行线</a></li>
+					</ul>
+				</li>
+
+				<li>
+		   		<a>行车日志</a>
+					<ul>
+						<li><a>北京南站行车日志</a> </li>
+						<li><a>南京南站行车日志 </a></li>
+						<li><a>上海虹桥站行车日志 </a></li>
+						<li><a>打印</a></li>
+						<li><a>历史记录查询</a></li>
+					</ul>
+				</li>
+	
+				<li>
+		   		<a> 功能 </a>
+					<ul>
+						<li><a>自动走车</a> </li>
+						<li><a>停止自动走车 </a></li>
+						<li><a>申请中心控制模式 </a></li>
+						<li><a>申请车站控制模式 </a></li>
+						<li><a>申请分散自律模式 </a></li>
+						<li><a>网络连接</a></li>
+					</ul>
+				</li>
+
+				<li>
+		   		<a> 系统 </a>
+					<ul>
+						<li><a>初始化站场</a> </li>
+						<li><a>交接班</a></li>
+						<li><a>人工过表</a></li>
+						<li><a>值班人员登陆 </a></li>
+						<li><a>值班人员注销 </a></li>
+						<li><a>系统维护</a></li>
+						<li><a>报警信息</a></li>
+						<li><a>系统日志</a></li>
+						<li><a>维护工具</a></li>
+						<li><a>全屏显示</a></li>
+						<li><a>退出系统</a></li>	
+					</ul>
+				</li>
+</ul>
+</div>
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+<button class="banlijinlu" >办理进路</button>
+
+<p>
+<button class="buttonStyle" id="jdjh_pos" >阶段计划</button> 
+<button class="buttonStyle" id="mszh_pos" >模式转换</button> 
+<button class="buttonStyle" id="ddmm_pos" >调度命令</button>
+<button class="buttonStyle" id="qqmm_pos">请求命令</button>
+</p>
+
+
+<!--站场图的画布-->
+ <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+</canvas>
+
+<div style="width:1800px; height:600px;">
+<div>列车进路序列:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+调度命令序列:</div>
+<table border="1" style="float:left; width:600px; ">
+<tr>
+<td></td>
+<td>序号</td>
+<td>车次</td>
+<td>接发车</td>
+<td>股道</td>
+<td>计划开行时间</td>
+<td>进路</td>
+<td>状态</td>
+<td>触发方式</td>
+</tr>
+<tr>
+<td>*</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+<table border="1" style="float:left; width:600px; margin-left:18px";>
+<tr>
+<td></td>
+<td>序号</td>
+<td>车次</td>
+<td>接发车</td>
+<td>股道</td>
+<td>计划开行时间</td>
+<td>进路</td>
+<td>状态</td>
+<td>触发方式</td>
+</tr>
+<tr>
+<td>*</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</div>
+
+</body>
+
+</html>        
+<script type="text/javascript">
+	 setCookie();
+	 getCookie();
+	 delCookie();
+	 showTime();
+	 njnzcwzdgetcookies();
+//车务终端getcookies
+	 function njnzcwzdgetcookies(){ 
+	
+     setTimeout("njnzcwzdgetcookies();",1000);
+	 
+	 if(getCookie("NJNZCWZD")=="1")
+	 {
+		 alert("南京南站自律机连接状态更新")
+		 setCookie("NJNZCWZD","0"); 
+	 }
+ } 
+
+</script>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="GBK">
+    <link rel="stylesheet" href="css/njnzilvjiyangshi.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/njnzzlj.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+	<script src="js/showtime.js"></script>
+	<script src="js/cookies.js"></script>
+	<script src="js/NJNZZLJclick.js"></script>
+    <title>南京南站自律机</title>
+
+</head>
+<body>
+<button  id="lianjiechewuzhongduan" class="lianjiechewuzhongduan" onclick="NJNZCWZD()">车务终端断开</button>
+<button  id="lianjieliansuo" class="lianjieliansuo" onclick="NJNZLS()">联锁断开</button>
+<button  id="lianjieyingyongfuwuqi" class="lianjieyingyongfuwuqi" onclick="NJNZLJ()">应用服务器断开</button>
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+<button  id="banlijinlu" class="banlijinlu" >办理进路</button>
+<!--        <button  id="lianjiezhudiao" class="lianjiezhudiao" >助调界面</button>
+    <button  id="lianjielinshixiansufuwuqi" class="lianjietsrs" >临时限速服务器界面</button>
+    <button  id="lianjieyingyongfuwuqi" class="lianjieyingyongduwuqi">应用服务器界面</button> 
+    <button  id="lianjierbc" class="lianjierbc" >RBC界面</button>    
+    <button  id="lianjiebeijingnanliansuo" class="lianjiebjnliansuo">北京南站联锁界面</button>
+    
+    <button  id="lianjiebeijingnanzilvji" class="lianjiebjnzilvji">北京南站自律机界面</button>
+    <button  id="lianjiebeijingnanchewuzhongduan" class="lianjiebjnchewuzhongduan">北京南站车务终端界面</button>
+    <button  id="lianjienanjingnanliansuo" class="lianjienjnliansuo">南京南站联锁界面</button> 
+    <button  id="lianjienanjingnanzilvji" class="lianjienjnzilvji">南京南站自律机界面</button> 
+    <button  id="lianjienanjingnanchewuzhongduan" class="lianjienjnchewuzhongduan">南京南站车务终端界面</button>
+    <button  id="lianjieshanghaihongqiaoliansuo" class="lianjieshhqliansuo">上海虹桥站联锁界面</button>  
+    <button  id="lianjieshanghaihongqiaozilvji" class="lianjieshhqzilvji">上海虹桥站自律机界面</button>
+    <button  id="lianjieshanghaihongqiaochewuzhongduan" class="lianjieshhqchewuzhongduan">上海虹桥站车务终端界面</button>   -->     
+    <div class='nav'>
+  <ul>
+    <li><a>文件</a>
+    <ul>
+      <li><a>退出</a></li>
+
+      </ul>
+    </li>
+    <li><a>查看</a></li>
+    <li><a>信息窗口</a>
+    <ul>
+      <li><a>数据信息窗口</a></li>
+      </ul>
+    </li>
+    <li><a>桌面管理</a></li>
+    <li><a>帮助</a></li>
+    
+    <li><a>通信</a>
+      <ul>
+      <li><a>启动服务器</a></li>
+      <li><a>连接到通用前置服务器</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</div>
+    
+    <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+    </canvas>
+
+
+<div style="width:1800px; height:600px;">
+<div>列车进路序列:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+调度命令序列:</div>
+<table border="1" style="float:left; width:600px; ">
+
+<tr>
+<td></td>
+<td>序号</td>
+<td>车次</td>
+<td>接发车</td>
+<td>股道</td>
+<td>计划开行时间</td>
+<td>进路</td>
+</tr>
+<tr>
+<td>*</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+<table border="1" style="float:left; width:600px; margin-left:18px";>
+<tr>
+<td></td>
+<td>命令序号</td>
+<td>发令单位</td>
+<td>受令单位</td>
+<td>命令编号</td>
+<td>发令时间</td>
+</tr>
+<tr>
+<td>*</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+ <script type="text/javascript">
+	 showTime();
+	 setCookie();
+	 getCookie();
+	 delCookie();
+ </script>

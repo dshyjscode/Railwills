@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta charset="GBK">
+  <link rel="stylesheet" href="css/map.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+  <title>24CTCS-3站场图</title>
+
+</head>
+<body>
+  
+  <div class='nav'>
+  <ul>
+    <!-- <input type="button" style="margin-left:-1230px;margin-top:70px" onclick="javascript:window.location.reload()" value="刷新"/>  -->
+    <!--<input type="button" style="margin-left:5px;margin-top:24px" onclick="javascript:window.location.reload()" value="刷新"/>   -->
+    <li><a href="TD/TD.html" target="_blank">01列调</a></li>
+    <li><a href="AD.html" target="_blank">02助调</a></li>
+    <li><a href="AS.html" target="_blank">03应用服务器</a></li>
+    <li><a href="TSRS.html" target="_blank">23临时限速服务器</a></li>
+    <li><a href="rbc.html" target="_blank">22无线闭塞中心</a></li>
+    <li><a href="IFMF.html" target="_blank">31信息流</a></li>
+    
+     <li><a href='#'>列控中心</a>
+      <ul>
+        <li><a href="beijing_TCC.html" target="_blank">25北京南站列控中心</a></li>
+        <li><a href="tianjin_TCC.html" target="_blank">26天津南站列控中心</a></li>
+        <li><a href="jinan_TCC.html" target="_blank">27济南西站列控中心</a></li>
+        <li><a href="nanjing_TCC.html" target="_blank">28南京南站列控中心</a></li>
+        <li><a href="suzhou_TCC.html" target="_blank">29苏州北站列控中心</a></li>
+        <li><a href="shanghai_TCC.html" target="_blank">30上海虹桥站列控中心</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>北京南站</a>
+      <ul>
+        <li><a href="beijing_CBI.html" target="_blank">16联锁</a></li>
+        <li><a href="beijing_SACM.html" target="_blank">04自律机</a></li>
+        <li><a href="beijing_SMT.html" target="_blank">10车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>天津南站</a>
+      <ul>
+        <li><a href="tianjin_CBI.html" target="_blank">17联锁</a></li>
+        <li><a href="tianjin_SACM.html" target="_blank">05自律机</a></li>
+        <li><a href="tianjin_SMT.html" target="_blank">11车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>济南西站</a>
+      <ul>
+        <li><a href="jinan_CBI.html" target="_blank">18联锁</a></li>
+        <li><a href="jinan_SACM.html" target="_blank">06自律机</a></li>
+        <li><a href="jinan_SMT.html" target="_blank">12车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>南京南站</a>
+      <ul>
+        <li><a href="nanjing_CBI.html" target="_blank">19联锁</a></li>
+        <li><a href="nanjing_SACM.html" target="_blank">07自律机</a></li>
+        <li><a href="nanjing_SMT.html" target="_blank">13车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>苏州北站</a>
+      <ul>
+        <li><a href="suzhou_CBI.html" target="_blank">20联锁</a></li>
+        <li><a href="suzhou_SACM.html" target="_blank">08自律机</a></li>
+        <li><a href="suzhou_SMT.html" target="_blank">14车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a href='#'>上海虹桥站</a>
+      <ul>
+        <li><a href="shanghai_CBI.html" target="_blank">21联锁</a></li>
+        <li><a href="shanghai_SACM.html" target="_blank">09自律机</a></li>
+        <li><a href="shanghai_SMT.html" target="_blank">15车务终端</a></li>
+      </ul>
+    </li>
+    
+    <li><a>行车演示</a>
+      <ul>
+        <li  id="xiaxingxingche"><a>下行行车</a></li>
+        <li  id="shangxingxingche"><a>上行行车</a></li>
+        <!-- <li  id="zhanchangtu_yuexing_liuzhan"><a href="station_map_yxcj.html" target="_blank">下行行车越行场景</a></li>  -->
+        <li  id="zhanchangtu_yuexing_liuzhan"><a>下行行车越行</a></li> 
+        <!--- <li  id="zhanchantujiansu"><a href="zhanchangtuhouchejiansu.html" target="_blank">后车减速场景</a></li>  -->                
+        <li  id="zhanqianzhefan"><a>站前折返</a></li>
+        <li  id="zhanhouzhefan"><a>站后折返</a></li>
+        <li  id="shangxingxingcheguzhang"><a>上行行车故障</a></li>
+        <li  id="ldxiangzhuang"><a>列车调车相撞</a></li>
+        <li  id="liechezhuiwei"><a>列车追尾</a></li>
+      </ul>
+    </li>
+    <!-- <li  id="huoqucookie"><a>获取cookie</a></li>  -->
+    <li  id="xingche"><a>行车</a></li>   
+    <li  id="zywqh"><a>中英文切换</a></li>
+    
+    <li><a>其他</a>
+      <ul>
+        <li  id="shuaxin"><a>页面刷新</a></li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+    
+    
+  <canvas id="canvas" class="cancss" width="11323" height="1300">
+   
+  </canvas>
+</body>
+    <script src="js/map.js"></script>
+    <script src="js/map-yxcj.js"></script>  
+    <script src="js/map-xccjjf.js"></script> 
+    <script src="js/map-ldzdxc-xx.js"></script>
+    <script src="js/map-ldzdxc-sx.js"></script>
+    <script src="js/map-diaochezouche.js"></script>
+    <script src="js/map-cookies.js"></script>
+    <!-- <script src="js/map-paidui.js"></script> -->
+</html>
+
+
+<script type="text/javascript">
+var fenjiedian=new Array()
+    fenjiedian[0]=0
+    fenjiedian[1]=163
+	fenjiedian[2]=326
+	fenjiedian[3]=753
+    fenjiedian[4]=905
+	fenjiedian[5]=1050
+	fenjiedian[6]=1230
+	fenjiedian[7]=1410
+	fenjiedian[8]=1590
+	fenjiedian[9]=1770
+	fenjiedian[10]=1950
+	fenjiedian[11]=2130
+	fenjiedian[12]=2274
+    fenjiedian[13]=2377
+    fenjiedian[14]=2923
+	fenjiedian[15]=3025
+	fenjiedian[16]=3180
+	fenjiedian[17]=3360
+	fenjiedian[18]=3540
+	fenjiedian[19]=3720
+	fenjiedian[20]=3900
+	fenjiedian[21]=4080
+	fenjiedian[22]=4235
+	fenjiedian[23]=4338
+    fenjiedian[24]=4884
+	fenjiedian[25]=4986
+	fenjiedian[26]=5131
+	fenjiedian[27]=5311
+	fenjiedian[28]=5491
+	fenjiedian[29]=5671
+	fenjiedian[30]=5851
+	fenjiedian[31]=6031
+	fenjiedian[32]=6176
+	fenjiedian[33]=6279
+	fenjiedian[34]=6825
+	fenjiedian[35]=6927
+    fenjiedian[36]=7072
+    fenjiedian[37]=7252
+	fenjiedian[38]=7432
+	fenjiedian[39]=7612
+	fenjiedian[40]=7792
+	fenjiedian[41]=7972
+	fenjiedian[42]=8117
+	fenjiedian[43]=8220
+	fenjiedian[44]=8766
+	fenjiedian[45]=8868
+	fenjiedian[46]=9013
+    fenjiedian[47]=9193
+	fenjiedian[48]=9373
+	fenjiedian[49]=9553
+	fenjiedian[50]=9733
+	fenjiedian[51]=9913
+	fenjiedian[52]=10058
+	fenjiedian[53]=10190
+	fenjiedian[54]=10697
+	fenjiedian[55]=10798
+	
+	var zhongjianzhan_cexiantingche=new Array()
+    zhongjianzhan_cexiantingche[0]=0
+    zhongjianzhan_cexiantingche[1]=163
+	zhongjianzhan_cexiantingche[2]=326
+	zhongjianzhan_cexiantingche[3]=753
+    zhongjianzhan_cexiantingche[4]=905
+	zhongjianzhan_cexiantingche[5]=1050
+	zhongjianzhan_cexiantingche[6]=1230
+	zhongjianzhan_cexiantingche[7]=1410
+	zhongjianzhan_cexiantingche[8]=1590
+	zhongjianzhan_cexiantingche[9]=1770
+	zhongjianzhan_cexiantingche[10]=1950
+	zhongjianzhan_cexiantingche[11]=2130
+	zhongjianzhan_cexiantingche[12]=2274
+    zhongjianzhan_cexiantingche[13]=2417
+    zhongjianzhan_cexiantingche[14]=2883
+	zhongjianzhan_cexiantingche[15]=3025
+	zhongjianzhan_cexiantingche[16]=3180
+	zhongjianzhan_cexiantingche[17]=3360
+	zhongjianzhan_cexiantingche[18]=3540
+	zhongjianzhan_cexiantingche[19]=3720
+	zhongjianzhan_cexiantingche[20]=3900
+	zhongjianzhan_cexiantingche[21]=4080
+	zhongjianzhan_cexiantingche[22]=4235
+	zhongjianzhan_cexiantingche[23]=4378
+    zhongjianzhan_cexiantingche[24]=4844
+	zhongjianzhan_cexiantingche[25]=4986
+	zhongjianzhan_cexiantingche[26]=5131
+	zhongjianzhan_cexiantingche[27]=5311
+	zhongjianzhan_cexiantingche[28]=5491
+	zhongjianzhan_cexiantingche[29]=5671
+	zhongjianzhan_cexiantingche[30]=5851
+	zhongjianzhan_cexiantingche[31]=6031
+	zhongjianzhan_cexiantingche[32]=6176
+	zhongjianzhan_cexiantingche[33]=6319
+	zhongjianzhan_cexiantingche[34]=6785
+	zhongjianzhan_cexiantingche[35]=6927
+    zhongjianzhan_cexiantingche[36]=7072
+    zhongjianzhan_cexiantingche[37]=7252
+	zhongjianzhan_cexiantingche[38]=7432
+	zhongjianzhan_cexiantingche[39]=7612
+	zhongjianzhan_cexiantingche[40]=7792
+	zhongjianzhan_cexiantingche[41]=7972
+	zhongjianzhan_cexiantingche[42]=8117
+	zhongjianzhan_cexiantingche[43]=8220
+	zhongjianzhan_cexiantingche[44]=8766
+	zhongjianzhan_cexiantingche[45]=8868
+	zhongjianzhan_cexiantingche[46]=9013
+    zhongjianzhan_cexiantingche[47]=9193
+	zhongjianzhan_cexiantingche[48]=9373
+	zhongjianzhan_cexiantingche[49]=9553
+	zhongjianzhan_cexiantingche[50]=9733
+	zhongjianzhan_cexiantingche[51]=9913
+	zhongjianzhan_cexiantingche[52]=10058
+	zhongjianzhan_cexiantingche[53]=10190
+	zhongjianzhan_cexiantingche[54]=10697
+	zhongjianzhan_cexiantingche[55]=10798
+	
+	var zhongdianzhan_cexiantingche=new Array()
+    zhongdianzhan_cexiantingche[0]=0
+    zhongdianzhan_cexiantingche[1]=163
+	zhongdianzhan_cexiantingche[2]=326
+	zhongdianzhan_cexiantingche[3]=753
+    zhongdianzhan_cexiantingche[4]=905
+	zhongdianzhan_cexiantingche[5]=1050
+	zhongdianzhan_cexiantingche[6]=1230
+	zhongdianzhan_cexiantingche[7]=1410
+	zhongdianzhan_cexiantingche[8]=1590
+	zhongdianzhan_cexiantingche[9]=1770
+	zhongdianzhan_cexiantingche[10]=1950
+	zhongdianzhan_cexiantingche[11]=2130
+	zhongdianzhan_cexiantingche[12]=2274
+    zhongdianzhan_cexiantingche[13]=2377  
+    zhongdianzhan_cexiantingche[14]=2923  
+	zhongdianzhan_cexiantingche[15]=3025
+	zhongdianzhan_cexiantingche[16]=3180
+	zhongdianzhan_cexiantingche[17]=3360
+	zhongdianzhan_cexiantingche[18]=3540
+	zhongdianzhan_cexiantingche[19]=3720
+	zhongdianzhan_cexiantingche[20]=3900
+	zhongdianzhan_cexiantingche[21]=4080
+	zhongdianzhan_cexiantingche[22]=4235
+	zhongdianzhan_cexiantingche[23]=4338
+    zhongdianzhan_cexiantingche[24]=4884
+	zhongdianzhan_cexiantingche[25]=4986
+	zhongdianzhan_cexiantingche[26]=5131
+	zhongdianzhan_cexiantingche[27]=5311
+	zhongdianzhan_cexiantingche[28]=5491
+	zhongdianzhan_cexiantingche[29]=5671
+	zhongdianzhan_cexiantingche[30]=5851
+	zhongdianzhan_cexiantingche[31]=6031
+	zhongdianzhan_cexiantingche[32]=6176
+	zhongdianzhan_cexiantingche[33]=6279
+	zhongdianzhan_cexiantingche[34]=6825
+	zhongdianzhan_cexiantingche[35]=6927
+    zhongdianzhan_cexiantingche[36]=7072
+    zhongdianzhan_cexiantingche[37]=7252
+	zhongdianzhan_cexiantingche[38]=7432
+	zhongdianzhan_cexiantingche[39]=7612
+	zhongdianzhan_cexiantingche[40]=7792
+	zhongdianzhan_cexiantingche[41]=7972
+	zhongdianzhan_cexiantingche[42]=8117
+	zhongdianzhan_cexiantingche[43]=8220
+	zhongdianzhan_cexiantingche[44]=8766
+	zhongdianzhan_cexiantingche[45]=8868
+	zhongdianzhan_cexiantingche[46]=9013
+    zhongdianzhan_cexiantingche[47]=9193
+	zhongdianzhan_cexiantingche[48]=9373
+	zhongdianzhan_cexiantingche[49]=9553
+	zhongdianzhan_cexiantingche[50]=9733
+	zhongdianzhan_cexiantingche[51]=9913
+	zhongdianzhan_cexiantingche[52]=10058
+	zhongdianzhan_cexiantingche[53]=10190
+	zhongdianzhan_cexiantingche[54]=10300   //进行了修改
+	zhongdianzhan_cexiantingche[55]=10556   //进行了修改
+	
+	
+	
+ pd=[0,0,0,0,0,0,0];  // 用于存储行车测试按键是否被按下
+ p_d=[0,0,0,0,0,0,0];	 // 用于存储行车测试按键按下的次数
+$.cookie.json=true;
+$('#xingche').click(function () 
+{    
+setCookie("zhanchangtu", "AB0000000000000000000004444444444444444004444444444440044444444444400444444444444004444444444440044444444444444440011111111100111111001111001111001111001111111110011111111111111111111111100111111111111111111111100111111111111111111110011111111111111111111001111111111111111111100111111111111111311111111001111001111001111001111001111001111000111111111111111111111111100111111111111111111111111100111111111111001111111111110000000000000000AC")    // 站场图大排队信息的初始状态
+setCookie("站场图", "AB0000000000000000000004444444444444444004444444444440044444444444400444444444444004444444444440044444444444444440011111111100111111001111001111001111001111111110011111111111111111111111100111111111111111111111100111111111111111111110011111111111111111111001111111111111111111100111111111111111311111111001111001111001111001111001111001111000111111111111111111111111100111111111111111111111111100111111111111001111111111110000000000000000AC") 
+	 getCookie_map();      // 获取从联锁发来的信息
+	 //var cookie = $.cookie();
+	// var Map_cookie = $.cookie('北京联锁'); 	// 获取从列调发出来的cookie信息
+	 //var liediaoxinxi = cookie[0];   //  从中截取前面第一个列调信息
+	 
+     //liediaoxinxi = recookie.split('');  //将列调信息(字符串形式)转化为数组形式
+
+    // if(Map_cookie=="") return;     
+	 //var jdjh =JSON.stringify(Map_cookie);
+	 /* var last = (last=Object.keys(jdjh))[last.length-1];
+	 var jh=jdjh[last-33]+jdjh[last-32];*/
+     //alert(jdjh);
+	  
+}); 
+
+$('#shuaxin').click(function () 
+{
+	window.location.reload()
+});
+
+
+$('#zywqh').click(function () 
+{
+	alert("本功能尚在开发中")
+});
+ 
+// 下行行车演示
+$('#xiaxingxingche').click(function () 
+{
+	pd[0]=1;             // 每执行一次，该数就重新被赋值一次
+	p_d[0]=p_d[0]+1;    // 每执行一次，该数就加1,
+	if(pd[2]==1||pd[3]==1||pd[4]==1||pd[7]==1)   // 当下行行车命令发送后，若有其他下行行车操作，不允许
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[0]=0;
+	}
+	else if(p_d[0]>1)   // 不允许一个行车场景跑多遍
+	{
+		alert("此行车命令不被允许");
+	}
+	
+	else
+	{
+    alert("下行行车命令发送成功");
+
+    i=3
+	//x=490;y=235
+    //danduhuaxiaxingxiaoche(x,y)	
+	setInterval("dingshidanduhuaxiaxingxiaoche()","1000");
+	
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=800;y=250
+    xiaxingxinhaojilvdeng2(x,y)
+	
+	x=490;y=235
+	context.fillStyle = "blue";
+            
+	context.fillRect(x, y, 60, 15);
+	context.beginPath();
+	context.lineWidth = 1;
+	context.strokeStyle = 'blue';
+			
+	context.moveTo( x+60, y ); // x+7,y-1
+	context.lineTo( x+60, y+15);
+	context.lineTo( x+90, y+15);
+	context.lineTo( x+60, y);
+	context.fill();
+	context.stroke();
+			
+	context.fillStyle = "red";   // #848284代表灰色（股道的颜色）
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+	
+            			
+	//在始发站办理发车进路后的白光带显示
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[i], 250, fenjiedian[i+3]-fenjiedian[i], 5);
+				
+	context.fillStyle = "#FFF";
+	context.fillRect(753, 190, 57, 5);
+				
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';
+	x=810;
+	y=189;
+	k=50;
+	context.moveTo( x, y+6 ); // x+7,y-1
+	context.lineTo( x+k, y+6+k);
+	context.stroke();
+			    
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';  // 将4DG的双动道岔变为白光带
+	x1=930;
+	y1=260;
+	x2=978;
+	y2=282;
+	context.moveTo( x1, y1 ); // x+7,y-1
+	context.lineTo( x2, y2);
+	context.stroke();	
+	}	
+});
+ 
+// 上行行车演示
+$('#shangxingxingche').click(function () 
+{
+	pd[1]=1;
+	p_d[1]=p_d[1]+1;
+	if(pd[3]>=1||pd[4]>=1||pd[5]>=1||pd[6]>=1)
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[1]=0;
+	}
+	
+	else if(p_d[1]>1)
+	{
+		alert("此行车命令不被允许");
+	}
+	
+	else
+	{
+    alert("上行行车命令发送成功");
+
+    p=54
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("dingshidanduhuashangxingxiaoche()","1000");
+	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=10203;y=340
+    shangxingxinhaojilvdeng2(x,y)
+            
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[p-4], 310, fenjiedian[p-1]-fenjiedian[p-4], 5);
+			
+	context.fillStyle = "#FFF";
+	context.fillRect(10145, 370, 45, 5);
+			
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';	
+	x=10083;
+	y=320;
+	k=50;
+	context.moveTo( x+10, y+1 ); // x+7,y-1
+	context.lineTo( x+10+k, y+1+k);
+	context.stroke(); 	
+			
+	//渡线处白光带
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';
+	x1=9938;
+	y1=303;
+	x2=9985;
+	y2=282;
+	context.moveTo( x1, y1 ); // x+7,y-1
+	context.lineTo( x2, y2);
+	context.stroke();
+	}
+});
+
+//下行行车越行场景
+$('#zhanchangtu_yuexing_liuzhan').click(function () 
+{
+	pd[2]=1;
+	p_d[2]=p_d[2]+1;
+	
+	if(pd[0]==1||pd[3]==1||pd[4]==1||pd[7]==1)
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[2]=0;
+	}
+	
+	else if(p_d[2]>1)
+	{
+		alert("此行车命令不被允许");
+	}
+	else
+	{
+    alert("下行行车越行命令发送成功");
+	
+    i=3
+	//x=490;y=235	
+	//每隔3000ms调用一次dingshidanduhuaxiaxingxiaoche()函数
+	setInterval("xiaxingxingcheyuexingchangjing()","1000");
+	
+	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=800;y=250
+    xiaxingxinhaojilvdeng2(x,y)
+            			
+	x=490;y=235
+	context.fillStyle = "blue";
+            
+	context.fillRect(x, y, 60, 15);
+	context.beginPath();
+	context.lineWidth = 1;
+	context.strokeStyle = 'blue';
+			
+	context.moveTo( x+60, y ); // x+7,y-1
+	context.lineTo( x+60, y+15);
+	context.lineTo( x+90, y+15);
+	context.lineTo( x+60, y);
+	context.fill();
+	context.stroke();
+			
+	context.fillStyle = "red";   // #848284代表灰色（股道的颜色）
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);					
+						
+	//在始发站办理发车进路后的白光带显示
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[i], 250, fenjiedian[i+3]-fenjiedian[i], 5);
+				
+	context.fillStyle = "#FFF";
+	context.fillRect(753, 190, 57, 5);
+				
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';
+	x=810;
+	y=189;
+	k=50;
+	context.moveTo( x, y+6 ); // x+7,y-1
+	context.lineTo( x+k, y+6+k);
+	context.stroke();
+			    
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';  // 将4DG的双动道岔变为白光带
+	x1=930;
+	y1=260;
+	x2=978;
+	y2=282;
+	context.moveTo( x1, y1 ); // x+7,y-1
+	context.lineTo( x2, y2);
+	context.stroke();	
+	
+	            
+	}	
+});
+
+// 站前折返场景演示
+$('#zhanqianzhefan').click(function () 
+{
+	pd[3]=1;
+	p_d[3]=p_d[3]+1;
+	if(pd[0]==1||pd[1]==1||pd[2]==1||pd[4]==1||pd[5]==1||pd[6]==1||pd[7]==1)
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[3]=0;
+	}
+	
+	else if(p_d[3]>1)
+	{
+		alert("此行车命令不被允许");
+	}
+	
+	else
+	{
+    alert("站前折返命令发送成功");
+    i=3
+	
+	//x=490;y=235
+    //danduhuaxiaxingxiaoche(x,y)	
+	setInterval("zhanqianzhefanxiaoche()","1000");
+	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=800;y=250
+    xiaxingxinhaojilvdeng2(x,y)
+	
+	
+	x=490;y=235
+	context.fillStyle = "blue";
+            
+	context.fillRect(x, y, 60, 15);
+	context.beginPath();
+	context.lineWidth = 1;
+	context.strokeStyle = 'blue';
+			
+	context.moveTo( x+60, y ); // x+7,y-1
+	context.lineTo( x+60, y+15);
+	context.lineTo( x+90, y+15);
+	context.lineTo( x+60, y);
+	context.fill();
+	context.stroke();
+			
+	context.fillStyle = "red";   // #848284代表灰色（股道的颜色）
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+            			
+	//在始发站办理发车进路后的白光带显示
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[i], 250, fenjiedian[i+3]-fenjiedian[i], 5);
+				
+	context.fillStyle = "#FFF";
+	context.fillRect(753, 190, 57, 5);
+				
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';
+	x=810;
+	y=189;
+	k=50;
+	context.moveTo( x, y+6 ); // x+7,y-1
+	context.lineTo( x+k, y+6+k);
+	context.stroke();
+			    
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';  // 将4DG的双动道岔变为白光带
+	x1=930;
+	y1=260;
+	x2=978;
+	y2=282;
+	context.moveTo( x1, y1 ); // x+7,y-1
+	context.lineTo( x2, y2);
+	context.stroke();	
+	}		
+});
+
+// 站后折返场景演示
+$('#zhanhouzhefan').click(function () 
+{
+	pd[4]=1;
+	p_d[4]=p_d[4]+1;
+	if(pd[0]==1||pd[1]==1||pd[2]==1||pd[3]==1||pd[5]==1||pd[6]==1||pd[7]==1)
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[4]=0;
+	}
+	
+	else if(p_d[4]>1)
+	{
+		alert("此行车命令不被允许");
+	}
+	
+	else
+	{
+    alert("站后折返命令发送成功");
+    i=3
+	
+	//x=490;y=235
+    //danduhuaxiaxingxiaoche(x,y)	
+	setInterval("zhanhouzhefanxiaoche()","1000");
+	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=800;y=250
+    xiaxingxinhaojilvdeng2(x,y)
+	
+	x=490;y=235
+	context.fillStyle = "blue";
+            
+	context.fillRect(x, y, 60, 15);
+	context.beginPath();
+	context.lineWidth = 1;
+	context.strokeStyle = 'blue';
+			
+	context.moveTo( x+60, y ); // x+7,y-1
+	context.lineTo( x+60, y+15);
+	context.lineTo( x+90, y+15);
+	context.lineTo( x+60, y);
+	context.fill();
+	context.stroke();
+			
+	context.fillStyle = "red";   // #848284代表灰色（股道的颜色）
+	context.fillRect(fenjiedian[i-1], 250, fenjiedian[i]-fenjiedian[i-1], 5);
+            			
+	//在始发站办理发车进路后的白光带显示
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[i], 250, fenjiedian[i+3]-fenjiedian[i], 5);
+				
+	context.fillStyle = "#FFF";
+	context.fillRect(753, 190, 57, 5);
+				
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';
+	x=810;
+	y=189;
+	k=50;
+	context.moveTo( x, y+6 ); // x+7,y-1
+	context.lineTo( x+k, y+6+k);
+	context.stroke();
+			    
+	context.beginPath();
+	context.lineWidth = 5;
+	context.strokeStyle = '#FFF';  // 将4DG的双动道岔变为白光带
+	x1=930;
+	y1=260;
+	x2=978;
+	y2=282;
+	context.moveTo( x1, y1 ); // x+7,y-1
+	context.lineTo( x2, y2);
+	context.stroke();	
+	}			
+});
+
+// 上行行车故障场景演示
+$('#shangxingxingcheguzhang').click(function () 
+{
+	pd[5]=1;
+	p_d[5]=p_d[5]+1;
+	if(pd[1]>=1||pd[3]>=1||pd[4]>=1||pd[6]>=1)
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[5]=0;
+	}
+	
+	else if(p_d[5]>1)
+	{
+		alert("此行车命令不被允许");
+	}
+	
+	else
+	{
+    alert("上行行车故障设置成功");
+
+    p=54
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("dingshidanduhuashangxingxingcheguzhang()","1000");
+	
+	var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=10203;y=340
+    shangxingxinhaojilvdeng2(x,y)
+            
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[p-4], 310, fenjiedian[p-1]-fenjiedian[p-4], 5);	
+	}	
+});
+
+// 列车调车相撞场景演示
+$('#ldxiangzhuang').click(function () 
+{
+	pd[6]=1;
+	p_d[6]=p_d[6]+1;
+	if(pd[1]>=1||pd[3]>=1||pd[4]>=1||pd[5]>=1)
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[6]=0;
+	}
+	
+	else if(p_d[6]>1)
+	{
+		alert("此行车命令不被允许");
+	}
+	
+	else
+	{
+	alert("列车调车相撞场景设置成功");    
+    i=0;
+	c=4;
+    p=15;
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("liechediaochexiangzhuang()","1000");
+	
+	/*var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=10203;y=340
+    shangxingxinhaojilvdeng2(x,y)
+            
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[p-4], 310, fenjiedian[p-1]-fenjiedian[p-4], 5);	*/
+	}
+});
+
+// 列车调车相撞场景演示
+$('#liechezhuiwei').click(function () 
+{
+	pd[7]=1;
+	p_d[7]=p_d[7]+1;
+	if(pd[0]==1||pd[2]==1||pd[3]==1||pd[4]==1)
+	{
+		alert("此行车命令不被允许");
+		//pd=[];
+		pd[7]=0;
+	}
+	
+	else if(p_d[7]>1)
+	{
+		alert("此行车命令不被允许");
+	}
+	
+	else
+	{
+	alert("列车追尾场景设置成功");    
+    i=3;
+	//x=10399;y=295
+    //danduhuashangxingxiaoche(x,y)	
+	setInterval("liechezhuiwei()","1000");
+	
+	/*var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+	x=10203;y=340
+    shangxingxinhaojilvdeng2(x,y)
+            
+    context.fillStyle = "#FFF";
+	context.fillRect(fenjiedian[p-4], 310, fenjiedian[p-1]-fenjiedian[p-4], 5);	*/
+	}
+});
+</script>

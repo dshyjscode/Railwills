@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="css/szsacm.css"/>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.bubble-slider.js"></script>
+	
+    <title>08苏州北站自律机</title>
+
+</head>
+<body>
+<button  id="lianjiechewuzhongduan" class="lianjiechewuzhongduan" onclick="SZBCWZD()">车务终端断开</button>
+<button  id="lianjieliansuo" class="lianjieliansuo" onclick="SZBLS()">联锁断开</button>
+<button  id="lianjieyingyongfuwuqi" class="lianjieyingyongfuwuqi" onclick="SZBYYFWQ()">应用服务器断开</button>
+
+<input type="text" id="timetext"   value="当前时间：2019年6月23日 21:29:22 星期二" class="timetext"  style="width:300px;"  />
+<!--<button  id="banlijinlu" class="banlijinlu" >办理进路</button>-->
+<!--        <button  id="lianjiezhudiao" class="lianjiezhudiao" >助调界面</button>
+    <button  id="lianjielinshixiansufuwuqi" class="lianjietsrs" >临时限速服务器界面</button>
+    <button  id="lianjieyingyongfuwuqi" class="lianjieyingyongduwuqi">应用服务器界面</button> 
+    <button  id="lianjierbc" class="lianjierbc" >RBC界面</button>    
+    <button  id="lianjiebeijingnanliansuo" class="lianjiebjnliansuo">北京南站联锁界面</button>
+    
+    <button  id="lianjiebeijingnanzilvji" class="lianjiebjnzilvji">北京南站自律机界面</button>
+    <button  id="lianjiebeijingnanchewuzhongduan" class="lianjiebjnchewuzhongduan">北京南站车务终端界面</button>
+    <button  id="lianjienanjingnanliansuo" class="lianjienjnliansuo">南京南站联锁界面</button> 
+    <button  id="lianjienanjingnanzilvji" class="lianjienjnzilvji">南京南站自律机界面</button> 
+    <button  id="lianjienanjingnanchewuzhongduan" class="lianjienjnchewuzhongduan">南京南站车务终端界面</button>
+    <button  id="lianjieshanghaihongqiaoliansuo" class="lianjieshhqliansuo">上海虹桥站联锁界面</button>  
+    <button  id="lianjieshanghaihongqiaozilvji" class="lianjieshhqzilvji">上海虹桥站自律机界面</button>
+    <button  id="lianjieshanghaihongqiaochewuzhongduan" class="lianjieshhqchewuzhongduan">上海虹桥站车务终端界面</button>   -->     
+    <div class='nav'>
+  <ul>
+    <li><a>文件</a>
+    <ul>
+      <li><a onClick="tuichu()">退出</a></li>
+
+      </ul>
+    </li>
+    <li><a>查看</a></li>
+    <li><a>信息窗口</a>
+    <ul>
+      <li><a onclick="shujuxinxi()">数据信息窗口</a></li>
+      </ul>
+    </li>
+    <li><a>桌面管理</a></li>
+    <li><a>帮助</a></li>
+    
+    <li><a>通信</a>
+      <ul>
+      <li><a>启动服务器</a></li>
+      <li><a>连接到通用前置服务器</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</div>
+    
+    <canvas id="canvas" class="cancss" width="2000" height="700">
+
+    
+    </canvas>
+
+
+<table width="100%" align="center">
+<tr>
+<td><table id = "recCarTab" width="100%" class="gridtable">
+<tr>
+	<th colspan="7">列车进路序列:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>接发车</th><th>股道</th><th>计划开行时间</th><th>进路</th>
+</tr>
+			<tr>
+				<td>*</td><td id = "RecOrderNum"></td><td id = "RecCar" ></td><td id = "Rec"></td><td id = "RecTrack">
+                 <select name="suzhou_stationtrack_RX" id="suzhou_stationtrack_RX"><!--接车表股道下拉菜单-->
+					<option value="5G">5G</option>
+					<option value="3G">3G</option>
+					<option value="IG">ⅠG</option>
+					<option value="IIG">ⅡG</option>
+					<option value="4G">4G</option>
+					<option value="6G">6G</option>
+					</select>
+                    </td><td id = "RecTime"></td><td id = "RecRoute">
+			</tr>
+</table></td>
+<td><table width="100%" class="gridtable">
+<tr>
+	<th colspan="6">调度命令序列:</th>
+</tr>
+<tr>
+    <th></th><th>命令序号</th><th>发令单位</th><th>受令单位</th><th>命令编号</th><th>发令时间</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></td>
+</tr>
+</table>
+	
+			<div class="zhezhao" id='zhezhao'>
+			<div class="tankuang">
+				<div id="header">
+					<span style="position:absolute; color: black; left:10px; top:5px; font-size:20px">数据信息窗口</span>
+					<div id="header-right" onclick="hidder()">x</div>
+
+													
+<table width="95%" class="gridtable" style="position:absolute; top:60px; left:23px">
+<tr>
+	<th colspan="6">办理进路-接车:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>计划到开时间</th><th>发车车站</th><th>到达车站</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table></center>
+
+<table width="95%" class="gridtable" style="position:absolute; top:260px; left:23px">
+<tr>
+	<th colspan="6">办理进路-发车:</th>
+</tr>
+<tr>
+    <th></th><th>序号</th><th>车次</th><th>计划到开时间</th><th>发车车站</th><th>到达车站</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table>
+		
+<table width="95%" class="gridtable" style="position:absolute; top:460px; left:23px">
+<tr>
+	<th colspan="6">创建服务</th>
+</tr>
+<tr>
+    <th></th><th>时间</th><th>创建对象</th><th>连接对象</th><th>地址</th><th>端口</th>
+</tr>
+<tr>
+    <td>*</td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</table>
+
+				</div>
+			</div>
+		</div>
+</body>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/szsacm.js"></script>
+<script src="js/szsacm-map.js"></script>
+<script src="js/szsacm-cookies.js"></script>
+<script src="js/szsmt-mapRecurrent.js"></script>
+</html>
+ <script type="text/javascript">
+	 showTime();
+	 setCookie();
+	 getCookie();
+	 delCookie();
+	 document.getElementById('zhezhao').style.display="none";
+	 function shujuxinxi(){
+	 document.getElementById('zhezhao').style.display="";
+	 }
+	 function hidder(){
+	 document.getElementById('zhezhao').style.display="none";
+	 }
+ </script>
